@@ -21,7 +21,7 @@ function Copyright() {
         color="inherit"
         href="https://northeastern-my.sharepoint.com/:w:/g/personal/madhav_n_northeastern_edu/Ecb9g6lhiTFIkTBHSgtNT_gBNX4C-ScExSGJyNELb_M32A?e=GcalV4"
       >
-        Team 18
+        Team-18
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -105,7 +105,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
