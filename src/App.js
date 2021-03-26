@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import PetSearch from "./PetSearch";
