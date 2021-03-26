@@ -3,6 +3,8 @@ import Home from "./Home";
 import PetSearch from "./PetSearch";
 import CreatePetListing from "./CreatePetListing";
 import ButtonAppBar from "./ButtonAppBar";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
   return (
@@ -19,6 +21,12 @@ function App() {
             </Route>
             <Route path="/create">
               <CreatePetListing />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
           </Switch>
         </div>

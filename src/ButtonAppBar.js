@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const classes = useStyles();
 
   return (
@@ -34,11 +35,16 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Button href="/" color="inherit">
             Bring Home A Pet
-          </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          </Button>
+          <Typography className={classes.title}></Typography>
+          <Button href="/login" color="inherit">
+            Login
+          </Button>
+          <Button href="/register" color="inherit">
+            Register
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
