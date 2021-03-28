@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -51,6 +52,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleHref = (event, route) => {
+    event.preventDefault();
+    history.push(route);
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -105,7 +112,11 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link
+                component='button'
+                onClick={e => handleHref(e, '/register')}
+                variant='body2'
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,6 +28,7 @@ export default function Navbar() {
   const classes = useStyles();
   const [loggedIn, setLoggedIn] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const history = useHistory();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -36,11 +38,16 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  const handleHref = (event, route) => {
+    event.preventDefault();
+    history.push(route);
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          <Button href='/' color='inherit'>
+          <Button onClick={e => handleHref(e, '/')} color='inherit'>
             Bring Home A Pet
           </Button>
           <Typography className={classes.title}></Typography>
@@ -65,18 +72,10 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Button
-                href='/login'
-                color='inherit'
-                onClick={() => setLoggedIn(true)}
-              >
+              <Button color='inherit' onClick={e => handleHref(e, '/login')}>
                 Login
               </Button>
-              <Button
-                href='/register'
-                color='inherit'
-                onClick={() => setLoggedIn(true)}
-              >
+              <Button color='inherit' onClick={e => handleHref(e, '/register')}>
                 Register
               </Button>
             </>
