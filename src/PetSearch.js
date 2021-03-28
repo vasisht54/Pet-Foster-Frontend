@@ -1,29 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import React from "react";
+import PropTypes from "prop-types";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import {Filters} from './PetSearchFilters';
+import { Filters } from "./PetSearchFilters";
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
     flexGrow: 1,
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
@@ -31,17 +31,17 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    height: '100vh',
-    overflowY: 'scroll'
+    height: "100vh",
+    overflowY: "hidden",
   },
-  'drawerPaper': {
-    top: 'auto !important',
+  drawerPaper: {
+    top: "auto !important",
     width: drawerWidth,
-    position: 'absolute',
+    position: "absolute",
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   cardRoot: {
@@ -51,9 +51,8 @@ const useStyles = makeStyles((theme) => ({
     height: 140,
   },
   cardInfo: {
-    paddingLeft: '5px'
+    paddingLeft: "5px",
   },
-
 }));
 
 function PetSearch(props) {
@@ -68,8 +67,7 @@ function PetSearch(props) {
   function FormRow() {
     return (
       <React.Fragment>
-        {
-        [...Array(4)].map((e, i) =>
+        {[...Array(4)].map((e, i) => (
           <Grid item xs={3}>
             <Card className={classes.cardRoot}>
               <CardActionArea>
@@ -86,7 +84,12 @@ function PetSearch(props) {
                     <Typography variant="caption" display="inline" gutterBottom>
                       Category:
                     </Typography>
-                    <Typography variant="body2" display="inline" className={classes.cardInfo} gutterBottom>
+                    <Typography
+                      variant="body2"
+                      display="inline"
+                      className={classes.cardInfo}
+                      gutterBottom
+                    >
                       Dog
                     </Typography>
                   </div>
@@ -94,7 +97,12 @@ function PetSearch(props) {
                     <Typography variant="caption" display="inline" gutterBottom>
                       Age:
                     </Typography>
-                    <Typography variant="body2" display="inline" className={classes.cardInfo} gutterBottom>
+                    <Typography
+                      variant="body2"
+                      display="inline"
+                      className={classes.cardInfo}
+                      gutterBottom
+                    >
                       2 years
                     </Typography>
                   </div>
@@ -102,7 +110,12 @@ function PetSearch(props) {
                     <Typography variant="caption" display="inline" gutterBottom>
                       Duration:
                     </Typography>
-                    <Typography variant="body2" display="inline" className={classes.cardInfo} gutterBottom>
+                    <Typography
+                      variant="body2"
+                      display="inline"
+                      className={classes.cardInfo}
+                      gutterBottom
+                    >
                       May 02, 21 - May 12, 21
                     </Typography>
                   </div>
@@ -115,12 +128,10 @@ function PetSearch(props) {
               </CardActions>
             </Card>
           </Grid>
-          )
-        }
+        ))}
       </React.Fragment>
     );
   }
-
 
   return (
     <div className={classes.root}>
@@ -129,7 +140,7 @@ function PetSearch(props) {
         <Hidden smUp implementation="css">
           <Drawer
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
