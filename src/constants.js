@@ -15,3 +15,20 @@ export const ages =[
     '5-10 years',
     'more than 10 years'
 ]
+
+export const colors = [
+  'Any',
+  'Black',
+  'White',
+  'Brown',
+  'Golden',
+  'Bicolor',
+  'Yellow',
+  'Red',
+  'Blue'
+]
+
+export const gender = [
+  'Female',
+  'Male'
+]
