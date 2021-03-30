@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -15,6 +14,8 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import { Filters } from "./PetSearchFilters";
+import PetSearchDetails from "./petSearchDetails";
+
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     height: "100vh",
-    overflowY: "hidden",
+    overflowY: "scroll",
   },
   drawerPaper: {
     top: "auto !important",
@@ -55,10 +56,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PetSearch(props) {
+function PetSearch() {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [petDetails, setPetDetails] = React.useState(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -70,7 +72,7 @@ function PetSearch(props) {
         {[...Array(4)].map((e, i) => (
           <Grid item xs={3}>
             <Card className={classes.cardRoot}>
-              <CardActionArea>
+              <CardActionArea onClick={() => setPetDetails({ name: "Bruno" })}>
                 <CardMedia
                   className={classes.media}
                   image="/static/images/cards/dog.jpeg"
@@ -116,7 +118,7 @@ function PetSearch(props) {
                       className={classes.cardInfo}
                       gutterBottom
                     >
-                      May 02, 21 - May 12, 21
+                      May 02, 21 to May 12, 21
                     </Typography>
                   </div>
                 </CardContent>
@@ -135,55 +137,57 @@ function PetSearch(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden smUp implementation="css">
-          <Drawer
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
-            <Filters />
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            <Filters />
-          </Drawer>
-        </Hidden>
-      </nav>
-      <main className={classes.content}>
-        <Grid container spacing={1}>
-          <Grid container item xs={12} spacing={3}>
-            <FormRow />
-          </Grid>
-          <Grid container item xs={12} spacing={3}>
-            <FormRow />
-          </Grid>
-          <Grid container item xs={12} spacing={3}>
-            <FormRow />
-          </Grid>
-        </Grid>
-      </main>
+      {petDetails ? (
+        <PetSearchDetails />
+      ) : (
+        <>
+          <CssBaseline />
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            <Hidden smUp implementation="css">
+              <Drawer
+                variant="temporary"
+                anchor={theme.direction === "rtl" ? "right" : "left"}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                ModalProps={{
+                  keepMounted: true,
+                }}
+              >
+                <Filters />
+              </Drawer>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+              >
+                <Filters />
+              </Drawer>
+            </Hidden>
+          </nav>
+          <main className={classes.content}>
+            <Grid container spacing={1}>
+              <Grid container item xs={12} spacing={3}>
+                <FormRow />
+              </Grid>
+              <Grid container item xs={12} spacing={3}>
+                <FormRow />
+              </Grid>
+              <Grid container item xs={12} spacing={3}>
+                <FormRow />
+              </Grid>
+            </Grid>
+          </main>
+        </>
+      )}
     </div>
   );
 }
-
-PetSearch.propTypes = {
-  window: PropTypes.func,
-};
 
 export default PetSearch;
