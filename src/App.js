@@ -5,6 +5,8 @@ import CreatePetListing from "./CreatePetListing";
 import ButtonAppBar from "./Navbar";
 import Login from "./Login";
 import Register from "./Register";
+import SendFosterRequest from "./PetSearch/SendFosterRequest";
+import PetSearchDetails from "./PetSearch/petSearchDetails";
 
 function App() {
   return (
@@ -27,6 +29,12 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/PetSearchDetails">
+              <PetSearchDetails />
+            </Route>
+            <Route path="/SendFosterRequest">
+              <SendFosterRequest />
             </Route>
           </Switch>
         </div>

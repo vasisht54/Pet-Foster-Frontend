@@ -1,25 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-import SendIcon from "@material-ui/icons/Send";
-import Icon from "@material-ui/core/Icon";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
-import { useHistory } from "react-router-dom";
-
-
-import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const drawerWidth = 300;
 
@@ -165,9 +155,9 @@ const PetSearchDetails = () => {
                 variant="contained"
                 color="primary"
                 className={classes.button}
-                endIcon={<SendIcon />}
+                startIcon={<ArrowBackIosIcon />}
               >
-                Send a foster request
+                Back
               </Button>
             </div>
           </Grid>
@@ -190,6 +180,12 @@ const PetSearchDetails = () => {
               <KeyFacts label="Good with kids" value={false} />
             </Grid>
             <FormRow class={classes.margin5} label="Owner's notes" value="Bruno is a very jumpy dog. He needs a lot of attention. He needs walks twice a day. His favorite toy is a tennis ball." />
+            
+              <Button variant="contained" color="primary"
+                className={classes.button} href="/sendFosterRequest" >
+                Send a Foster Request
+              </Button>
+            
           </Grid>
         </Grid>
       </Paper>
