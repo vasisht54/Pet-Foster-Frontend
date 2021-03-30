@@ -11,13 +11,21 @@ import ListItem from "@material-ui/core/ListItem";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import InputBase from '@material-ui/core/InputBase';
 
 import { makeStyles } from "@material-ui/core/styles";
-import { animals, ages } from "../constants";
+import { animals, ages, colors, gender } from "./constants";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexGrow: 1,
+  },
+
   drawerPaper: {
     top: "auto !important",
     width: drawerWidth,
@@ -54,6 +62,16 @@ export const Filters = () => {
       <Typography className={classes.title}>Filters</Typography>
       <Divider />
       <List>
+        <ListItem button>
+          <InputBase
+            className={classes.input}
+            placeholder="Search by pet name"
+            inputProps={{ 'aria-label': 'search by pet name' }}
+          />
+          <IconButton type="submit" className={classes.iconButton} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+        </ListItem>
         <ListItem button>
           <ListItemText primary="Type" />
           <FormControl className={classes.formControl}>
@@ -92,6 +110,44 @@ export const Filters = () => {
           </FormControl>
         </ListItem>
         {/*--------------------------------------------------------- */}
+        <ListItem button>
+          <ListItemText primary="Color" />
+          <FormControl className={classes.formControl}>
+            <Select
+              multiple
+              value={[]}
+              input={<Input />}
+              renderValue={(selected) => selected.join(", ")}
+            >
+              {colors.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </ListItem>
+        {/*--------------------------------------------------------- */}
+        <ListItem button>
+          <ListItemText primary="Gender" />
+          <FormControl className={classes.formControl}>
+            <Select
+              multiple
+              value={[]}
+              input={<Input />}
+              renderValue={(selected) => selected.join(", ")}
+            >
+              {gender.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </ListItem>
+        {/*--------------------------------------------------------- */}
         <TextField
           id="date"
           label="From"
@@ -110,6 +166,7 @@ export const Filters = () => {
             shrink: true,
           }}
         />
+        {/*--------------------------------------------------------- */}
       </List>
       <div className={classes.filterBtn}>
         <Button variant="contained" color="primary">
