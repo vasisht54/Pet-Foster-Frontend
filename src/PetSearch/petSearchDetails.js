@@ -1,24 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
 import SendIcon from "@material-ui/icons/Send";
-import Icon from "@material-ui/core/Icon";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
-import { useHistory } from "react-router-dom";
-
-
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
 const drawerWidth = 300;
@@ -26,15 +18,21 @@ const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: "10px 100px",
+    padding: "10px 100px 10px 90px",
   },
   backButton: {
-    padding: "20px 0",
+    display: "inline-block",
+    verticalAlign: "top",
+    padding: "0px",
+    marginRight: "10px",
+    marginTop: "5px"
   },
   profileImage: {
     width: drawerWidth,
   },
   paper: {
+    width: "96%",
+    display: "inline-block",
     padding: "20px",
     height: "100%",
   },
@@ -125,16 +123,16 @@ const KeyFacts = (props) => {
   );
 };
 
-const PetSearchDetails = () => {
+const PetSearchDetails = ({onBackButtonClick}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      {/* <div>
+      <div className={classes.backButton}>
         <IconButton className={classes.backButton} aria-label="delete">
-          <ArrowBackRoundedIcon />
+          <ArrowBackRoundedIcon onClick={onBackButtonClick}/>
         </IconButton>
-      </div> */}
+      </div>
       <Paper className={classes.paper} elevation={3}>
         <div className={classes.flex}>
           <Typography gutterBottom variant="h4">

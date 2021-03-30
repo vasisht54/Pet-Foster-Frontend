@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import PetSearch from "./PetSearch/PetSearch";
-import CreatePetListing from "./CreatePetListing";
+import CreatePetListing from "./PetListing/CreatePetListing";
 import ButtonAppBar from "./Navbar";
 import Login from "./Login";
 import Register from "./Register";
