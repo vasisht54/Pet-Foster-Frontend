@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import OptionsCard from "./OptionsCard";
 // import { useHistory } from 'react-router-dom';
 
@@ -12,11 +12,10 @@ const useStyles = makeStyles({
     backgroundPosition: "bottom",
   },
   optionsWrapper: {
-    // display: 'flex',
-    minHeight: "100vh",
-    justifyContent: "center",
-    alignItems: "center",
-    border: "1px solid",
+    padding: "0 150px",
+    display: "flex",
+    justifyContent: "space-around",
+    paddingTop: "50px",
   },
 });
 
@@ -25,7 +24,7 @@ const Home = () => {
 
   return (
     <div className={classes.root}>
-      <div className="optionsWrapper">
+      <div className={classes.optionsWrapper}>
         <OptionsCard
           title="Foster A Pet"
           description="Search from a wide range of pets that includes dogs, cats, fishes, hamsters and more!"
@@ -39,14 +38,6 @@ const Home = () => {
           route="/create"
         />
       </div>
-
-      {/* <h4>Home</h4>
-      <div>
-        <Link to='/search'>Meet Pets</Link>
-      </div>
-      <div>
-        <Link to='/create'>Create a Pet Listing</Link>
-      </div> */}
     </div>
   );
 };
