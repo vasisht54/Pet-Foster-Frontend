@@ -137,7 +137,7 @@ function PetSearch() {
   return (
     <div className={classes.root}>
       {petDetails ? (
-        <PetSearchDetails />
+        <PetSearchDetails onBackButtonClick={()=> setPetDetails(null)}/>
       ) : (
         <>
           <CssBaseline />
