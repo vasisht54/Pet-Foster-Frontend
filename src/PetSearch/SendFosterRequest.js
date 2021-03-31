@@ -136,7 +136,7 @@ function SendFosterRequest() {
               </DialogContent>
               <DialogActions>
                 <Button autoFocus onClick={handleClose} color="primary"
-                    href = "/">
+                    href = "/search">
                   Okay
                 </Button>
               </DialogActions>
@@ -144,7 +144,7 @@ function SendFosterRequest() {
             {/* ************************************************************* */}
 
             <Button
-              href="/"
+              href="/PetSearchDetails"
               variant="contained"
               color="secondary"
               className={classes.button}
