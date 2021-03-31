@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import OptionsCard from './OptionsCard';
 // import { useHistory } from 'react-router-dom';
 
