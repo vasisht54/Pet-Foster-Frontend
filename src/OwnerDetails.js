@@ -1,5 +1,5 @@
 const OwnerDetails = () => {
-  return <div>Shaggy</div>;
+  return <div>owner details</div>;
 };
 
 export default OwnerDetails;
