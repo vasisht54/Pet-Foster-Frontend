@@ -171,8 +171,6 @@ export const PetDetails = () => {
             <div>
               <Button
                 href="/search"
-                variant="contained"
-                color="primary"
                 className={classes.backButton}
                 startIcon={<ArrowBackIosIcon />}
               >

@@ -10,17 +10,19 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     minHeight: 360,
-    maxWidth: 245,
-    marginLeft: 200,
-    marginTop: 100,
+    width: 300,
     display: 'inline-block',
+    textAlign: "center",
+    position: "relative"
   },
   media: {
-    marginLeft: 25,
-    marginTop: 10,
+    margin: "auto",
     height: 200,
     width: 200,
   },
+  textInfo: {
+    paddingTop: "20px"
+  }
 });
 
 export default function OptionsCard({ title, description, image, route }) {
@@ -44,7 +46,7 @@ export default function OptionsCard({ title, description, image, route }) {
         >
           {title}
         </Button>
-        <Typography variant='body2' color='textSecondary' component='p'>
+        <Typography variant='body2' color='textSecondary' component='p' className={classes.textInfo}>
           {description}
         </Typography>
       </CardContent>
