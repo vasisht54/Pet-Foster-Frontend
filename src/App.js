@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home/index";
 import PetSearch from "./PetSearch/PetSearch";
 import CreatePetListing from "./PetListing/CreatePetListing";
@@ -7,6 +7,8 @@ import Login from "./Login";
 import Register from "./Register";
 import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
+import FosterHistory from "./FosterHistory";
+import OwnerDetails from "./OwnerDetails";
 import ViewFosterRequest from "./PetSearch/viewFosterRequest";
 
 function App() {
@@ -36,6 +38,12 @@ function App() {
             </Route>
             <Route path="/SendFosterRequest">
               <SendFosterRequest />
+            </Route>
+            <Route path="/fosterHistory">
+              <FosterHistory />
+            </Route>
+            <Route path="/ownerDetails">
+              <OwnerDetails />
             </Route>
             <Route path="/ViewFosterRequest">
               <ViewFosterRequest />

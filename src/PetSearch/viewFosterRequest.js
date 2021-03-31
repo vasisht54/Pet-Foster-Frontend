@@ -4,14 +4,13 @@ import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -62,22 +61,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const tileData = [
-  {
-    img: "/static/images/details/dog.jpeg",
-  },
-  {
-    img: "/static/images/details/dog2.jpeg",
-  },
-  {
-    img: "/static/images/details/dog3.jpeg",
-  },
-  {
-    img: "/static/images/details/dog4.jpeg",
-  },
-];
+// const tileData = [
+//   {
+//     img: "/static/images/details/dog.jpeg",
+//   },
+//   {
+//     img: "/static/images/details/dog2.jpeg",
+//   },
+//   {
+//     img: "/static/images/details/dog3.jpeg",
+//   },
+//   {
+//     img: "/static/images/details/dog4.jpeg",
+//   },
+// ];
 
-const FormRow = (props) => {
+const FormRow = props => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={3}>
@@ -92,23 +91,21 @@ const FormRow = (props) => {
   );
 };
 
-const DialogContent = withStyles((theme) => ({
+const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
+const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(1),
   },
 }))(MuiDialogActions);
 
-
 export const ViewFosterRequest = () => {
   const classes = useStyles();
-  const pathname = window.location.pathname;
   const [open, setOpen] = React.useState(false);
   const [openOwnerDetails, setOpenOwnerDetails] = React.useState(false);
 
@@ -121,234 +118,176 @@ export const ViewFosterRequest = () => {
   };
 
   const handleOpenOwnerDetails = () => {
-      setOpenOwnerDetails(true);
-  }
+    setOpenOwnerDetails(true);
+  };
   const handleCloseOwnerDetails = () => {
     setOpenOwnerDetails(false);
   };
 
+  const pets = [
+    {
+      id: 1,
+      name: "Bruno",
+      image: "/static/images/details/dog.jpeg",
+      type: "Dog",
+      breed: "Retriever",
+      gender: "Male",
+      age: "5 Months",
+      duration: "May 21, 2021 to May 29, 2021",
+      street: "11 Tetlow Street",
+      city: "Boston, MA 02115",
+      status: "Approved",
+    },
+    {
+      id: 2,
+      name: "Goofy",
+      image: "/static/images/details/dog2.jpeg",
+      type: "Dog",
+      breed: "Beagle",
+      gender: "Male",
+      age: "2 Months",
+      duration: "May 21, 2021 to May 29, 2021",
+      street: "1191 Caesars St",
+      city: "Los Angeles",
+      status: "Decision Pending",
+    },
+    {
+      id: 3,
+      name: "Bella",
+      image: "/static/images/details/cat.jpeg",
+      type: "Cat",
+      breed: "Americal Curl",
+      gender: "Female",
+      age: "1 Year",
+      duration: "May 21, 2021 to May 29, 2021",
+      street: "75 Longwood Apts",
+      city: "Florida",
+      status: "Reject",
+    },
+  ];
+
   return (
     <>
-      <div className={classes.flex}>
-        {!pathname.includes("/create") && (
-          <div>
-            <Button
-              href="/"
-              variant="contained"
-              color="primary"
-              className={classes.backButton}
-              startIcon={<ArrowBackIosIcon />}
-            >
-              Back
-            </Button>
-          </div>
-        )}
-      </div>
       <Grid
         container
         className={classes.margin}
         justify="flex-start"
         spacing={5}
       >
-        <Grid container item xs={4}>
-          <div className={classes.photoRoot}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              <img src="/static/images/details/dog.jpeg" alt={tileData.title} />
-            </GridList>
-          </div>
-        </Grid>
-        <Grid container item xs={8}>
-          <Grid container item xs={6}>
-            <FormRow label="Name" value="Bruno" />
-            <FormRow label="Category" value="Dog" />
-            <FormRow label="Breed" value="Retriever" />
-            <FormRow label="Gender" value="Male" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Age" value="5 months" />
-            <FormRow
-              class={classes.margin5}
-              label="Duration"
-              value="May 21, 2021 to May 29, 2021"
-            />
-            <FormRow label="Location" value="11 Tetlow Street" />
-            <FormRow value="Boston, MA 02115" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Status" value="Approved" />
-          </Grid>
-          <Grid container item xs={8}>
-            <Grid container item xs={6}>
-              <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.sendButton}
-                  onClick={handleOpen}
-                  size="medium"
-                >
-                  Withdraw Foster Request
-                </Button>
-                <Dialog
-                  onClose={handleClose}
-                  aria-labelledby="customized-dialog-title"
-                  open={open}
-                >
-                  <DialogContent dividers>
-                    <Typography gutterBottom>
-                      We are sorry to know that you withdrew your foster request!
-                    </Typography>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      autoFocus
-                      onClick={handleClose}
-                      color="primary"
-                      href="/"
-                    >
-                      Okay
-                    </Button>
-                  </DialogActions>
-                </Dialog>
+        {pets.map(pet => (
+          <>
+            <Grid container item xs={4}>
+              <div className={classes.photoRoot}>
+                <GridList cellHeight={180} className={classes.gridList}>
+                  <img src={pet.image} alt={pet.name} />
+                </GridList>
               </div>
             </Grid>
+            <Grid container item xs={8}>
+              <Grid container item xs={6}>
+                <FormRow label="Name" value={pet.name} />
+                <FormRow label="Category" value={pet.type} />
+                <FormRow label="Breed" value={pet.breed} />
+                <FormRow label="Gender" value={pet.gender} />
+              </Grid>
+              <Grid container item xs={6}>
+                <FormRow label="Age" value={pet.age} />
+                <FormRow
+                  class={classes.margin5}
+                  label="Duration"
+                  value={pet.duration}
+                />
+                <FormRow label="Location" value={pet.street} />
+                <FormRow value={pet.city} />
+              </Grid>
+              <Grid container item xs={6}>
+                <FormRow label="Status" value={pet.status} />
+              </Grid>
+              <Grid container item xs={8}>
+                <Grid container item xs={6}>
+                  <div className={classes.alignRight}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.sendButton}
+                      onClick={handleOpen}
+                      size="medium"
+                    >
+                      Withdraw Foster Request
+                    </Button>
+                    <Dialog
+                      onClose={handleClose}
+                      aria-labelledby="customized-dialog-title"
+                      open={open}
+                    >
+                      <DialogContent dividers>
+                        <Typography gutterBottom>
+                          We are sorry to know that you withdrew your foster
+                          request!
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose} color="primary">
+                          Okay
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
+                </Grid>
 
-            <Grid container item xs={6}>
-              <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.sendButton}
-                  onClick={handleOpenOwnerDetails}
-                  size="medium"
-                >
-                  View Owner details
-                </Button>
-                <Dialog
-                  onClose={handleCloseOwnerDetails}
-                  aria-labelledby="customized-dialog-title"
-                  open={openOwnerDetails}
-                >
-                  <DialogContent dividers>
-                    <Typography gutterBottom>
-                      Hurray! The owner has accepted your foster request. Please get in touch with the owner for picking up and dropping off the pet.
-                      </Typography>
-                      <Grid container item xs={10}>
-                      <Typography gutterBottom>
-                          Owner Details:
-                          </Typography>
-                        <FormRow label="Name" value="Alex" />
-                        <FormRow label="Location" value="3 Filmore St. SF, 41202" />
-                        <FormRow label="Phone number" value="213-456-7890" />
-                        <FormRow label="Email" value="alex@g.com" />
-                        <Typography gutterBottom> Happy Fostering! </Typography>
-                    </Grid>
-                  </DialogContent>
-                  <DialogActions>
+                <Grid container item xs={6}>
+                  <div className={classes.alignRight}>
                     <Button
-                      autoFocus
-                      onClick={handleCloseOwnerDetails}
+                      variant="contained"
                       color="primary"
-                      href="/viewFosterRequest"
+                      className={classes.sendButton}
+                      onClick={handleOpenOwnerDetails}
+                      size="medium"
                     >
-                      Okay
+                      View Owner details
                     </Button>
-                  </DialogActions>
-                </Dialog>
-              </div>
+                    <Dialog
+                      onClose={handleCloseOwnerDetails}
+                      aria-labelledby="customized-dialog-title"
+                      open={openOwnerDetails}
+                    >
+                      <DialogContent dividers>
+                        <Typography gutterBottom>
+                          Hurray! The owner has accepted your foster request.
+                          Please get in touch with the owner for picking up and
+                          dropping off the pet.
+                        </Typography>
+                        <Grid container item xs={10}>
+                          <Typography gutterBottom>Owner Details:</Typography>
+                          <FormRow label="Name" value="Alex" />
+                          <FormRow
+                            label="Location"
+                            value="3 Filmore St. SF, 41202"
+                          />
+                          <FormRow label="Phone number" value="213-456-7890" />
+                          <FormRow label="Email" value="alex@g.com" />
+                          <Typography gutterBottom>
+                            {" "}
+                            Happy Fostering!{" "}
+                          </Typography>
+                        </Grid>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          autoFocus
+                          onClick={handleCloseOwnerDetails}
+                          color="primary"
+                        >
+                          Okay
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* ******************* 2nd pet *********************************** */}
-      <Grid
-        container
-        className={classes.margin}
-        justify="flex-start"
-        spacing={5}
-      >
-        <Grid container item xs={4}>
-          <div className={classes.photoRoot}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              <img
-                src="/static/images/details/dog2.jpeg"
-                alt={tileData.title}
-              />
-            </GridList>
-          </div>
-        </Grid>
-        <Grid container item xs={8}>
-          <Grid container item xs={6}>
-            <FormRow label="Name" value="Goofy" />
-            <FormRow label="Category" value="Dog" />
-            <FormRow label="Breed" value="Retriever" />
-            <FormRow label="Gender" value="Male" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Age" value="2 months" />
-            <FormRow
-              class={classes.margin5}
-              label="Duration"
-              value="April 20, 2021 to June 20, 2021"
-            />
-            <FormRow label="Location" value="Caesars" />
-            <FormRow value="Atlantic City, NJ 08401" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Status" value="Decision Pending" />
-          </Grid>
-          <Grid container item xs={8}>
-            <Grid container item xs={6}>
-              <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.sendButton}
-                  onClick={handleOpen}
-                  size="medium"
-                >
-                  Withdraw Foster Request
-                </Button>
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* ************************* 3rd pet ****************************** */}
-      <Grid
-        container
-        className={classes.margin}
-        justify="flex-start"
-        spacing={5}
-      >
-        <Grid container item xs={4}>
-          <div className={classes.photoRoot}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              <img src="/static/images/details/cat.jpeg" alt={tileData.title} />
-            </GridList>
-          </div>
-        </Grid>
-        <Grid container item xs={8}>
-          <Grid container item xs={6}>
-            <FormRow label="Name" value="Bella" />
-            <FormRow label="Category" value="Cat" />
-            <FormRow label="Breed" value="American Curl" />
-            <FormRow label="Gender" value="Female" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Age" value="2 months" />
-            <FormRow
-              class={classes.margin5}
-              label="Duration"
-              value="June 10, 2021 to June 20, 2021"
-            />
-            <FormRow label="Location" value="Longwood Apts" />
-            <FormRow value="Boston, MA 02120" />
-          </Grid>
-          <Grid container item xs={6}>
-            <FormRow label="Status" value="Reject" />
-          </Grid>
-        </Grid>
+          </>
+        ))}
       </Grid>
     </>
   );

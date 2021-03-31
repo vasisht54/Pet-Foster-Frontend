@@ -17,7 +17,7 @@ import PetSearchDetails from "./petSearchDetails";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexGrow: 1,
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     height: "100vh",
-    overflowY: "scroll",
   },
   drawerPaper: {
     top: "auto !important",
@@ -123,7 +122,7 @@ function PetSearch() {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" href="/petSearchDetails" >
+                <Button size="small" color="primary" href="/petSearchDetails">
                   View Pet Details
                 </Button>
               </CardActions>
@@ -137,7 +136,7 @@ function PetSearch() {
   return (
     <div className={classes.root}>
       {petDetails ? (
-        <PetSearchDetails onBackButtonClick={()=> setPetDetails(null)}/>
+        <PetSearchDetails onBackButtonClick={() => setPetDetails(null)} />
       ) : (
         <>
           <CssBaseline />

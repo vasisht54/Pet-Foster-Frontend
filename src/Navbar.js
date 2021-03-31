@@ -1,5 +1,5 @@
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -7,9 +7,9 @@ import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {useHistory} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-import {logout} from "./redux/LoginSlice";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "./redux/LoginSlice";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   accountCircle: {
     cursor: "pointer",
   },
+  fosterHistoryButton: {},
 }));
 
 export default function Navbar() {
@@ -68,10 +69,16 @@ export default function Navbar() {
               <Button color="inherit" onClick={e => handleHref(e, "/")}>
                 My Pet Listing
               </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/ViewFosterRequest")}>
+              <Button
+                color="inherit"
+                onClick={e => handleHref(e, "/ViewFosterRequest")}
+              >
                 My requests to a Foster
               </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/")}>
+              <Button
+                color="inherit"
+                onClick={e => handleHref(e, "/fosterHistory")}
+              >
                 My Foster history
               </Button>
               <AccountCircle
