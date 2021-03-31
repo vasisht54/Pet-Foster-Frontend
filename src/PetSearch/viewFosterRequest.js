@@ -2,13 +2,8 @@ import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import CheckIcon from "@material-ui/icons/Check";
-import CloseIcon from "@material-ui/icons/Close";
-import { green } from "@material-ui/core/colors";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -110,43 +105,12 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-// const KeyFacts = (props) => {
-//   return (
-//     <Grid className={props.class} container item xs={12}>
-//       <Grid item xs={7}>
-//         {props.label && (
-//           <Typography variant="subtitle1">{props.label}</Typography>
-//         )}
-//       </Grid>
-//       <Grid item>
-//         <Typography variant="subtitle1">
-//           {props.value ? (
-//             <CheckIcon style={{ color: green[500] }} />
-//           ) : (
-//             <CloseIcon color="secondary" />
-//           )}
-//         </Typography>
-//       </Grid>
-//     </Grid>
-//   );
-// };
-
-// const PetSearchDetails = ({ onBackButtonClick }) => {
-//   const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <Paper className={classes.paper} elevation={3}>
-//         <ViewFosterRequest />
-//       </Paper>
-//     </div>
-//   );
-// };
 
 export const ViewFosterRequest = () => {
   const classes = useStyles();
   const pathname = window.location.pathname;
   const [open, setOpen] = React.useState(false);
+  const [openOwnerDetails, setOpenOwnerDetails] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -154,6 +118,13 @@ export const ViewFosterRequest = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleOpenOwnerDetails = () => {
+      setOpenOwnerDetails(true);
+  }
+  const handleCloseOwnerDetails = () => {
+    setOpenOwnerDetails(false);
   };
 
   return (
@@ -248,15 +219,15 @@ export const ViewFosterRequest = () => {
                   variant="contained"
                   color="primary"
                   className={classes.sendButton}
-                  onClick={handleOpen}
+                  onClick={handleOpenOwnerDetails}
                   size="medium"
                 >
                   View Owner details
                 </Button>
                 <Dialog
-                  onClose={handleClose}
+                  onClose={handleCloseOwnerDetails}
                   aria-labelledby="customized-dialog-title"
-                  open={open}
+                  open={openOwnerDetails}
                 >
                   <DialogContent dividers>
                     <Typography gutterBottom>
@@ -276,7 +247,7 @@ export const ViewFosterRequest = () => {
                   <DialogActions>
                     <Button
                       autoFocus
-                      onClick={handleClose}
+                      onClick={handleCloseOwnerDetails}
                       color="primary"
                       href="/viewFosterRequest"
                     >
