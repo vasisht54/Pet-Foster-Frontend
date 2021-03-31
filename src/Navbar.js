@@ -62,6 +62,18 @@ export default function Navbar() {
           <Typography className={classes.title}></Typography>
           {isLoggedIn ? (
             <>
+              <Button color="inherit" onClick={e => handleHref(e, "/")}>
+                Find a Fosterer
+              </Button>
+              <Button color="inherit" onClick={e => handleHref(e, "/")}>
+                My Pet Listing
+              </Button>
+              <Button color="inherit" onClick={e => handleHref(e, "/ViewFosterRequest")}>
+                My requests to a Foster
+              </Button>
+              <Button color="inherit" onClick={e => handleHref(e, "/")}>
+                My Foster history
+              </Button>
               <AccountCircle
                 className={classes.accountCircle}
                 role="button"
