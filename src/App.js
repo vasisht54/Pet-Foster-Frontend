@@ -7,6 +7,7 @@ import Login from "./Login";
 import Register from "./Register";
 import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
+import ViewFosterRequest from "./PetSearch/viewFosterRequest";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/SendFosterRequest">
               <SendFosterRequest />
+            </Route>
+            <Route path="/ViewFosterRequest">
+              <ViewFosterRequest />
             </Route>
           </Switch>
         </div>
