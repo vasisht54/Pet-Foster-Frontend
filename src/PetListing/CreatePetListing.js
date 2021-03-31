@@ -7,17 +7,23 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import YourInfo from "./YourInfo";
+import PetInfo from "./PetInfo";
+import Confirm from "./ConfirmListing";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "10px 100px",
+    padding: "20px",
   },
   button: {
     marginRight: theme.spacing(1),
   },
   instructions: {
-    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  buttonGroupRightAlign: {
+    textAlign: "right",
   },
 }));
 
@@ -28,11 +34,11 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <YourInfo />
+      return <YourInfo />;
     case 1:
-      return "What is an ad group anyways?";
+      return <PetInfo />;
     case 2:
-      return "This is the bit I really care about!";
+      return <Confirm />;
     default:
       return "Unknown step";
   }
@@ -65,6 +71,7 @@ const CreatePetListing = () => {
 
   return (
     <Paper className={classes.paper} elevation={3}>
+      <Typography variant="h4" style={{padding:"0 20px"}}>List your pet for foster care</Typography>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
@@ -82,7 +89,7 @@ const CreatePetListing = () => {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            <div>
+            <div className={classes.buttonGroupRightAlign}>
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}

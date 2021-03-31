@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,8 +10,11 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "./redux/LoginSlice";
 
 function Copyright() {
   return (
@@ -29,7 +32,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -51,6 +54,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleHref = (event, route) => {
+    event.preventDefault();
+    history.push(route);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(login());
+    history.push("/");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -62,7 +78,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -105,7 +121,11 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link
+                component="button"
+                onClick={e => handleHref(e, "/register")}
+                variant="body2"
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
