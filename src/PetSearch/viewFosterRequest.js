@@ -248,11 +248,42 @@ export const ViewFosterRequest = () => {
                   variant="contained"
                   color="primary"
                   className={classes.sendButton}
-                  href="/sendFosterRequest"
+                  onClick={handleOpen}
                   size="medium"
                 >
                   View Owner details
                 </Button>
+                <Dialog
+                  onClose={handleClose}
+                  aria-labelledby="customized-dialog-title"
+                  open={open}
+                >
+                  <DialogContent dividers>
+                    <Typography gutterBottom>
+                      Hurray! The owner has accepted your foster request. Please get in touch with the owner for picking up and dropping off the pet.
+                      </Typography>
+                      <Grid container item xs={10}>
+                      <Typography gutterBottom>
+                          Owner Details:
+                          </Typography>
+                        <FormRow label="Name" value="Alex" />
+                        <FormRow label="Location" value="3 Filmore St. SF, 41202" />
+                        <FormRow label="Phone number" value="213-456-7890" />
+                        <FormRow label="Email" value="alex@g.com" />
+                        <Typography gutterBottom> Happy Fostering! </Typography>
+                    </Grid>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      autoFocus
+                      onClick={handleClose}
+                      color="primary"
+                      href="/viewFosterRequest"
+                    >
+                      Okay
+                    </Button>
+                  </DialogActions>
+                </Dialog>
               </div>
             </Grid>
           </Grid>
