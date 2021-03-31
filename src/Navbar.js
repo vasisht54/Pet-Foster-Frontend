@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import {useHistory} from 'react-router-dom';
+import React from "react";
+import {makeStyles} from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import {useHistory} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {logout} from "./redux/LoginSlice";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,13 +22,15 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   accountCircle: {
-    cursor: 'pointer',
+    cursor: "pointer",
   },
 }));
 
 export default function Navbar() {
   const classes = useStyles();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
 
@@ -43,39 +47,44 @@ export default function Navbar() {
     history.push(route);
   };
 
+  const handleLogout = () => {
+    setAnchorEl(null);
+    dispatch(logout());
+  };
+
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar>
-          <Button onClick={e => handleHref(e, '/')} color='inherit'>
+          <Button onClick={e => handleHref(e, "/")} color="inherit">
             Bring Home A Pet
           </Button>
           <Typography className={classes.title}></Typography>
-          {loggedIn ? (
+          {isLoggedIn ? (
             <>
               <AccountCircle
                 className={classes.accountCircle}
-                role='button'
+                role="button"
                 onClick={handleClick}
-                size='large'
+                size="large"
               />
               <Menu
-                id='simple-menu'
+                id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Edit profile</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </>
           ) : (
             <>
-              <Button color='inherit' onClick={e => handleHref(e, '/login')}>
+              <Button color="inherit" onClick={e => handleHref(e, "/login")}>
                 Login
               </Button>
-              <Button color='inherit' onClick={e => handleHref(e, '/register')}>
+              <Button color="inherit" onClick={e => handleHref(e, "/register")}>
                 Register
               </Button>
             </>
