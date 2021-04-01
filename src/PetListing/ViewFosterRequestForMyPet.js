@@ -165,7 +165,7 @@ export const ViewFosterRequestForMyPet = () => {
 
         <Grid container item xs={8}>
             <Grid container item xs={3}>
-              <Link component="button">
+              <Link component="button" onClick={handleOpen}>
              <FormRow value={pet.name} />
              </Link>
 
@@ -174,16 +174,20 @@ export const ViewFosterRequestForMyPet = () => {
                 aria-labelledby="customized-dialog-title"
                 open={open}>
                   <DialogContent dividers>
-                    {/* <Grid container item md={12}>
-                      <FosterRequestTable />                    
-                    </Grid> */}
+                    <Grid container item md={12}>
+                      <FormRow label="Name" value="Bruno"></FormRow>
+                      <FormRow label="Category" value="Dog" />
+                      <FormRow label="Breed" value="Retriever" />
+                      <FormRow label="Gender" value="Male" />                    
+                      <FormRow label="Age" value="5 Months" /> 
+                      <FormRow label="Duration" value="May 21, 2021 to May 29, 2021" /> 
+                    </Grid>
                   </DialogContent>
                   <DialogActions>
                     <Button
                       autoFocus
                       onClick={handleClose}
                       color="primary"
-                      href="/"
                     >
                       Okay
                     </Button>
