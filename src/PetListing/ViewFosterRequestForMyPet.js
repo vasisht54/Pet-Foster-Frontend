@@ -115,11 +115,29 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-
+const pets = [
+  {
+    id: 1,
+    name: "Bruno",
+    image: "/static/images/details/dog.jpeg",
+    type: "Dog"
+  },
+  {
+    id: 2,
+    name: "Goofy",
+    image: "/static/images/details/dog2.jpeg",
+    type: "Dog"
+  },
+  {
+    id: 3,
+    name: "Bella",
+    image: "/static/images/details/cat.jpeg",
+    type: "Cat"
+  },
+];
 
 export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
-  const pathname = window.location.pathname;
   const [open, setOpen] = React.useState(false);
  
  
@@ -132,8 +150,6 @@ export const ViewFosterRequestForMyPet = () => {
   };
 
   return (
-
-    
     <Grid
         container
         className={classes.margin}
@@ -141,17 +157,20 @@ export const ViewFosterRequestForMyPet = () => {
         spacing={5}
       >
      
+     {pets.map(pet => (
+          <>
+
       <Grid container item xs={4}>
           <div className={classes.photoRoot}>
             <GridList cellHeight={180} className={classes.gridList}>
-              <img src="/static/images/details/dog.jpeg" alt={tileData.title} />
+              <img src={pet.image} alt={pet.name} />
             </GridList>
           </div>
         </Grid>
 
         <Grid container item xs={8}>
             <Grid container item xs={3}>
-             <FormRow label="Name" value="Bruno" />
+             <FormRow label="Name" value={pet.name} />
             </Grid>
             <Grid container item xs={5}>
             <div className={classes.alignRight}>
@@ -205,280 +224,10 @@ export const ViewFosterRequestForMyPet = () => {
               </div>
             </Grid>
         </Grid>
-
+        </>
+        ))}
     </Grid>
   );
-
-  // return (
-  //   <>
-  //     <Grid
-  //       container
-  //       className={classes.margin}
-  //       justify="flex-start"
-  //       spacing={5}
-  //     >
-  //       <Grid container item xs={4}>
-  //         <div className={classes.photoRoot}>
-  //           <GridList cellHeight={180} className={classes.gridList}>
-  //             <img src="/static/images/details/dog.jpeg" alt={tileData.title} />
-  //           </GridList>
-  //         </div>
-  //       </Grid>
-  //       <Grid container item xs={8}>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Name" value="Bruno" />
-  //           {/* <FormRow label="Category" value="Dog" />
-  //           <FormRow label="Breed" value="Retriever" />
-  //           <FormRow label="Gender" value="Male" /> */}
-  //         </Grid>
-  //         <Grid container item xs={6}>
-  //             <div className={classes.alignRight}>
-  //               <Button
-  //                 variant="contained"
-  //                 color="primary"
-  //                 className={classes.sendButton}
-  //                 onClick={handleOpen}
-  //                 size="medium"
-  //               >
-  //                 View Foster Requests
-  //               </Button>
-  //               <Dialog
-  //                 onClose={handleClose}
-  //                 aria-labelledby="customized-dialog-title"
-  //                 open={open}
-  //               >
-  //                 <DialogContent dividers>
-  //                   <div className={classes.flex}>
-  //                     {!pathname.includes("/create") && (
-  //                       <div>
-  //                         <Button
-  //                           href="/"
-  //                           variant="contained"
-  //                           color="primary"
-  //                           className={classes.backButton}
-  //                           startIcon={<ArrowBackIosIcon />}
-  //                         >
-  //                           Back
-  //                         </Button>
-  //                       </div>
-  //                     )}
-  //                   </div>
-  //                   <Grid container item md={12}>
-  //                     <Grid container item md={3}>
-  //                       Fosterer's Name
-  //                     </Grid>
-  //                     <Grid container item md={3}>
-  //                       Rating
-  //                     </Grid>
-  //                     <Grid container item md={3}>
-  //                       Message to Owner
-  //                     </Grid>
-  //                     <Grid container item md={3}>
-  //                       Actions
-  //                     </Grid> 
-  //                   </Grid>
-  //                 </DialogContent>
-  //                 <DialogActions>
-  //                   <Button
-  //                     autoFocus
-  //                     onClick={handleClose}
-  //                     color="primary"
-  //                     href="/"
-  //                   >
-  //                     Okay
-  //                   </Button>
-  //                 </DialogActions>
-  //               </Dialog>
-  //             </div>
-  //           </Grid>
-  //           {/* <FormRow label="Age" value="5 months" />
-  //           <FormRow
-  //             class={classes.margin5}
-  //             label="Duration"
-  //             value="May 21, 2021 to May 29, 2021"
-  //           />
-  //           <FormRow label="Location" value="11 Tetlow Street" />
-  //           <FormRow value="Boston, MA 02115" /> */}
-  //         {/* </Grid> */}
-  //         {/* <Grid container item xs={6}> */}
-  //           {/* <FormRow label="Status" value="Approved" /> */}
-  //         {/* </Grid> */}
-  //         {/* <Grid container item xs={8}>
-  //           <Grid container item xs={6}>
-  //             <div className={classes.alignRight}>
-  //               <Button
-  //                 variant="contained"
-  //                 color="secondary"
-  //                 className={classes.sendButton}
-  //                 onClick={handleOpen}
-  //                 size="medium"
-  //               >
-  //                 Withdraw Foster Request
-  //               </Button>
-  //               <Dialog
-  //                 onClose={handleClose}
-  //                 aria-labelledby="customized-dialog-title"
-  //                 open={open}
-  //               >
-  //                 <DialogContent dividers>
-  //                   <Typography gutterBottom>
-  //                     We are sorry to know that you withdrew your foster request!
-  //                   </Typography>
-  //                 </DialogContent>
-  //                 <DialogActions>
-  //                   <Button
-  //                     autoFocus
-  //                     onClick={handleClose}
-  //                     color="primary"
-  //                     href="/"
-  //                   >
-  //                     Okay
-  //                   </Button>
-  //                 </DialogActions>
-  //               </Dialog>
-  //             </div>
-  //           </Grid>
-
-  //           <Grid container item xs={6}>
-  //             <div className={classes.alignRight}>
-  //               <Button
-  //                 variant="contained"
-  //                 color="primary"
-  //                 className={classes.sendButton}
-  //                 onClick={handleOpenOwnerDetails}
-  //                 size="medium"
-  //               >
-  //                 View Owner details
-  //               </Button>
-  //               <Dialog
-  //                 onClose={handleCloseOwnerDetails}
-  //                 aria-labelledby="customized-dialog-title"
-  //                 open={openOwnerDetails}
-  //               >
-  //                 <DialogContent dividers>
-  //                   <Typography gutterBottom>
-  //                     Hurray! The owner has accepted your foster request. Please get in touch with the owner for picking up and dropping off the pet.
-  //                     </Typography>
-  //                     <Grid container item xs={10}>
-  //                     <Typography gutterBottom>
-  //                         Owner Details:
-  //                         </Typography>
-  //                       <FormRow label="Name" value="Alex" />
-  //                       <FormRow label="Location" value="3 Filmore St. SF, 41202" />
-  //                       <FormRow label="Phone number" value="213-456-7890" />
-  //                       <FormRow label="Email" value="alex@g.com" />
-  //                       <Typography gutterBottom> Happy Fostering! </Typography>
-  //                   </Grid>
-  //                 </DialogContent>
-  //                 <DialogActions>
-  //                   <Button
-  //                     autoFocus
-  //                     onClick={handleCloseOwnerDetails}
-  //                     color="primary"
-  //                     href="/viewFosterRequest"
-  //                   >
-  //                     Okay
-  //                   </Button>
-  //                 </DialogActions>
-  //               </Dialog>
-  //             </div>
-  //           </Grid>
-  //         </Grid> */}
-
-  //       </Grid>
-  //     </Grid>
-  //     {/* ******************* 2nd pet *********************************** */}
-  //     <Grid
-  //       container
-  //       className={classes.margin}
-  //       justify="flex-start"
-  //       spacing={5}
-  //     >
-  //       <Grid container item xs={4}>
-  //         <div className={classes.photoRoot}>
-  //           <GridList cellHeight={180} className={classes.gridList}>
-  //             <img
-  //               src="/static/images/details/dog2.jpeg"
-  //               alt={tileData.title}
-  //             />
-  //           </GridList>
-  //         </div>
-  //       </Grid>
-  //       <Grid container item xs={8}>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Name" value="Goofy" />
-  //           <FormRow label="Category" value="Dog" />
-  //           <FormRow label="Breed" value="Retriever" />
-  //           <FormRow label="Gender" value="Male" />
-  //         </Grid>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Age" value="2 months" />
-  //           <FormRow
-  //             class={classes.margin5}
-  //             label="Duration"
-  //             value="April 20, 2021 to June 20, 2021"
-  //           />
-  //           <FormRow label="Location" value="Caesars" />
-  //           <FormRow value="Atlantic City, NJ 08401" />
-  //         </Grid>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Status" value="Decision Pending" />
-  //         </Grid>
-  //         <Grid container item xs={8}>
-  //           <Grid container item xs={6}>
-  //             <div className={classes.alignRight}>
-  //               <Button
-  //                 variant="contained"
-  //                 color="secondary"
-  //                 className={classes.sendButton}
-  //                 onClick={handleOpen}
-  //                 size="medium"
-  //               >
-  //                 Withdraw Foster Request
-  //               </Button>
-  //             </div>
-  //           </Grid>
-  //         </Grid>
-  //       </Grid>
-  //     </Grid>
-  //     {/* ************************* 3rd pet ****************************** */}
-  //     <Grid
-  //       container
-  //       className={classes.margin}
-  //       justify="flex-start"
-  //       spacing={5}
-  //     >
-  //       <Grid container item xs={4}>
-  //         <div className={classes.photoRoot}>
-  //           <GridList cellHeight={180} className={classes.gridList}>
-  //             <img src="/static/images/details/cat.jpeg" alt={tileData.title} />
-  //           </GridList>
-  //         </div>
-  //       </Grid>
-  //       <Grid container item xs={8}>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Name" value="Bella" />
-  //           <FormRow label="Category" value="Cat" />
-  //           <FormRow label="Breed" value="American Curl" />
-  //           <FormRow label="Gender" value="Female" />
-  //         </Grid>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Age" value="2 months" />
-  //           <FormRow
-  //             class={classes.margin5}
-  //             label="Duration"
-  //             value="June 10, 2021 to June 20, 2021"
-  //           />
-  //           <FormRow label="Location" value="Longwood Apts" />
-  //           <FormRow value="Boston, MA 02120" />
-  //         </Grid>
-  //         <Grid container item xs={6}>
-  //           <FormRow label="Status" value="Reject" />
-  //         </Grid>
-  //       </Grid>
-  //     </Grid>
-  //   </>
-  // );
 };
 
 ViewFosterRequestForMyPet.propTypes = {};
