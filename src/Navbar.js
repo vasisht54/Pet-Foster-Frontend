@@ -65,7 +65,7 @@ export default function Navbar() {
               <Button color="inherit" onClick={e => handleHref(e, "/")}>
                 Find a Fosterer
               </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/")}>
+              <Button color="inherit" onClick={e => handleHref(e, "/ViewFosterRequestForMyPet")}>
                 My Pet Listing
               </Button>
               <Button color="inherit" onClick={e => handleHref(e, "/ViewFosterRequest")}>

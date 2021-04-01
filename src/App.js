@@ -8,6 +8,7 @@ import Register from "./Register";
 import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
 import ViewFosterRequest from "./PetSearch/viewFosterRequest";
+import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route path="/ViewFosterRequest">
               <ViewFosterRequest />
+            </Route>
+            <Route path="/ViewFosterRequestForMyPet">
+              <ViewFosterRequestForMyPet />
             </Route>
           </Switch>
         </div>
