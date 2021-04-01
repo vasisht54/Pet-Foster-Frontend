@@ -122,8 +122,6 @@ export const FosterRequestTable = ()=> {
         <Grid container item xs={4}>
             <div>
               <Button
-                variant="contained"
-                color="primary"
                 href="/viewFosterRequestForMyPet"
                 className={classes.backButton}
                 startIcon={<ArrowBackIosIcon />}
