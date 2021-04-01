@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -49,12 +50,13 @@ const CreatePetListing = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [openNotification, setOpenNotification] = React.useState(false);
   const steps = getSteps();
+  const history = useHistory();
 
   const handleNext = () => {
     if(activeStep === 2){
       setOpenNotification(true);
       setTimeout(()=>{
-        window.location.pathname = "/PetSearchDetails";
+        history.push("/PetSearchDetails?false");
       },2500)
       return;
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -59,9 +60,14 @@ function PetSearch() {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [petDetails, setPetDetails] = React.useState(null);
+  const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleHref = (route) => {
+    history.push(route);
   };
 
   function FormRow() {
@@ -122,7 +128,7 @@ function PetSearch() {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" href="/petSearchDetails">
+                <Button size="small" color="primary" onClick={()=>handleHref("/petSearchDetails")}>
                   View Pet Details
                 </Button>
               </CardActions>

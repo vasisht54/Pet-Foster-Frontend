@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -66,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
   
 function SendFosterRequest() {
   const classes = useStyles();
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -135,8 +137,7 @@ function SendFosterRequest() {
                 </Typography>
               </DialogContent>
               <DialogActions>
-                <Button autoFocus onClick={handleClose} color="primary"
-                    href = "/search">
+                <Button autoFocus onClick={()=> {handleClose(); history.push("/search")}} color="primary">
                   Okay
                 </Button>
               </DialogActions>
@@ -144,7 +145,9 @@ function SendFosterRequest() {
             {/* ************************************************************* */}
 
             <Button
-              href="/PetSearchDetails"
+              onClick={()=> {
+                history.push("/PetSearchDetails")
+              }}
               variant="contained"
               color="secondary"
               className={classes.button}
