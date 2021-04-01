@@ -119,15 +119,19 @@ export const FosterRequestTable = ()=> {
         justify="flex-start"
         spacing={5}
       >
-        <div>
+        <Grid container item xs={4}>
+            <div>
               <Button
-                href="/search"
+                variant="contained"
+                color="primary"
+                href="/viewFosterRequestForMyPet"
                 className={classes.backButton}
                 startIcon={<ArrowBackIosIcon />}
               >
                 Back
               </Button>
             </div>
+        </Grid>
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
