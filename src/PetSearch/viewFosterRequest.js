@@ -175,7 +175,7 @@ export const ViewFosterRequest = () => {
         spacing={5}
       >
         {pets.map(pet => (
-          <>
+          <React.Fragment key={pet.id}>
             <Grid container item xs={4}>
               <div className={classes.photoRoot}>
                 <GridList cellHeight={180} className={classes.gridList}>
@@ -206,15 +206,17 @@ export const ViewFosterRequest = () => {
               <Grid container item xs={8}>
                 <Grid container item xs={6}>
                   <div className={classes.alignRight}>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      className={classes.sendButton}
-                      onClick={handleOpen}
-                      size="medium"
-                    >
-                      Withdraw Foster Request
-                    </Button>
+                    {pet.status !== "Reject" && (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.sendButton}
+                        onClick={handleOpen}
+                        size="medium"
+                      >
+                        Withdraw Foster Request
+                      </Button>
+                    )}
                     <Dialog
                       onClose={handleClose}
                       aria-labelledby="customized-dialog-title"
@@ -237,15 +239,17 @@ export const ViewFosterRequest = () => {
 
                 <Grid container item xs={6}>
                   <div className={classes.alignRight}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.sendButton}
-                      onClick={handleOpenOwnerDetails}
-                      size="medium"
-                    >
-                      View Owner details
-                    </Button>
+                    {pet.status === "Approved" && (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.sendButton}
+                        onClick={handleOpenOwnerDetails}
+                        size="medium"
+                      >
+                        View Owner details
+                      </Button>
+                    )}
                     <Dialog
                       onClose={handleCloseOwnerDetails}
                       aria-labelledby="customized-dialog-title"
@@ -286,7 +290,7 @@ export const ViewFosterRequest = () => {
                 </Grid>
               </Grid>
             </Grid>
-          </>
+          </React.Fragment>
         ))}
       </Grid>
     </>
