@@ -6,7 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-
+import { Link } from "@material-ui/core";
+import { useHistory } from "react-router";
+import Dialog from "@material-ui/core/Dialog";
 
 const drawerWidth = 300;
 
@@ -129,7 +131,7 @@ const pets = [
 export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
- 
+  const history = useHistory();
  
   const handleOpen = () => {
     setOpen(true);
@@ -139,6 +141,9 @@ export const ViewFosterRequestForMyPet = () => {
     setOpen(false);
   };
 
+  const handleFosterRequestTable = () => {
+      history.push("/fosterRequestTable");
+  }
   return (
     <Grid
         container
@@ -160,7 +165,31 @@ export const ViewFosterRequestForMyPet = () => {
 
         <Grid container item xs={8}>
             <Grid container item xs={3}>
-             <FormRow label="Name" value={pet.name} />
+              <Link component="button">
+             <FormRow value={pet.name} />
+             </Link>
+
+             <Dialog
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={open}>
+                  <DialogContent dividers>
+                    {/* <Grid container item md={12}>
+                      <FosterRequestTable />                    
+                    </Grid> */}
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      autoFocus
+                      onClick={handleClose}
+                      color="primary"
+                      href="/"
+                    >
+                      Okay
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+
             </Grid>
             <Grid container item xs={5}>
             <div className={classes.alignRight}>
@@ -168,8 +197,7 @@ export const ViewFosterRequestForMyPet = () => {
                   variant="contained"
                   color="primary"
                   className={classes.sendButton}
-                  onClick={handleOpen}
-                  href = "/fosterRequestTable"
+                  onClick={handleFosterRequestTable}
                   size="medium"
                 >
                   View Foster Requests
