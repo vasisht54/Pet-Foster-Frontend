@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
@@ -11,11 +10,11 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/LoginSlice";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   flex: {
     display: "flex",
     flexGrow: "1",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -31,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn.value);
+  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -59,30 +58,30 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar style={{ justifyContent: "space-between" }}>
-          <Button onClick={(e) => handleHref(e, "/")} color="inherit">
+          <Button onClick={e => handleHref(e, "/")} color="inherit">
             Bring Home A Pet
           </Button>
           {isLoggedIn && (
             <>
               <div className={classes.flex}>
-                <Button color="inherit" onClick={(e) => handleHref(e, "/")}>
+                <Button color="inherit" onClick={e => handleHref(e, "/")}>
                   Find a Fosterer
                 </Button>
                 <Button
                   color="inherit"
-                  onClick={(e) => handleHref(e, "/ViewFosterRequestForMyPet")}
+                  onClick={e => handleHref(e, "/ViewFosterRequestForMyPet")}
                 >
                   My Pet Listing
                 </Button>
                 <Button
                   color="inherit"
-                  onClick={(e) => handleHref(e, "/ViewFosterRequest")}
+                  onClick={e => handleHref(e, "/ViewFosterRequest")}
                 >
                   My requests to a Foster
                 </Button>
                 <Button
                   color="inherit"
-                  onClick={(e) => handleHref(e, "/fosterHistory")}
+                  onClick={e => handleHref(e, "/fosterHistory")}
                 >
                   My Foster history
                 </Button>
@@ -110,13 +109,10 @@ export default function Navbar() {
             </>
           ) : (
             <div>
-              <Button color="inherit" onClick={(e) => handleHref(e, "/login")}>
+              <Button color="inherit" onClick={e => handleHref(e, "/login")}>
                 Login
               </Button>
-              <Button
-                color="inherit"
-                onClick={(e) => handleHref(e, "/register")}
-              >
+              <Button color="inherit" onClick={e => handleHref(e, "/register")}>
                 Register
               </Button>
             </div>

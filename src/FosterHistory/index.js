@@ -74,60 +74,70 @@ const FosterHistory = () => {
 
   return (
     <Container>
-      <Grid container direction="column">
-        {fosterHistory.map(item => (
-          <Grid container item key={item.id}>
-            <Paper className={classes.paper}>
-              <Grid container>
-                <Grid container item xs={4}>
-                  <Grid>
-                    <ImageAvatar image={item.image} name={item.name} />
-                    <Button
-                      onClick={() => setOpenOwnerDetails(true)}
-                      color="primary"
-                      variant="contained"
-                      size="small"
-                    >
-                      View owner details
-                    </Button>
+      <Grid container>
+        <Grid item xs={2} />
+        <Grid item xs={9} container direction="column">
+          {fosterHistory.map(item => (
+            <>
+              <Grid container item key={item.id}>
+                <Paper className={classes.paper}>
+                  <Grid container>
+                    <Grid container item xs={2}>
+                      <Grid>
+                        <ImageAvatar image={item.image} name={item.name} />
+                      </Grid>
+                    </Grid>
+                    <Grid container item xs={7}>
+                      <FormRow label="Name" value={item.name} />
+                      <FormRow label="Breed" value={item.type} />
+                      <FormRow label="Age" value={item.age} />
+                      <FormRow label="Duration" value={item.duration} />
+                    </Grid>
+                    <Grid item xs={3}>
+                      <Button
+                        onClick={() => setOpenOwnerDetails(true)}
+                        color="primary"
+                        variant="contained"
+                        size="small"
+                      >
+                        View owner details
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid container item xs={8}>
-                  <FormRow label="Name" value={item.name} />
-                  <FormRow label="Breed" value={item.type} />
-                  <FormRow label="Age" value={item.age} />
-                  <FormRow label="Duration" value={item.duration} />
-                </Grid>
-              </Grid>
-            </Paper>
-            <Dialog
-              onClose={() => setOpenOwnerDetails(false)}
-              aria-labelledby="customized-dialog-title"
-              open={openOwnerDetails}
-            >
-              <DialogContent dividers>
-                <Typography gutterBottom>Owner Information</Typography>
-                <Grid container item xs={10}>
-                  <Typography gutterBottom>Owner Details:</Typography>
-                  <FormRow label="Name" value="Alex" />
-                  <FormRow label="Location" value="3 Filmore St. SF, 41202" />
-                  <FormRow label="Phone number" value="213-456-7890" />
-                  <FormRow label="Email" value="alex@g.com" />
-                  <Typography gutterBottom> Happy Fostering! </Typography>
-                </Grid>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  autoFocus
-                  onClick={() => setOpenOwnerDetails(false)}
-                  color="primary"
+                </Paper>
+                <Dialog
+                  onClose={() => setOpenOwnerDetails(false)}
+                  aria-labelledby="customized-dialog-title"
+                  open={openOwnerDetails}
                 >
-                  Okay
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </Grid>
-        ))}
+                  <DialogContent dividers>
+                    <Typography gutterBottom>Owner Information</Typography>
+                    <Grid container item xs={10}>
+                      <Typography gutterBottom>Owner Details:</Typography>
+                      <FormRow label="Name" value="Alex" />
+                      <FormRow
+                        label="Location"
+                        value="3 Filmore St. SF, 41202"
+                      />
+                      <FormRow label="Phone number" value="213-456-7890" />
+                      <FormRow label="Email" value="alex@g.com" />
+                      <Typography gutterBottom> Happy Fostering! </Typography>
+                    </Grid>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      autoFocus
+                      onClick={() => setOpenOwnerDetails(false)}
+                      color="primary"
+                    >
+                      Okay
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </Grid>
+            </>
+          ))}
+        </Grid>
       </Grid>
     </Container>
   );
