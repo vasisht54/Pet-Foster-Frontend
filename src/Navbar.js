@@ -64,26 +64,23 @@ export default function Navbar() {
           {isLoggedIn && (
             <>
               <div className={classes.flex}>
-                <Button color="inherit" onClick={e => handleHref(e, "/")}>
-                  Find a Fosterer
-                </Button>
                 <Button
                   color="inherit"
                   onClick={e => handleHref(e, "/ViewFosterRequestForMyPet")}
                 >
-                  My Pet Listing
+                  View foster requests for my pets
                 </Button>
                 <Button
                   color="inherit"
                   onClick={e => handleHref(e, "/ViewFosterRequest")}
                 >
-                  My requests to a Foster
+                  My requests to foster
                 </Button>
                 <Button
                   color="inherit"
                   onClick={e => handleHref(e, "/fosterHistory")}
                 >
-                  My Foster history
+                  My foster history
                 </Button>
               </div>
             </>

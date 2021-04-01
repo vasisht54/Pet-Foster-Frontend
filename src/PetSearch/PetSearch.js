@@ -76,7 +76,7 @@ function PetSearch() {
         {[...Array(4)].map((e, i) => (
           <Grid key={i} item xs={3}>
             <Card className={classes.cardRoot}>
-              <CardActionArea onClick={() => setPetDetails({ name: "Bruno" })}>
+              <CardActionArea onClick={()=>handleHref("/petSearchDetails")}>
                 <CardMedia
                   className={classes.media}
                   image="/static/images/cards/dog.jpeg"

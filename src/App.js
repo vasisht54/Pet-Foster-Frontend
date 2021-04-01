@@ -8,10 +8,10 @@ import Register from "./Register";
 import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
 import FosterHistory from "./FosterHistory";
-import ViewFosterRequest from "./PetSearch/viewFosterRequest";
 import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 import FosterRequestTable from "./PetListing/FosterRequestTable";
 import FostererProfile from "./PetListing/FostererProfile";
+import MyFosterRequests from "./MyFosterRequests/MyFosterRequests";
 
 function App() {
   return (
@@ -45,7 +45,7 @@ function App() {
               <FosterHistory />
             </Route>
             <Route path="/ViewFosterRequest">
-              <ViewFosterRequest />
+              <MyFosterRequests />
             </Route>
             <Route path="/ViewFosterRequestForMyPet">
               <ViewFosterRequestForMyPet />
