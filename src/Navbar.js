@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import HomeIcon from '@material-ui/icons/Home';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/LoginSlice";
@@ -25,7 +26,23 @@ const useStyles = makeStyles(theme => ({
   accountCircle: {
     cursor: "pointer",
   },
-  fosterHistoryButton: {},
+  home: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center"
+  },
+  homeIcon: {
+    fontSize: "64px",
+    marginLeft: "43px"
+  },
+  homeBtn: {
+    position: "absolute",
+    width: "150px",
+    backgroundColor: "#3f51b5",
+    padding: "0",
+    marginTop: "14px",
+    lineHeight: "normal",
+  }
 }));
 
 export default function Navbar() {
@@ -58,9 +75,12 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar style={{ justifyContent: "space-between" }}>
-          <Button onClick={e => handleHref(e, "/")} color="inherit">
-            Bring Home A Pet
-          </Button>
+          <div className={classes.home}>
+            <HomeIcon className={classes.homeIcon}/>
+            <Button onClick={e => handleHref(e, "/")} color="inherit" className={classes.homeBtn}>
+              Bring Home A Pet
+            </Button>
+          </div>
           {isLoggedIn && (
             <>
               <div className={classes.flex}>
