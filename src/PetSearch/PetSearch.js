@@ -68,7 +68,7 @@ function PetSearch() {
     return (
       <React.Fragment>
         {[...Array(4)].map((e, i) => (
-          <Grid item xs={3}>
+          <Grid key={i} item xs={3}>
             <Card className={classes.cardRoot}>
               <CardActionArea onClick={() => setPetDetails({ name: "Bruno" })}>
                 <CardMedia
