@@ -104,13 +104,13 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   buttonGroupCenterAlign: {
-    textAlign:"center",
+    textAlign: "center",
     marginBottom: "30px",
-    marginTop: "20px"
+    marginTop: "20px",
   },
   addAnotherButton: {
-    marginBottom: "30px"
-  }
+    marginBottom: "30px",
+  },
 }));
 
 const KeyFacts = (props) => (
@@ -207,16 +207,31 @@ const PetInfo = (props) => {
                 name="age"
                 size="small"
               />
-              <TextField
-                variant="outlined"
-                required
-                margin="dense"
-                fullWidth
-                id="gender"
-                label="Gender"
-                name="gender"
-                size="small"
-              />
+              <Grid container item>
+                <Grid item xs={4}>
+                  <Typography variant="subtitle1">Gender</Typography>
+                </Grid>
+                <Grid item xs={7}>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-label="gender"
+                      name="gender1"
+                      style={{ flexDirection: "row" }}
+                    >
+                      <FormControlLabel
+                        value="yes"
+                        control={<Radio size="small" />}
+                        label="Yes"
+                      />
+                      <FormControlLabel
+                        value="no"
+                        control={<Radio size="small" />}
+                        label="No"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={3} className={classes.sectionMargin}>
               <Typography variant="subtitle1">Key Facts</Typography>
@@ -305,14 +320,14 @@ const PetInfo = (props) => {
         </Grid>
       </form>
       <div className={classes.buttonGroupCenterAlign}>
-        {props.index >= 1 &&
+        {props.index >= 1 && (
           <Button
             className={classes.button}
             onClick={() => props.setPetCount(props.petCount - 1)}
           >
             Remove
           </Button>
-        }
+        )}
         <Button
           variant="contained"
           color="primary"
