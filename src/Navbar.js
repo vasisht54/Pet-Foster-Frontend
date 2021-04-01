@@ -11,9 +11,11 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/LoginSlice";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
+const useStyles = makeStyles((theme) => ({
+  flex: {
+    display: "flex",
+    flexGrow: "1",
+    justifyContent: "space-evenly"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -29,13 +31,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn.value);
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -56,31 +58,39 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          <Button onClick={e => handleHref(e, "/")} color="inherit">
+        <Toolbar style={{ justifyContent: "space-between" }}>
+          <Button onClick={(e) => handleHref(e, "/")} color="inherit">
             Bring Home A Pet
           </Button>
-          <Typography className={classes.title}></Typography>
+          {isLoggedIn && (
+            <>
+              <div className={classes.flex}>
+                <Button color="inherit" onClick={(e) => handleHref(e, "/")}>
+                  Find a Fosterer
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={(e) => handleHref(e, "/ViewFosterRequestForMyPet")}
+                >
+                  My Pet Listing
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={(e) => handleHref(e, "/ViewFosterRequest")}
+                >
+                  My requests to a Foster
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={(e) => handleHref(e, "/fosterHistory")}
+                >
+                  My Foster history
+                </Button>
+              </div>
+            </>
+          )}
           {isLoggedIn ? (
             <>
-              <Button color="inherit" onClick={e => handleHref(e, "/")}>
-                Find a Fosterer
-              </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/ViewFosterRequestForMyPet")}>
-                My Pet Listing
-              </Button>
-              <Button
-                color="inherit"
-                onClick={e => handleHref(e, "/ViewFosterRequest")}
-              >
-                My requests to a Foster
-              </Button>
-              <Button
-                color="inherit"
-                onClick={e => handleHref(e, "/fosterHistory")}
-              >
-                My Foster history
-              </Button>
               <AccountCircle
                 className={classes.accountCircle}
                 role="button"
@@ -99,14 +109,17 @@ export default function Navbar() {
               </Menu>
             </>
           ) : (
-            <>
-              <Button color="inherit" onClick={e => handleHref(e, "/login")}>
+            <div>
+              <Button color="inherit" onClick={(e) => handleHref(e, "/login")}>
                 Login
               </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/register")}>
+              <Button
+                color="inherit"
+                onClick={(e) => handleHref(e, "/register")}
+              >
                 Register
               </Button>
-            </>
+            </div>
           )}
         </Toolbar>
       </AppBar>
