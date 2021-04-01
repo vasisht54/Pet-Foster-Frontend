@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
@@ -104,17 +104,62 @@ const DialogActions = withStyles(theme => ({
   },
 }))(MuiDialogActions);
 
+const petResource = [
+  {
+    id: 1,
+    name: "Bruno",
+    image: "/static/images/details/dog.jpeg",
+    type: "Dog",
+    breed: "Retriever",
+    gender: "Male",
+    age: "5 Months",
+    duration: "May 21, 2021 to May 29, 2021",
+    street: "11 Tetlow Street",
+    city: "Boston, MA 02115",
+    status: "Approved",
+  },
+  {
+    id: 2,
+    name: "Goofy",
+    image: "/static/images/details/dog2.jpeg",
+    type: "Dog",
+    breed: "Beagle",
+    gender: "Male",
+    age: "2 Months",
+    duration: "May 21, 2021 to May 29, 2021",
+    street: "1191 Caesars St",
+    city: "Los Angeles",
+    status: "Decision Pending",
+  },
+  {
+    id: 3,
+    name: "Bella",
+    image: "/static/images/details/cat.jpeg",
+    type: "Cat",
+    breed: "Americal Curl",
+    gender: "Female",
+    age: "1 Year",
+    duration: "May 21, 2021 to May 29, 2021",
+    street: "75 Longwood Apts",
+    city: "Florida",
+    status: "Reject",
+  },
+];
+
 export const ViewFosterRequest = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [openOwnerDetails, setOpenOwnerDetails] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const [pets, setPets] = useState(petResource);
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleWithdraw = id => {
+    setOpen(true);
+    const newPets = pets.filter(pet => pet.id !== id);
+    setPets(newPets);
   };
 
   const handleOpenOwnerDetails = () => {
@@ -123,48 +168,6 @@ export const ViewFosterRequest = () => {
   const handleCloseOwnerDetails = () => {
     setOpenOwnerDetails(false);
   };
-
-  const pets = [
-    {
-      id: 1,
-      name: "Bruno",
-      image: "/static/images/details/dog.jpeg",
-      type: "Dog",
-      breed: "Retriever",
-      gender: "Male",
-      age: "5 Months",
-      duration: "May 21, 2021 to May 29, 2021",
-      street: "11 Tetlow Street",
-      city: "Boston, MA 02115",
-      status: "Approved",
-    },
-    {
-      id: 2,
-      name: "Goofy",
-      image: "/static/images/details/dog2.jpeg",
-      type: "Dog",
-      breed: "Beagle",
-      gender: "Male",
-      age: "2 Months",
-      duration: "May 21, 2021 to May 29, 2021",
-      street: "1191 Caesars St",
-      city: "Los Angeles",
-      status: "Decision Pending",
-    },
-    {
-      id: 3,
-      name: "Bella",
-      image: "/static/images/details/cat.jpeg",
-      type: "Cat",
-      breed: "Americal Curl",
-      gender: "Female",
-      age: "1 Year",
-      duration: "May 21, 2021 to May 29, 2021",
-      street: "75 Longwood Apts",
-      city: "Florida",
-      status: "Reject",
-    },
-  ];
 
   return (
     <>
@@ -211,7 +214,7 @@ export const ViewFosterRequest = () => {
                         variant="contained"
                         color="secondary"
                         className={classes.sendButton}
-                        onClick={handleOpen}
+                        onClick={() => handleWithdraw(pet.id)}
                         size="medium"
                       >
                         Withdraw Foster Request
