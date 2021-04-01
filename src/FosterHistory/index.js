@@ -98,7 +98,7 @@ const FosterHistory = () => {
                         onClick={() => setOpenOwnerDetails(true)}
                         color="primary"
                         variant="contained"
-                        size="small"
+                        size="medium"
                       >
                         View owner details
                       </Button>
