@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Button, Grid } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { useHistory } from "react-router";
 
 const drawerWidth = 300;
 
@@ -100,7 +101,11 @@ export const FosterRequestTable = ()=> {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  
+    const history = useHistory();
+
+    const handleFosterRequest = () => {
+      history.push("/viewFosterRequestForMyPet");
+    }
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -120,7 +125,7 @@ export const FosterRequestTable = ()=> {
         <Grid container item xs={4}>
             <div>
               <Button
-                href="/viewFosterRequestForMyPet"
+                onClick={handleFosterRequest}
                 className={classes.backButton}
                 startIcon={<ArrowBackIosIcon />}
               >
