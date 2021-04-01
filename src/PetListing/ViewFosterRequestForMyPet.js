@@ -165,7 +165,7 @@ export const ViewFosterRequestForMyPet = () => {
 
         <Grid container item xs={8}>
             <Grid container item xs={3}>
-              <Link component="button">
+              <Link component="button" onClick={handleOpen}>
              <FormRow value={pet.name} />
              </Link>
 
