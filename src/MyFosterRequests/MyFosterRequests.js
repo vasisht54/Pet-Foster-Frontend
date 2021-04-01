@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     width: "100%",
     margin: "10px",
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
   },
   divider: {
-    margin: "10px 0"
+    margin: "10px 0",
   },
   status: {
-      border: ""
-  }
+    border: "",
+  },
 }));
 
-const FormRow = (props) => {
+const FormRow = props => {
   return (
     <Grid container item xs={12}>
       <Grid item xs={5}>
@@ -45,13 +45,13 @@ const FormRow = (props) => {
   );
 };
 
-const DialogContent = withStyles((theme) => ({
+const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
+const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(1),
@@ -91,12 +91,12 @@ const MyRequests = [
 const MyFosterRequests = () => {
   const classes = useStyles();
   const [openOwnerDetails, setOpenOwnerDetails] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   const [pets, setPets] = useState(MyRequests);
 
-  const handleWithdraw = (id) => {
-    setOpen(true);
-    const newPets = pets.filter((pet) => pet.id !== id);
+  const handleWithdraw = id => {
+    // setOpen(true);
+    const newPets = pets.filter(pet => pet.id !== id);
     setPets(newPets);
   };
 
@@ -105,7 +105,7 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-          {pets.map((item) => (
+          {pets.map(item => (
             <>
               <Grid container item key={item.id}>
                 <Paper className={classes.paper}>
@@ -145,8 +145,10 @@ const MyFosterRequests = () => {
                       )}
                     </Grid>
                   </Grid>
-                  <Divider className={classes.divider}/>
-                      <Typography className={classes.status} variant="subtitle1">Status: {item.status}</Typography>
+                  <Divider className={classes.divider} />
+                  <Typography className={classes.status} variant="subtitle1">
+                    Status: {item.status}
+                  </Typography>
                 </Paper>
                 <Dialog
                   onClose={() => setOpenOwnerDetails(false)}

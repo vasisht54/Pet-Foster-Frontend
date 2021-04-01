@@ -68,7 +68,7 @@ const FosterHistory = () => {
       name: "Bella",
       age: "9 months",
       type: "Cat",
-      duration: "June 21, 2021 to July 1, 2020",
+      duration: "June 22, 2021 to July 1, 2020",
     },
   ];
 
