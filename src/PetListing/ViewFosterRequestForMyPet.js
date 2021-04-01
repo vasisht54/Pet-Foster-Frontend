@@ -12,7 +12,7 @@ import Dialog from "@material-ui/core/Dialog";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -63,23 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const tileData = [
-  {
-    img: "/static/images/details/dog.jpeg",
-  },
-  {
-    img: "/static/images/details/dog2.jpeg",
-  },
-  {
-    img: "/static/images/details/dog3.jpeg",
-  },
-  {
-    img: "/static/images/details/dog4.jpeg",
-  },
-];
-
-
-const FormRow = (props) => {
+const FormRow = props => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={3}>
@@ -94,13 +78,13 @@ const FormRow = (props) => {
   );
 };
 
-const DialogContent = withStyles((theme) => ({
+const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
+const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(1),
@@ -112,19 +96,19 @@ const pets = [
     id: 1,
     name: "Bruno",
     image: "/static/images/details/dog.jpeg",
-    type: "Dog"
+    type: "Dog",
   },
   {
     id: 2,
     name: "Goofy",
     image: "/static/images/details/dog2.jpeg",
-    type: "Dog"
+    type: "Dog",
   },
   {
     id: 3,
     name: "Bella",
     image: "/static/images/details/cat.jpeg",
-    type: "Cat"
+    type: "Cat",
   },
 ];
 
@@ -132,7 +116,7 @@ export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
- 
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -142,62 +126,54 @@ export const ViewFosterRequestForMyPet = () => {
   };
 
   const handleFosterRequestTable = () => {
-      history.push("/fosterRequestTable");
-  }
+    history.push("/fosterRequestTable");
+  };
   return (
-    <Grid
-        container
-        className={classes.margin}
-        justify="flex-start"
-        spacing={5}
-      >
-     
-     {pets.map(pet => (
-          <>
+    <Grid container className={classes.margin} justify="flex-start" spacing={5}>
+      {pets.map(pet => (
+        <>
+          <Grid container item xs={4}>
+            <div className={classes.photoRoot}>
+              <GridList cellHeight={180} className={classes.gridList}>
+                <img src={pet.image} alt={pet.name} />
+              </GridList>
+            </div>
+          </Grid>
 
-      <Grid container item xs={4}>
-          <div className={classes.photoRoot}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              <img src={pet.image} alt={pet.name} />
-            </GridList>
-          </div>
-        </Grid>
-
-        <Grid container item xs={8}>
+          <Grid container item xs={8}>
             <Grid container item xs={3}>
               <Link component="button" onClick={handleOpen}>
-             <FormRow value={pet.name} />
-             </Link>
+                <FormRow value={pet.name} />
+              </Link>
 
-             <Dialog
+              <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={open}>
-                  <DialogContent dividers>
-                    <Grid container item md={12}>
-                      <FormRow label="Name" value="Bruno"></FormRow>
-                      <FormRow label="Category" value="Dog" />
-                      <FormRow label="Breed" value="Retriever" />
-                      <FormRow label="Gender" value="Male" />                    
-                      <FormRow label="Age" value="5 Months" /> 
-                      <FormRow label="Duration" value="May 21, 2021 to May 29, 2021" /> 
-                    </Grid>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      autoFocus
-                      onClick={handleClose}
-                      color="primary"
-                    >
-                      Okay
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-
+                open={open}
+              >
+                <DialogContent dividers>
+                  <Grid container item md={12}>
+                    <FormRow label="Name" value="Bruno"></FormRow>
+                    <FormRow label="Category" value="Dog" />
+                    <FormRow label="Breed" value="Retriever" />
+                    <FormRow label="Gender" value="Male" />
+                    <FormRow label="Age" value="5 Months" />
+                    <FormRow
+                      label="Duration"
+                      value="May 21, 2021 to May 29, 2021"
+                    />
+                  </Grid>
+                </DialogContent>
+                <DialogActions>
+                  <Button autoFocus onClick={handleClose} color="primary">
+                    Okay
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Grid>
             <Grid container item xs={5}>
-            <div className={classes.alignRight}>
-            <Button
+              <div className={classes.alignRight}>
+                <Button
                   variant="contained"
                   color="primary"
                   className={classes.sendButton}
@@ -205,9 +181,9 @@ export const ViewFosterRequestForMyPet = () => {
                   size="medium"
                 >
                   View Foster Requests
-            </Button>
-            
-            {/* <Dialog
+                </Button>
+
+                {/* <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}>
@@ -242,12 +218,11 @@ export const ViewFosterRequestForMyPet = () => {
                     </Button>
                   </DialogActions>
                 </Dialog> */}
-
               </div>
             </Grid>
-        </Grid>
+          </Grid>
         </>
-        ))}
+      ))}
     </Grid>
   );
 };

@@ -61,21 +61,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// const tileData = [
-//   {
-//     img: "/static/images/details/dog.jpeg",
-//   },
-//   {
-//     img: "/static/images/details/dog2.jpeg",
-//   },
-//   {
-//     img: "/static/images/details/dog3.jpeg",
-//   },
-//   {
-//     img: "/static/images/details/dog4.jpeg",
-//   },
-// ];
-
 const FormRow = props => {
   return (
     <Grid className={props.class} container item xs={12}>
