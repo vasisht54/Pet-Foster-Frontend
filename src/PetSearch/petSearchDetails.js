@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
@@ -129,14 +130,16 @@ const PetSearchDetails = ({ onBackButtonClick }) => {
 
 export const PetDetails = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const pathname = window.location.pathname;
+  const queryParam = window.location.pathname+window.location.search;
 
   return (
     <>
       <div className={classes.flex}>
         <Typography variant="h5">Bruno</Typography>
-        {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
+        {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
         <Typography className={classes.datePosted} variant="body1">
           <span className={classes.label}>Posted on: March 21, 2021</span>
         </Typography>
@@ -167,10 +170,10 @@ export const PetDetails = () => {
               ))}
             </GridList>
           </div>
-          {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
+          {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
             <div>
               <Button
-                href="/search"
+                onClick={()=> {history.push("/search")}}
                 className={classes.backButton}
                 startIcon={<ArrowBackIosIcon />}
               >
@@ -208,13 +211,13 @@ export const PetDetails = () => {
           />
         </Grid>
       </Grid>
-      {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
+      {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
         <div className={classes.alignRight}>
           <Button
             variant="contained"
             color="primary"
             className={classes.sendButton}
-            href="/sendFosterRequest"
+            onClick={()=> {history.push("/sendFosterRequest");}}
             size="medium"
           >
             Send a Foster Request
