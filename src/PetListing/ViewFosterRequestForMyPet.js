@@ -1,14 +1,14 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import GridList from "@material-ui/core/GridList";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import { Link } from "@material-ui/core";
+import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
 import Dialog from "@material-ui/core/Dialog";
+import ImageAvatar from "../FosterHistory/ImageAvatar";
 
 const drawerWidth = 300;
 
@@ -24,10 +24,9 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
   },
   paper: {
-    width: "96%",
-    display: "inline-block",
+    margin: "10px",
     padding: "20px",
-    height: "100%",
+    width: "60%",
   },
   center: {
     textAlign: "center",
@@ -61,18 +60,24 @@ const useStyles = makeStyles(theme => ({
   margin5: {
     marginTop: "20px",
   },
+  itemName: {
+    marginTop: "20px",
+  },
+  itemButton: {
+    marginTop: "6px",
+  },
 }));
 
 const FormRow = props => {
   return (
-    <Grid className={props.class} container item xs={12}>
-      <Grid item xs={3}>
+    <Grid container item xs={12}>
+      <Grid item xs={5}>
         {props.label && (
           <Typography variant="subtitle1">{props.label}:</Typography>
         )}
       </Grid>
       <Grid item>
-        <Typography variant="subtitle1">{props.value}</Typography>
+        <Typography variant="h6">{props.value}</Typography>
       </Grid>
     </Grid>
   );
@@ -129,101 +134,67 @@ export const ViewFosterRequestForMyPet = () => {
     history.push("/fosterRequestTable");
   };
   return (
-    <Grid container className={classes.margin} justify="flex-start" spacing={5}>
-      {pets.map(pet => (
-        <>
-          <Grid container item xs={4}>
-            <div className={classes.photoRoot}>
-              <GridList cellHeight={180} className={classes.gridList}>
-                <img src={pet.image} alt={pet.name} />
-              </GridList>
-            </div>
-          </Grid>
-
-          <Grid container item xs={8}>
-            <Grid container item xs={3}>
-              <Link component="button" onClick={handleOpen}>
-                <FormRow value={pet.name} />
-              </Link>
-
-              <Dialog
-                onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={open}
-              >
-                <DialogContent dividers>
-                  <Grid container item md={12}>
-                    <FormRow label="Name" value="Bruno"></FormRow>
-                    <FormRow label="Category" value="Dog" />
-                    <FormRow label="Breed" value="Retriever" />
-                    <FormRow label="Gender" value="Male" />
-                    <FormRow label="Age" value="5 Months" />
-                    <FormRow
-                      label="Duration"
-                      value="May 21, 2021 to May 29, 2021"
-                    />
+    <Container>
+      <Grid container>
+        <Grid item xs={3} />
+        <Grid item xs={9} container direction="column">
+          {pets.map(pet => (
+            <>
+              <Grid container item key={pet.id}>
+                <Paper className={classes.paper}>
+                  <Grid container>
+                    <Grid container item xs={4}>
+                      <Grid>
+                        <ImageAvatar image={pet.image} name={pet.name} />
+                      </Grid>
+                    </Grid>
+                    <Grid className={classes.itemName} item xs={4}>
+                      <Link component="button" onClick={handleOpen}>
+                        <FormRow value={pet.name} />
+                      </Link>
+                    </Grid>
+                    <Grid className={classes.itemButton} item xs={4}>
+                      <Button
+                        onClick={handleFosterRequestTable}
+                        color="primary"
+                        variant="contained"
+                        size="medium"
+                      >
+                        View Foster Requests
+                      </Button>
+                    </Grid>
                   </Grid>
-                </DialogContent>
-                <DialogActions>
-                  <Button autoFocus onClick={handleClose} color="primary">
-                    Okay
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </Grid>
-            <Grid container item xs={5}>
-              <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.sendButton}
-                  onClick={handleFosterRequestTable}
-                  size="medium"
+                </Paper>
+                <Dialog
+                  onClose={handleClose}
+                  aria-labelledby="customized-dialog-title"
+                  open={open}
                 >
-                  View Foster Requests
-                </Button>
-
-                {/* <Dialog
-                onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={open}>
                   <DialogContent dividers>
-                    <div className={classes.flex}>
-                      {!pathname.includes("/create") && (
-                        <div>
-                          <Button
-                            href="/"
-                            variant="contained"
-                            color="primary"
-                            className={classes.backButton}
-                            startIcon={<ArrowBackIosIcon />}
-                          >
-                            Back
-                          </Button>
-                        </div>
-                      )}
-                    </div>
                     <Grid container item md={12}>
-                      <FosterRequestTable />                    
+                      <FormRow label="Name" value="Bruno"></FormRow>
+                      <FormRow label="Category" value="Dog" />
+                      <FormRow label="Breed" value="Retriever" />
+                      <FormRow label="Gender" value="Male" />
+                      <FormRow label="Age" value="5 Months" />
+                      <FormRow
+                        label="Duration"
+                        value="May 21, 2021 to May 29, 2021"
+                      />
                     </Grid>
                   </DialogContent>
                   <DialogActions>
-                    <Button
-                      autoFocus
-                      onClick={handleClose}
-                      color="primary"
-                      href="/"
-                    >
+                    <Button autoFocus onClick={handleClose} color="primary">
                       Okay
                     </Button>
                   </DialogActions>
-                </Dialog> */}
-              </div>
-            </Grid>
-          </Grid>
-        </>
-      ))}
-    </Grid>
+                </Dialog>
+              </Grid>
+            </>
+          ))}
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
