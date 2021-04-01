@@ -83,7 +83,7 @@ const FostererProfile = () => {
                 <FormRow label="Rating" value="4.9" />
                 <FormRow
                   label="Bio"
-                  value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam minus earum possimus asperiores illum, vero temporibus nulla maiores nobis obcaecati accusamus fugit perspiciatis voluptas minima mollitia nisi suscipit. Repellat, facilis."
+                  value="Grew up with 3 dogs and a cat. Love pets!"
                 />
               </Grid>
               <Divider />
