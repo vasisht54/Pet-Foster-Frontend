@@ -136,7 +136,7 @@ export const PetDetails = () => {
     <>
       <div className={classes.flex}>
         <Typography variant="h5">Bruno</Typography>
-        {!pathname.includes("/create") && (
+        {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
         <Typography className={classes.datePosted} variant="body1">
           <span className={classes.label}>Posted on: March 21, 2021</span>
         </Typography>
@@ -167,7 +167,7 @@ export const PetDetails = () => {
               ))}
             </GridList>
           </div>
-          {!pathname.includes("/create") && (
+          {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
             <div>
               <Button
                 href="/search"
@@ -208,7 +208,7 @@ export const PetDetails = () => {
           />
         </Grid>
       </Grid>
-      {!pathname.includes("/create") && (
+      {!pathname.includes("/create") && !pathname.includes("/PetSearchDetails") && (
         <div className={classes.alignRight}>
           <Button
             variant="contained"

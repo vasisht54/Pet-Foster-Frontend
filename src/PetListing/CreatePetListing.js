@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import YourInfo from "./YourInfo";
 import PetInfo from "./PetInfo";
 import Confirm from "./ConfirmListing";
-
+import { SuccessNotification } from "../components/Notification";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,22 +47,18 @@ function getStepContent(step) {
 const CreatePetListing = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
+  const [openNotification, setOpenNotification] = React.useState(false);
   const steps = getSteps();
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
+    if(activeStep === 2){
+      setOpenNotification(true);
+      setTimeout(()=>{
+        window.location.pathname = "/PetSearchDetails";
+      },2500)
+      return;
     }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
@@ -71,6 +67,7 @@ const CreatePetListing = () => {
 
   return (
     <Paper className={classes.paper} elevation={3}>
+      <SuccessNotification message="Your pet listing has been created." open={openNotification}/>
       <Typography variant="h4" style={{padding:"0 20px"}}>List your pet for foster care</Typography>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
