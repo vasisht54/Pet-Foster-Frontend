@@ -160,12 +160,13 @@ export const ViewFosterRequestForMyPet = () => {
                   color="primary"
                   className={classes.sendButton}
                   onClick={handleOpen}
+                  href = "/fosterRequestTable"
                   size="medium"
                 >
                   View Foster Requests
             </Button>
             
-            <Dialog
+            {/* <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}>
@@ -199,7 +200,7 @@ export const ViewFosterRequestForMyPet = () => {
                       Okay
                     </Button>
                   </DialogActions>
-                </Dialog>
+                </Dialog> */}
 
               </div>
             </Grid>

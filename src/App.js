@@ -11,7 +11,8 @@ import FosterHistory from "./FosterHistory";
 import OwnerDetails from "./OwnerDetails";
 import ViewFosterRequest from "./PetSearch/viewFosterRequest";
 import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
-
+import FosterRequestTable from "./PetListing/FosterRequestTable";
+ 
 function App() {
   return (
     <Router>
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route path="/ViewFosterRequestForMyPet">
               <ViewFosterRequestForMyPet />
+            </Route>
+            <Route path="/FosterRequestTable">
+              <FosterRequestTable />  
             </Route>
           </Switch>
         </div>

@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import { Button, Grid } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const drawerWidth = 300;
 
@@ -83,18 +85,14 @@ const columns = [
     return { name, rating, message, action };
   }
   
-  function buttonComponent() {
-  //   <Button> View Profile </Button>
-  //   <Button> Accept </Button>
-  //   <Button> Reject </Button>
-  }
+  
   
   const rows = [
     createData('Jackson', '4.9/5.0', "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.", 
-    {buttonComponent}
+    "hello"
     ),
     createData('John', '4.2/5.0', "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
-    {buttonComponent} 
+    "hello" 
     ),
    
   ];
@@ -115,6 +113,21 @@ export const FosterRequestTable = ()=> {
     };
   
     return(
+    <Grid
+        container
+        className={classes.margin}
+        justify="flex-start"
+        spacing={5}
+      >
+        <div>
+              <Button
+                href="/search"
+                className={classes.backButton}
+                startIcon={<ArrowBackIosIcon />}
+              >
+                Back
+              </Button>
+            </div>
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
@@ -134,7 +147,7 @@ export const FosterRequestTable = ()=> {
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.rating}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -159,6 +172,7 @@ export const FosterRequestTable = ()=> {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      </Grid>
     );
   }
   export default FosterRequestTable;
