@@ -85,8 +85,6 @@ const columns = [
     return { name, rating, message, action };
   }
   
-  
-  
   const rows = [
     createData('Jackson', '4.9/5.0', "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.", 
     "hello"
