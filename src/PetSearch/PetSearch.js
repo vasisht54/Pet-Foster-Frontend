@@ -55,11 +55,80 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
+const petsList = [
+  {
+    id: 1,
+    name: "Bruno",
+    image: "/static/images/details/dog.jpeg",
+    type: "Dog",
+    age: "2 years",
+    duration: "May 02, 2021 to May 12, 2021",
+  },
+  {
+    id: 2,
+    name: "Goofy",
+    image: "/static/images/details/goofy.jpg",
+    type: "Dog",
+    age: "7 months",
+    duration: "June 15, 2021 to July 1, 2021",
+  },
+  {
+    id: 3,
+    name: "Bella",
+    image: "/static/images/details/cat.jpeg",
+    type: "Cat",
+    age: "2 months",
+    duration: "June 21, 2021 to July 1, 2021",
+  },
+  {
+    id: 4,
+    name: "Goldie",
+    image: "/static/images/details/fish.jpeg",
+    type: "Fish",
+    age: "1 month",
+    duration: "April 21, 2021 to October 1, 2021",
+  },
+  {
+    id: 5,
+    name: "Bun, Coco and Snow",
+    image: "/static/images/details/bunny.jpeg",
+    type: "Rabbit",
+    age: "5 years",
+    duration: "Sept 02, 2021 to Nov 12, 2021",
+  },
+  {
+    id: 6,
+    name: "Luna",
+    image: "/static/images/details/pony.jpeg",
+    type: "Pony",
+    age: "7 years",
+    duration: "June 15, 2021 to July 1, 2020",
+  },
+  {
+    id: 7,
+    name: "Aster",
+    image: "/static/images/details/aster.jpeg",
+    type: "Dog",
+    age: "3 years",
+    duration: "August 02, 2021 to August 12, 2021",
+  },
+  {
+    id: 8,
+    name: "Pommy",
+    image: "/static/images/details/pomeranian.jpeg",
+    type: "Dog",
+    age: "2 years",
+    duration: "July 15, 2021 to July 28, 2021",
+  }
+];
+
 function PetSearch() {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [petDetails, setPetDetails] = React.useState(null);
+  const [pets, setPets] = React.useState(petsList);
   const history = useHistory();
 
   const handleDrawerToggle = () => {
@@ -73,18 +142,18 @@ function PetSearch() {
   function FormRow() {
     return (
       <React.Fragment>
-        {[...Array(4)].map((e, i) => (
-          <Grid key={i} item xs={3}>
+          {pets.map(pet => (
+          <Grid key={pet} item xs={3}>
             <Card className={classes.cardRoot}>
               <CardActionArea onClick={()=>handleHref("/petSearchDetails")}>
                 <CardMedia
                   className={classes.media}
-                  image="/static/images/cards/dog.jpeg"
+                  image={pet.image}
                   title="Contemplative Reptile"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5">
-                    Bruno
+                    {pet.name}
                   </Typography>
                   <div>
                     <Typography variant="caption" display="inline" gutterBottom>
@@ -96,7 +165,7 @@ function PetSearch() {
                       className={classes.cardInfo}
                       gutterBottom
                     >
-                      Dog
+                      {pet.type}
                     </Typography>
                   </div>
                   <div>
@@ -109,7 +178,7 @@ function PetSearch() {
                       className={classes.cardInfo}
                       gutterBottom
                     >
-                      2 years
+                      {pet.age}
                     </Typography>
                   </div>
                   <div>
@@ -122,7 +191,7 @@ function PetSearch() {
                       className={classes.cardInfo}
                       gutterBottom
                     >
-                      May 02, 21 to May 12, 21
+                      {pet.duration}
                     </Typography>
                   </div>
                 </CardContent>
@@ -180,12 +249,12 @@ function PetSearch() {
               <Grid container item xs={12} spacing={3}>
                 <FormRow />
               </Grid>
-              <Grid container item xs={12} spacing={3}>
+              {/* <Grid container item xs={12} spacing={3}>
                 <FormRow />
               </Grid>
               <Grid container item xs={12} spacing={3}>
                 <FormRow />
-              </Grid>
+              </Grid> */}
             </Grid>
           </main>
         </>
