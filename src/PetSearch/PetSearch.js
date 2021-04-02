@@ -245,6 +245,11 @@ function PetSearch() {
             </Hidden>
           </nav>
           <main className={classes.content}>
+          <div className={classes.Card}>
+              <Typography gutterBottom variant="h4">
+                Foster a Pet
+              </Typography>
+            </div>
             <Grid container spacing={1}>
               <Grid container item xs={12} spacing={3}>
                 <FormRow />

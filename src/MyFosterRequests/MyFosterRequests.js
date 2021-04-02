@@ -105,6 +105,9 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
+        <Typography variant="h4" style={{padding:"0 20px"}}>
+          My requests to foster
+        </Typography>
           {pets.map(item => (
             <>
               <Grid container item key={item.id}>

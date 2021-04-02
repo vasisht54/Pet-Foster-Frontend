@@ -138,6 +138,12 @@ export const ViewFosterRequestForMyPet = () => {
       <Grid container>
         <Grid item xs={3} />
         <Grid item xs={9} container direction="column">
+        <div className={classes.Card}></div>
+        <div className={classes.Card} style={{left:200}}>
+              <Typography gutterBottom variant="h4">
+                View requests for my pets
+              </Typography>
+            </div>
           {pets.map(pet => (
             <>
               <Grid container item key={pet.id}>
