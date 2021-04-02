@@ -77,6 +77,9 @@ const FosterHistory = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
+        <Typography variant="h4" style={{padding:"0 20px"}}>
+          My foster history
+        </Typography>
           {fosterHistory.map(item => (
             <>
               <Grid container item key={item.id}>

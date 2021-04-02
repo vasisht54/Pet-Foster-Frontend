@@ -84,12 +84,10 @@ function SendFosterRequest() {
       <div className={classes.Card} style = {{minHeight: 50}} >
       </div>
     <Container>
-      <Grid container >
-        <Grid item xs={1} />
-        <Grid item xs={10} container direction="column">
-        <Grid container item >
+
           <Paper className={classes.paper} elevation={3}>
-            <div className={classes.Card}>
+           <div className={classes.Card}>
+            
               <Typography gutterBottom variant="h4">
                 Foster Request
               </Typography>
@@ -171,10 +169,7 @@ function SendFosterRequest() {
               </Grid>
             
           </Paper>
-          </Grid>
-        </Grid>
-        </Grid>
-
+         
 </Container>
 </>
 
