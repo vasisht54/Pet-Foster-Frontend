@@ -17,7 +17,7 @@ import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   paper: {
-    width: "80%",
+    width: "90%",
     margin: "10px",
     padding: "20px",
   },
@@ -31,8 +31,8 @@ const useStyles = makeStyles({
 
 const FormRow = props => {
   return (
-    <Grid container item xs={11}>
-      <Grid item xs={5}>
+    <Grid container item xs={12}>
+      <Grid item xs={4}>
         {props.label && (
           <Typography variant="subtitle1">{props.label}:</Typography>
         )}
