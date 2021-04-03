@@ -19,7 +19,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 import { animals } from "../constants";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const KeyFacts = (props) => (
+const KeyFacts = props => (
   <>
     <Grid item xs={4}>
       <Typography variant="subtitle1">{props.label}</Typography>
@@ -141,7 +141,7 @@ const KeyFacts = (props) => (
   </>
 );
 
-const PetInfo = (props) => {
+const PetInfo = props => {
   const classes = useStyles();
   const fileUploader = useRef(null);
   const [tileData] = useState([
@@ -183,7 +183,7 @@ const PetInfo = (props) => {
                   value={""}
                   label="Animal Type"
                 >
-                  {animals.map((animal) => (
+                  {animals.map(animal => (
                     <MenuItem>{animal}</MenuItem>
                   ))}
                 </Select>
@@ -348,7 +348,12 @@ const PetInfoContainer = () => {
   return (
     <>
       {[...Array(petCount)].map((v, i) => (
-        <PetInfo petCount={petCount} setPetCount={setPetCount} index={i} />
+        <PetInfo
+          key={i}
+          petCount={petCount}
+          setPetCount={setPetCount}
+          index={i}
+        />
       ))}
     </>
   );
