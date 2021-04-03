@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from "@material-ui/icons/Home";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/LoginSlice";
@@ -29,11 +29,11 @@ const useStyles = makeStyles(theme => ({
   home: {
     position: "relative",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   homeIcon: {
     fontSize: "64px",
-    marginLeft: "43px"
+    marginLeft: "43px",
   },
   homeBtn: {
     position: "absolute",
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     padding: "0",
     marginTop: "14px",
     lineHeight: "normal",
-  }
+  },
 }));
 
 export default function Navbar() {
@@ -61,11 +61,6 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
-  const handleHref = (event, route) => {
-    event.preventDefault();
-    history.push(route);
-  };
-
   const handleLogout = () => {
     setAnchorEl(null);
     dispatch(logout());
@@ -76,35 +71,45 @@ export default function Navbar() {
       <AppBar position="static">
         <Toolbar style={{ justifyContent: "space-between" }}>
           <div className={classes.home}>
-            <HomeIcon className={classes.homeIcon}/>
-            <Button onClick={e => handleHref(e, "/")} color="inherit" className={classes.homeBtn}>
+            <HomeIcon className={classes.homeIcon} />
+            <Button
+              onClick={() => history.push("/")}
+              color="inherit"
+              className={classes.homeBtn}
+            >
               Bring Home A Pet
             </Button>
           </div>
-          {isLoggedIn && (
-            <>
-              <div className={classes.flex}>
-                <Button
-                  color="inherit"
-                  onClick={e => handleHref(e, "/ViewFosterRequestForMyPet")}
-                >
-                  View foster requests for my pets
-                </Button>
-                <Button
-                  color="inherit"
-                  onClick={e => handleHref(e, "/ViewFosterRequest")}
-                >
-                  My requests to foster
-                </Button>
-                <Button
-                  color="inherit"
-                  onClick={e => handleHref(e, "/fosterHistory")}
-                >
-                  My foster history
-                </Button>
-              </div>
-            </>
-          )}
+          <>
+            <div className={classes.flex}>
+              <Button
+                color="inherit"
+                onClick={() =>
+                  history.push(
+                    isLoggedIn ? "/ViewFosterRequestForMyPet" : "/login"
+                  )
+                }
+              >
+                View foster requests for my pets
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() =>
+                  history.push(isLoggedIn ? "/ViewFosterRequest" : "/login")
+                }
+              >
+                My requests to foster
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() =>
+                  history.push(isLoggedIn ? "/fosterHistory" : "/login")
+                }
+              >
+                My foster history
+              </Button>
+            </div>
+          </>
           {isLoggedIn ? (
             <>
               <AccountCircle
@@ -126,10 +131,10 @@ export default function Navbar() {
             </>
           ) : (
             <div>
-              <Button color="inherit" onClick={e => handleHref(e, "/login")}>
+              <Button color="inherit" onClick={() => history.push("/login")}>
                 Login
               </Button>
-              <Button color="inherit" onClick={e => handleHref(e, "/register")}>
+              <Button color="inherit" onClick={() => history.push("/register")}>
                 Register
               </Button>
             </div>
