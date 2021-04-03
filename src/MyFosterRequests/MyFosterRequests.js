@@ -129,7 +129,7 @@ const MyFosterRequests = () => {
                       >
                         View owner details
                       </Button>
-                      {item.status !== "Reject" && (
+                      {item.status === "Decision Pending" && (
                         <Button
                           fullWidth
                           variant="contained"
