@@ -10,7 +10,6 @@ import {
   Grid,
   Paper,
   Typography,
-  Box,
 } from "@material-ui/core";
 import ImageAvatar from "./ImageAvatar";
 import { useHistory } from "react-router";

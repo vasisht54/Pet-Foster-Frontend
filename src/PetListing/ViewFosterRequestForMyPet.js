@@ -1,13 +1,10 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
-import Dialog from "@material-ui/core/Dialog";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
 
 const drawerWidth = 300;
@@ -62,34 +59,6 @@ const useStyles = makeStyles({
   },
 });
 
-const FormRow = props => {
-  return (
-    <Grid container item xs={12}>
-      <Grid item xs={5}>
-        {props.label && (
-          <Typography variant="subtitle1">{props.label}:</Typography>
-        )}
-      </Grid>
-      <Grid item>
-        <Typography variant="h6">{props.value}</Typography>
-      </Grid>
-    </Grid>
-  );
-};
-
-const DialogContent = withStyles(theme => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
 const pets = [
   {
     id: 1,
@@ -113,20 +82,8 @@ const pets = [
 
 export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const history = useHistory();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleFosterRequestTable = () => {
-    history.push("/fosterRequestTable");
-  };
   return (
     <Container>
       <Grid container>
@@ -158,9 +115,9 @@ export const ViewFosterRequestForMyPet = () => {
                     >
                       <Grid item xs={5}>
                         <Link
+                          onClick={() => history.push("/petSearchDetails")}
                           component="button"
                           variant="h5"
-                          onClick={handleOpen}
                           style={{ fontWeight: 500 }}
                         >
                           {pet.name}
@@ -168,7 +125,7 @@ export const ViewFosterRequestForMyPet = () => {
                       </Grid>
                       <Grid item xs={5}>
                         <Button
-                          onClick={handleFosterRequestTable}
+                          onClick={() => history.push("/FosterRequestTable")}
                           color="primary"
                           variant="contained"
                           size="medium"
@@ -179,30 +136,6 @@ export const ViewFosterRequestForMyPet = () => {
                     </Grid>
                   </Grid>
                 </Paper>
-                <Dialog
-                  onClose={handleClose}
-                  aria-labelledby="customized-dialog-title"
-                  open={open}
-                >
-                  <DialogContent dividers>
-                    <Grid container item md={12}>
-                      <FormRow label="Name" value="Bruno"></FormRow>
-                      <FormRow label="Category" value="Dog" />
-                      <FormRow label="Breed" value="Retriever" />
-                      <FormRow label="Gender" value="Male" />
-                      <FormRow label="Age" value="5 Months" />
-                      <FormRow
-                        label="Duration"
-                        value="May 21, 2021 to May 29, 2021"
-                      />
-                    </Grid>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                      Okay
-                    </Button>
-                  </DialogActions>
-                </Dialog>
               </Grid>
             </React.Fragment>
           ))}
