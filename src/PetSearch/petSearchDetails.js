@@ -167,7 +167,7 @@ export const PetDetails = () => {
               <div>
                 <Button
                   onClick={() => {
-                    history.push("/search");
+                    history.goBack();
                   }}
                   className={classes.backButton}
                   startIcon={<ArrowBackIosIcon />}
