@@ -91,10 +91,7 @@ export const FosterRequestTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const history = useHistory();
 
-  const handleFosterRequest = () => {
-    history.push("/viewFosterRequestForMyPet");
-  };
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = newPage => {
     setPage(newPage);
   };
 
@@ -136,7 +133,7 @@ export const FosterRequestTable = () => {
       <Grid container item xs={4}>
         <div>
           <Button
-            onClick={handleFosterRequest}
+            onClick={() => history.goBack()}
             className={classes.backButton}
             startIcon={<ArrowBackIosIcon />}
           >
