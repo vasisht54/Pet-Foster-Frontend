@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -77,12 +77,12 @@ const FosterHistory = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-        <Typography variant="h4" style={{padding:"0 20px"}}>
-          My foster history
-        </Typography>
+          <Typography variant="h4" style={{ padding: "0 20px" }}>
+            My foster history
+          </Typography>
           {fosterHistory.map(item => (
-            <>
-              <Grid container item key={item.id}>
+            <React.Fragment key={item.id}>
+              <Grid container item>
                 <Paper className={classes.paper}>
                   <Grid container>
                     <Grid container item xs={2}>
@@ -138,7 +138,7 @@ const FosterHistory = () => {
                   </DialogActions>
                 </Dialog>
               </Grid>
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       </Grid>

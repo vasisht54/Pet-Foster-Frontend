@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   paper: {
     width: "100%",
     margin: "10px",
@@ -25,10 +25,7 @@ const useStyles = makeStyles(theme => ({
   divider: {
     margin: "10px 0",
   },
-  status: {
-    border: "",
-  },
-}));
+});
 
 const FormRow = props => {
   return (
@@ -91,11 +88,9 @@ const MyRequests = [
 const MyFosterRequests = () => {
   const classes = useStyles();
   const [openOwnerDetails, setOpenOwnerDetails] = useState(false);
-  // const [open, setOpen] = React.useState(false);
   const [pets, setPets] = useState(MyRequests);
 
   const handleWithdraw = id => {
-    // setOpen(true);
     const newPets = pets.filter(pet => pet.id !== id);
     setPets(newPets);
   };
@@ -105,11 +100,11 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-        <Typography variant="h4" style={{padding:"0 20px"}}>
-          My requests to foster
-        </Typography>
+          <Typography variant="h4" style={{ padding: "0 20px" }}>
+            My requests to foster
+          </Typography>
           {pets.map(item => (
-            <>
+            <React.Fragment key={item.id}>
               <Grid container item key={item.id}>
                 <Paper className={classes.paper}>
                   <Grid container>
@@ -149,7 +144,7 @@ const MyFosterRequests = () => {
                     </Grid>
                   </Grid>
                   <Divider className={classes.divider} />
-                  <Typography className={classes.status} variant="subtitle1">
+                  <Typography variant="subtitle1">
                     Status: {item.status}
                   </Typography>
                 </Paper>
@@ -183,7 +178,7 @@ const MyFosterRequests = () => {
                   </DialogActions>
                 </Dialog>
               </Grid>
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       </Grid>

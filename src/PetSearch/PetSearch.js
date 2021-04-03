@@ -55,7 +55,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
 const petsList = [
   {
     id: 1,
@@ -120,7 +119,7 @@ const petsList = [
     type: "Dog",
     age: "2 years",
     duration: "July 15, 2021 to July 28, 2021",
-  }
+  },
 ];
 
 function PetSearch() {
@@ -128,24 +127,23 @@ function PetSearch() {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [petDetails, setPetDetails] = React.useState(null);
-  const [pets, setPets] = React.useState(petsList);
   const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleHref = (route) => {
+  const handleHref = route => {
     history.push(route);
   };
 
   function FormRow() {
     return (
       <React.Fragment>
-          {pets.map(pet => (
-          <Grid key={pet} item xs={3}>
+        {petsList.map(pet => (
+          <Grid key={pet.id} item xs={3}>
             <Card className={classes.cardRoot}>
-              <CardActionArea onClick={()=>handleHref("/petSearchDetails")}>
+              <CardActionArea onClick={() => handleHref("/petSearchDetails")}>
                 <CardMedia
                   className={classes.media}
                   image={pet.image}
@@ -197,7 +195,11 @@ function PetSearch() {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" onClick={()=>handleHref("/petSearchDetails")}>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => handleHref("/petSearchDetails")}
+                >
                   View Pet Details
                 </Button>
               </CardActions>
@@ -245,7 +247,7 @@ function PetSearch() {
             </Hidden>
           </nav>
           <main className={classes.content}>
-          <div className={classes.Card}>
+            <div className={classes.Card}>
               <Typography gutterBottom variant="h4">
                 Foster a Pet
               </Typography>
@@ -254,12 +256,6 @@ function PetSearch() {
               <Grid container item xs={12} spacing={3}>
                 <FormRow />
               </Grid>
-              {/* <Grid container item xs={12} spacing={3}>
-                <FormRow />
-              </Grid>
-              <Grid container item xs={12} spacing={3}>
-                <FormRow />
-              </Grid> */}
             </Grid>
           </main>
         </>

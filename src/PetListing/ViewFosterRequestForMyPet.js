@@ -12,7 +12,7 @@ import ImageAvatar from "../FosterHistory/ImageAvatar";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -54,9 +54,6 @@ const useStyles = makeStyles(theme => ({
   label: {
     color: "darkgray",
   },
-  margin: {
-    marginTop: "0",
-  },
   margin5: {
     marginTop: "20px",
   },
@@ -66,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   itemButton: {
     marginTop: "6px",
   },
-}));
+});
 
 const FormRow = props => {
   return (
@@ -138,14 +135,14 @@ export const ViewFosterRequestForMyPet = () => {
       <Grid container>
         <Grid item xs={3} />
         <Grid item xs={9} container direction="column">
-        <div className={classes.Card}></div>
-        <div className={classes.Card} style={{left:200}}>
-              <Typography gutterBottom variant="h4">
-                View requests for my pets
-              </Typography>
-            </div>
+          <div className={classes.Card}></div>
+          <div className={classes.Card} style={{ left: 200 }}>
+            <Typography gutterBottom variant="h4">
+              View requests for my pets
+            </Typography>
+          </div>
           {pets.map(pet => (
-            <>
+            <React.Fragment key={pet.id}>
               <Grid container item key={pet.id}>
                 <Paper className={classes.paper}>
                   <Grid container>
@@ -196,7 +193,7 @@ export const ViewFosterRequestForMyPet = () => {
                   </DialogActions>
                 </Dialog>
               </Grid>
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       </Grid>

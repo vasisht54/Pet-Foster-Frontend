@@ -14,7 +14,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   margin5: {
     marginTop: "20px",
   },
-}));
+});
 
 const tileData = [
   {
@@ -80,7 +80,7 @@ const tileData = [
   },
 ];
 
-const FormRow = (props) => {
+const FormRow = props => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={3}>
@@ -95,7 +95,7 @@ const FormRow = (props) => {
   );
 };
 
-const KeyFacts = (props) => {
+const KeyFacts = props => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={7}>
@@ -116,7 +116,7 @@ const KeyFacts = (props) => {
   );
 };
 
-const PetSearchDetails = ({ onBackButtonClick }) => {
+const PetSearchDetails = () => {
   const classes = useStyles();
 
   return (
@@ -133,27 +133,19 @@ export const PetDetails = () => {
   const history = useHistory();
 
   const pathname = window.location.pathname;
-  const queryParam = window.location.pathname+window.location.search;
+  const queryParam = window.location.pathname + window.location.search;
 
   return (
     <>
       <div className={classes.flex}>
         <Typography variant="h5">Bruno</Typography>
-        {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
-        <Typography className={classes.datePosted} variant="body1">
-          <span className={classes.label}>Posted on: March 21, 2021</span>
-        </Typography>
-        )}
+        {!pathname.includes("/create") &&
+          !queryParam.includes("/PetSearchDetails?false") && (
+            <Typography className={classes.datePosted} variant="body1">
+              <span className={classes.label}>Posted on: March 21, 2021</span>
+            </Typography>
+          )}
       </div>
-      {/* <div className={classes.photoList}>
-        <GridList className={classes.gridList} cols={4}>
-          {tileData.map((tile) => (
-            <GridListTile key={tile.img}>
-              <img src={tile.img} alt={tile.title} />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div> */}
       <Grid
         container
         className={classes.margin}
@@ -170,17 +162,20 @@ export const PetDetails = () => {
               ))}
             </GridList>
           </div>
-          {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
-            <div>
-              <Button
-                onClick={()=> {history.push("/search")}}
-                className={classes.backButton}
-                startIcon={<ArrowBackIosIcon />}
-              >
-                Back
-              </Button>
-            </div>
-          )}
+          {!pathname.includes("/create") &&
+            !queryParam.includes("/PetSearchDetails?false") && (
+              <div>
+                <Button
+                  onClick={() => {
+                    history.push("/search");
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button>
+              </div>
+            )}
         </Grid>
         <Grid container item xs={8}>
           <Grid container item xs={6}>
@@ -211,19 +206,22 @@ export const PetDetails = () => {
           />
         </Grid>
       </Grid>
-      {!pathname.includes("/create") && !queryParam.includes("/PetSearchDetails?false") && (
-        <div className={classes.alignRight}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.sendButton}
-            onClick={()=> {history.push("/sendFosterRequest");}}
-            size="medium"
-          >
-            Send a Foster Request
-          </Button>
-        </div>
-      )}
+      {!pathname.includes("/create") &&
+        !queryParam.includes("/PetSearchDetails?false") && (
+          <div className={classes.alignRight}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.sendButton}
+              onClick={() => {
+                history.push("/sendFosterRequest");
+              }}
+              size="medium"
+            >
+              Send a Foster Request
+            </Button>
+          </div>
+        )}
     </>
   );
 };

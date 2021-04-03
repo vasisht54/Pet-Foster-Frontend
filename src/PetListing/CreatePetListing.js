@@ -12,7 +12,7 @@ import PetInfo from "./PetInfo";
 import Confirm from "./ConfirmListing";
 import { SuccessNotification } from "../components/Notification";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     margin: "10px 100px",
     padding: "20px",
@@ -53,24 +53,29 @@ const CreatePetListing = () => {
   const history = useHistory();
 
   const handleNext = () => {
-    if(activeStep === 2){
+    if (activeStep === 2) {
       setOpenNotification(true);
-      setTimeout(()=>{
+      setTimeout(() => {
         history.push("/PetSearchDetails?false");
-      },2500)
+      }, 2500);
       return;
     }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   return (
     <Paper className={classes.paper} elevation={3}>
-      <SuccessNotification message="Your pet listing has been created." open={openNotification}/>
-      <Typography variant="h4" style={{padding:"0 20px"}}>List your pet for foster care</Typography>
+      <SuccessNotification
+        message="Your pet listing has been created."
+        open={openNotification}
+      />
+      <Typography variant="h4" style={{ padding: "0 20px" }}>
+        List your pet for foster care
+      </Typography>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
