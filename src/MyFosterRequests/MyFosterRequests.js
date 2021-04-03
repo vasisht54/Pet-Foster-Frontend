@@ -120,7 +120,9 @@ const MyFosterRequests = () => {
                       direction="column"
                     >
                       <ImageAvatar image={item.image} name={item.name} />
-                      <Link variant="h5">{item.name}</Link>
+                      <Link style={{ fontWeight: 500 }} variant="h5">
+                        {item.name}
+                      </Link>
                     </Grid>
                     <Grid item xs={1} />
                     <Grid container item xs={7}>
@@ -137,7 +139,6 @@ const MyFosterRequests = () => {
                     >
                       <Button
                         onClick={() => setOpenOwnerDetails(true)}
-                        fullWidth
                         color="primary"
                         variant="contained"
                         size="small"
@@ -146,7 +147,6 @@ const MyFosterRequests = () => {
                       </Button>
                       {item.status === "Decision Pending" && (
                         <Button
-                          fullWidth
                           variant="contained"
                           color="secondary"
                           className={classes.withdrawBtn}

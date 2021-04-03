@@ -10,6 +10,7 @@ import {
   Grid,
   Paper,
   Typography,
+  Box,
 } from "@material-ui/core";
 import ImageAvatar from "./ImageAvatar";
 import { useHistory } from "react-router";
@@ -104,7 +105,9 @@ const FosterHistory = () => {
                       direction="column"
                     >
                       <ImageAvatar image={item.image} name={item.name} />
-                      <Link variant="h5">{item.name}</Link>
+                      <Link style={{ fontWeight: 500 }} variant="h5">
+                        {item.name}
+                      </Link>
                     </Grid>
                     <Grid item xs={1} />
                     <Grid container item xs={7}>
@@ -124,7 +127,6 @@ const FosterHistory = () => {
                         color="primary"
                         variant="contained"
                         size="small"
-                        fullWidth
                       >
                         View owner details
                       </Button>

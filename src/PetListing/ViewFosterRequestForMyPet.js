@@ -57,9 +57,6 @@ const useStyles = makeStyles({
   margin5: {
     marginTop: "20px",
   },
-  itemName: {
-    marginTop: "20px",
-  },
   itemButton: {
     marginTop: "6px",
   },
@@ -146,25 +143,39 @@ export const ViewFosterRequestForMyPet = () => {
               <Grid container item key={pet.id}>
                 <Paper className={classes.paper}>
                   <Grid container>
-                    <Grid container item xs={4}>
+                    <Grid container item xs={1}>
                       <Grid>
                         <ImageAvatar image={pet.image} name={pet.name} />
                       </Grid>
                     </Grid>
-                    <Grid className={classes.itemName} item xs={4}>
-                      <Link component="button" onClick={handleOpen}>
-                        <FormRow value={pet.name} />
-                      </Link>
-                    </Grid>
-                    <Grid className={classes.itemButton} item xs={4}>
-                      <Button
-                        onClick={handleFosterRequestTable}
-                        color="primary"
-                        variant="contained"
-                        size="medium"
-                      >
-                        View Foster Requests
-                      </Button>
+                    <Grid item xs={1} />
+                    <Grid
+                      container
+                      item
+                      xs={10}
+                      alignItems="center"
+                      justify="flex-end"
+                    >
+                      <Grid item xs={5}>
+                        <Link
+                          component="button"
+                          variant="h5"
+                          onClick={handleOpen}
+                          style={{ fontWeight: 500 }}
+                        >
+                          {pet.name}
+                        </Link>
+                      </Grid>
+                      <Grid item xs={5}>
+                        <Button
+                          onClick={handleFosterRequestTable}
+                          color="primary"
+                          variant="contained"
+                          size="medium"
+                        >
+                          View Foster Requests
+                        </Button>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Paper>
