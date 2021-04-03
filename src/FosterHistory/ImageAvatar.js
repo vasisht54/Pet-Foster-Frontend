@@ -5,9 +5,8 @@ import Avatar from "@material-ui/core/Avatar";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   small: {
     width: theme.spacing(3),

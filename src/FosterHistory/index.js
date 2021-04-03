@@ -3,11 +3,20 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import { Button, Container, Grid, Paper, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Link,
+  Grid,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import ImageAvatar from "./ImageAvatar";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
   paper: {
+    width: "90%",
     margin: "10px",
     padding: "20px",
   },
@@ -16,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 const FormRow = props => {
   return (
     <Grid container item xs={12}>
-      <Grid item xs={5}>
+      <Grid item xs={4}>
         {props.label && (
           <Typography variant="subtitle1">{props.label}:</Typography>
         )}
@@ -44,6 +53,7 @@ const DialogActions = withStyles(theme => ({
 const FosterHistory = () => {
   const classes = useStyles();
   const [openOwnerDetails, setOpenOwnerDetails] = useState(false);
+  const history = useHistory();
 
   const fosterHistory = [
     {
@@ -85,23 +95,36 @@ const FosterHistory = () => {
               <Grid container item>
                 <Paper className={classes.paper}>
                   <Grid container>
-                    <Grid container item xs={2}>
-                      <Grid>
-                        <ImageAvatar image={item.image} name={item.name} />
-                      </Grid>
+                    <Grid
+                      onClick={() => history.push("/petSearchDetails")}
+                      style={{ cursor: "pointer" }}
+                      container
+                      item
+                      xs={1}
+                      direction="column"
+                    >
+                      <ImageAvatar image={item.image} name={item.name} />
+                      <Link variant="h5">{item.name}</Link>
                     </Grid>
+                    <Grid item xs={1} />
                     <Grid container item xs={7}>
-                      <FormRow label="Name" value={item.name} />
                       <FormRow label="Breed" value={item.type} />
                       <FormRow label="Age" value={item.age} />
                       <FormRow label="Duration" value={item.duration} />
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid
+                      container
+                      item
+                      xs={3}
+                      direction="column"
+                      justify="center"
+                    >
                       <Button
                         onClick={() => setOpenOwnerDetails(true)}
                         color="primary"
                         variant="contained"
-                        size="medium"
+                        size="small"
+                        fullWidth
                       >
                         View owner details
                       </Button>
