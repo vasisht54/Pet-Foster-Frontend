@@ -17,7 +17,7 @@ import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   paper: {
-    width: "100%",
+    width: "80%",
     margin: "10px",
     padding: "20px",
   },
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 
 const FormRow = props => {
   return (
-    <Grid container item xs={12}>
+    <Grid container item xs={11}>
       <Grid item xs={5}>
         {props.label && (
           <Typography variant="subtitle1">{props.label}:</Typography>
@@ -110,18 +110,19 @@ const MyFosterRequests = () => {
             <React.Fragment key={item.id}>
               <Grid container item key={item.id}>
                 <Paper className={classes.paper}>
-                  <Grid container>
+                  <Grid container justify="space-around">
                     <Grid
                       onClick={() => history.push("/petSearchDetails")}
                       style={{ cursor: "pointer" }}
                       container
                       item
-                      xs={2}
+                      xs={1}
                       direction="column"
                     >
                       <ImageAvatar image={item.image} name={item.name} />
                       <Link variant="h5">{item.name}</Link>
                     </Grid>
+                    <Grid item xs={1} />
                     <Grid container item xs={7}>
                       <FormRow label="Breed" value={item.type} />
                       <FormRow label="Age" value={item.age} />
