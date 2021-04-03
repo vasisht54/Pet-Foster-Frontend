@@ -108,9 +108,9 @@ const MyFosterRequests = () => {
           </Typography>
           {pets.map(item => (
             <React.Fragment key={item.id}>
-              <Grid container item key={item.id}>
+              <Grid container item>
                 <Paper className={classes.paper}>
-                  <Grid container justify="space-around">
+                  <Grid container>
                     <Grid
                       onClick={() => history.push("/petSearchDetails")}
                       style={{ cursor: "pointer" }}
@@ -128,7 +128,13 @@ const MyFosterRequests = () => {
                       <FormRow label="Age" value={item.age} />
                       <FormRow label="Duration" value={item.duration} />
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid
+                      container
+                      item
+                      xs={3}
+                      direction="column"
+                      justify="center"
+                    >
                       <Button
                         onClick={() => setOpenOwnerDetails(true)}
                         fullWidth
