@@ -10,8 +10,10 @@ import {
   Paper,
   Typography,
   Divider,
+  Link,
 } from "@material-ui/core";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   paper: {
@@ -89,6 +91,7 @@ const MyFosterRequests = () => {
   const classes = useStyles();
   const [openOwnerDetails, setOpenOwnerDetails] = useState(false);
   const [pets, setPets] = useState(MyRequests);
+  const history = useHistory();
 
   const handleWithdraw = id => {
     const newPets = pets.filter(pet => pet.id !== id);
@@ -108,13 +111,18 @@ const MyFosterRequests = () => {
               <Grid container item key={item.id}>
                 <Paper className={classes.paper}>
                   <Grid container>
-                    <Grid container item xs={2}>
-                      <Grid>
-                        <ImageAvatar image={item.image} name={item.name} />
-                      </Grid>
+                    <Grid
+                      onClick={() => history.push("/petSearchDetails")}
+                      style={{ cursor: "pointer" }}
+                      container
+                      item
+                      xs={2}
+                      direction="column"
+                    >
+                      <ImageAvatar image={item.image} name={item.name} />
+                      <Link variant="h5">{item.name}</Link>
                     </Grid>
                     <Grid container item xs={7}>
-                      <FormRow label="Name" value={item.name} />
                       <FormRow label="Breed" value={item.type} />
                       <FormRow label="Age" value={item.age} />
                       <FormRow label="Duration" value={item.duration} />
