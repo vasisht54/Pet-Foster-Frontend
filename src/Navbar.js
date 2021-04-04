@@ -7,7 +7,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import HomeIcon from "@material-ui/icons/Home";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/LoginSlice";
 
@@ -43,12 +43,16 @@ const useStyles = makeStyles(theme => ({
     marginTop: "14px",
     lineHeight: "normal",
   },
+  active: {
+    backgroundColor: "#002984",
+  },
 }));
 
 export default function Navbar() {
   const classes = useStyles();
   const isLoggedIn = useSelector(state => state.isLoggedIn.value);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
@@ -89,6 +93,11 @@ export default function Navbar() {
                     isLoggedIn ? "/ViewFosterRequestForMyPet" : "/login"
                   )
                 }
+                className={
+                  location.pathname === "/ViewFosterRequestForMyPet"
+                    ? classes.active
+                    : null
+                }
               >
                 View foster requests for my pets
               </Button>
@@ -97,6 +106,11 @@ export default function Navbar() {
                 onClick={() =>
                   history.push(isLoggedIn ? "/ViewFosterRequest" : "/login")
                 }
+                className={
+                  location.pathname === "/ViewFosterRequest"
+                    ? classes.active
+                    : null
+                }
               >
                 My requests to foster
               </Button>
@@ -104,6 +118,9 @@ export default function Navbar() {
                 color="inherit"
                 onClick={() =>
                   history.push(isLoggedIn ? "/fosterHistory" : "/login")
+                }
+                className={
+                  location.pathname === "/fosterHistory" ? classes.active : null
                 }
               >
                 My foster history
