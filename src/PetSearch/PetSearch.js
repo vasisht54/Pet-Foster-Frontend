@@ -72,7 +72,7 @@ const petsList = [
     image: "/static/images/details/goofy.jpg",
     type: "Dog",
     age: "7 months",
-    duration: "June 15, 2021 to July 1, 2021",
+    duration: "Jun 15, 2021 to Jul 1, 2021",
   },
   {
     id: 3,
@@ -80,7 +80,7 @@ const petsList = [
     image: "/static/images/details/cat.jpeg",
     type: "Cat",
     age: "2 months",
-    duration: "June 21, 2021 to July 1, 2021",
+    duration: "Jun 21, 2021 to Jul 1, 2021",
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ const petsList = [
     image: "/static/images/details/fish.jpeg",
     type: "Fish",
     age: "1 month",
-    duration: "April 21, 2021 to October 1, 2021",
+    duration: "Apr 21, 2021 to Oct 1, 2021",
   },
   {
     id: 5,
@@ -96,7 +96,7 @@ const petsList = [
     image: "/static/images/details/bunny.jpeg",
     type: "Rabbit",
     age: "5 years",
-    duration: "September 02, 2021 to November 12, 2021",
+    duration: "Sep 02, 2021 to Nov 12, 2021",
   },
   {
     id: 6,
@@ -104,7 +104,7 @@ const petsList = [
     image: "/static/images/details/pony.jpeg",
     type: "Pony",
     age: "7 years",
-    duration: "June 15, 2021 to July 1, 2021",
+    duration: "Jun 15, 2021 to Jul 1, 2021",
   },
   {
     id: 7,
@@ -112,7 +112,7 @@ const petsList = [
     image: "/static/images/details/aster.jpeg",
     type: "Dog",
     age: "3 years",
-    duration: "August 02, 2021 to August 12, 2021",
+    duration: "Aug 02, 2021 to Aug 12, 2021",
   },
   {
     id: 8,
@@ -120,7 +120,7 @@ const petsList = [
     image: "/static/images/details/pomeranian.jpeg",
     type: "Dog",
     age: "2 years",
-    duration: "July 15, 2021 to July 28, 2021",
+    duration: "Jul 15, 2021 to Jul 28, 2021",
   },
 ];
 

@@ -182,7 +182,7 @@ export const PetDetails = () => {
             <FormRow label="Category" value="Dog" />
             <FormRow label="Breed" value="Retriever" />
             <FormRow label="Gender" value="Male" />
-            <FormRow label="Age" value="5 months" />
+            <FormRow label="Age" value="2 years" />
             <FormRow
               class={classes.margin5}
               label="Duration"
