@@ -40,7 +40,7 @@ const HeadingFormat = props => {
   return (
     <Grid container item xs={12}>
       <Grid item>
-          <Typography variant="h4">{props.value}</Typography>
+        <Typography variant="h4">{props.value}</Typography>
       </Grid>
     </Grid>
   );
@@ -105,7 +105,7 @@ const FosterHistory = () => {
                 <Paper className={classes.paper}>
                   <Grid container>
                     <Grid
-                      onClick={() => history.push("/petSearchDetails")}
+                      onClick={() => history.push("/PetSearchDetails?false")}
                       style={{ cursor: "pointer" }}
                       container
                       item

@@ -6,14 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
-import { ArrowLeft } from "@material-ui/icons";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles({
-  heading: {
-    
-  },
+  heading: {},
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -60,7 +57,7 @@ const useStyles = makeStyles({
   },
   itemButton: {
     marginTop: "6px",
-  }
+  },
 });
 
 const pets = [
@@ -88,7 +85,7 @@ const HeadingFormat = props => {
   return (
     <Grid container item xs={12}>
       <Grid item>
-          <Typography variant="h4">{props.value}</Typography>
+        <Typography variant="h4">{props.value}</Typography>
       </Grid>
     </Grid>
   );
@@ -130,7 +127,9 @@ export const ViewFosterRequestForMyPet = () => {
                     >
                       <Grid item xs={5}>
                         <Link
-                          onClick={() => history.push("/petSearchDetails")}
+                          onClick={() =>
+                            history.push("/PetSearchDetails?false")
+                          }
                           component="button"
                           variant="h5"
                           style={{ fontWeight: 500 }}

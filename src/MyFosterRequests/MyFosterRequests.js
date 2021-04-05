@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from "@material-ui/core/Tooltip";
 import {
   Button,
   Container,
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-const WithdrawTooltip = withStyles((theme) => ({
+const WithdrawTooltip = withStyles(theme => ({
   tooltip: {
     boxShadow: theme.shadows[1],
     fontSize: 15,
@@ -56,7 +56,7 @@ const HeadingFormat = props => {
   return (
     <Grid container item xs={12}>
       <Grid item>
-          <Typography variant="h4">{props.value}</Typography>
+        <Typography variant="h4">{props.value}</Typography>
       </Grid>
     </Grid>
   );
@@ -131,7 +131,7 @@ const MyFosterRequests = () => {
                 <Paper className={classes.paper}>
                   <Grid container>
                     <Grid
-                      onClick={() => history.push("/petSearchDetails")}
+                      onClick={() => history.push("/PetSearchDetails?false")}
                       style={{ cursor: "pointer" }}
                       container
                       item
@@ -167,16 +167,16 @@ const MyFosterRequests = () => {
                       {item.status !== "Reject" && (
                         <WithdrawTooltip title="You cannot withdraw once request is approved. Please contact the owner.">
                           <span>
-                          <Button
-                            disabled={item.status === "Approved"}
-                            variant="contained"
-                            color="secondary"
-                            className={classes.withdrawBtn}
-                            onClick={() => handleWithdraw(item.id)}
-                            size="small"
-                          >
-                            Withdraw Foster Request
-                          </Button>
+                            <Button
+                              disabled={item.status === "Approved"}
+                              variant="contained"
+                              color="secondary"
+                              className={classes.withdrawBtn}
+                              onClick={() => handleWithdraw(item.id)}
+                              size="small"
+                            >
+                              Withdraw Foster Request
+                            </Button>
                           </span>
                         </WithdrawTooltip>
                       )}
