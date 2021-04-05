@@ -133,7 +133,8 @@ export const FosterRequestTable = () => {
       <Grid container item xs={4}>
         <div>
           <Button
-            onClick={() => history.goBack()}
+            // onClick={() => history.goBack()}
+            onClick={() => history.push("/ViewFosterRequestForMyPet")}
             className={classes.backButton}
             startIcon={<ArrowBackIosIcon />}
           >
