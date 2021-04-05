@@ -13,7 +13,7 @@ import {
   Divider,
   Link,
 } from "@material-ui/core";
-import ImageAvatar from "../FosterHistory/ImageAvatar";
+import ImageAvatar from "../components/ImageAvatar";
 import { useHistory } from "react-router";
 import Header from '../components/Header';
 
@@ -153,7 +153,7 @@ const MyFosterRequests = () => {
                         View owner details
                       </Button>
                       {item.status !== "Reject" && (
-                        <WithdrawTooltip title="You cannot withdraw once request is approved. Please contact the owner.">
+                        <WithdrawTooltip disableHoverListener={item.status !== "Approved"} title="You cannot withdraw once request is approved. Please contact the owner.">
                           <span>
                             <Button
                               disabled={item.status === "Approved"}

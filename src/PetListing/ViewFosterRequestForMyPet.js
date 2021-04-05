@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
-import ImageAvatar from "../FosterHistory/ImageAvatar";
+import ImageAvatar from "../components/ImageAvatar";
 
 const drawerWidth = 300;
 
@@ -124,7 +124,7 @@ export const ViewFosterRequestForMyPet = () => {
                           {pet.name}
                         </Link>
                       </Grid>
-                      <Grid item xs={5}>
+                      <Grid item xs={5} style={{textAlign: "right"}}>
                         <Button
                           onClick={() => history.push("/FosterRequestTable")}
                           color="primary"

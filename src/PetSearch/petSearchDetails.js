@@ -162,8 +162,7 @@ export const PetDetails = () => {
               ))}
             </GridList>
           </div>
-          {!pathname.includes("/create") &&
-            !queryParam.includes("/PetSearchDetails?false") && (
+          {!pathname.includes("/create") && (
               <div>
                 <Button
                   onClick={() => {

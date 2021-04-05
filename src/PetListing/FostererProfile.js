@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import ImageAvatar from "../FosterHistory/ImageAvatar";
+import ImageAvatar from "../components/ImageAvatar";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
 

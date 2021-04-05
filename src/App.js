@@ -7,7 +7,6 @@ import Login from "./Login";
 import Register from "./Register";
 import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
-import FosterHistory from "./FosterHistory";
 import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 import FosterRequestTable from "./PetListing/FosterRequestTable";
 import FostererProfile from "./PetListing/FostererProfile";
@@ -40,9 +39,6 @@ function App() {
             </Route>
             <Route path="/SendFosterRequest">
               <SendFosterRequest />
-            </Route>
-            <Route path="/fosterHistory">
-              <FosterHistory />
             </Route>
             <Route path="/ViewFosterRequest">
               <MyFosterRequests />

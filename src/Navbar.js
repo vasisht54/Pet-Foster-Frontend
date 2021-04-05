@@ -121,21 +121,6 @@ export default function Navbar() {
               >
                 My requests to foster
               </Button>
-              <Button
-                color="inherit"
-                onClick={() =>
-                  history.push(
-                    isLoggedIn
-                      ? "/fosterHistory"
-                      : "/login?redirectTo=/fosterHistory"
-                  )
-                }
-                className={
-                  location.pathname === "/fosterHistory" ? classes.active : null
-                }
-              >
-                My foster history
-              </Button>
             </div>
           </>
           {isLoggedIn ? (
