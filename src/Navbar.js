@@ -102,7 +102,7 @@ export default function Navbar() {
                     : null
                 }
               >
-                View foster requests for my pets
+                Received Requests
               </Button>
               <Button
                 color="inherit"
@@ -119,7 +119,7 @@ export default function Navbar() {
                     : null
                 }
               >
-                My requests to foster
+                Sent Requests
               </Button>
             </div>
           </>
