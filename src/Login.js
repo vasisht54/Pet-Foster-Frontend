@@ -10,11 +10,12 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {useHistory} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {login} from "./redux/LoginSlice";
+import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/LoginSlice";
+import queryString from "querystring";
 
 function Copyright() {
   return (
@@ -50,28 +51,33 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  notice: { marginBottom: "40px" },
 }));
 
 export default function Login() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const handleHref = (event, route) => {
-    event.preventDefault();
-    history.push(route);
-  };
+  const location = useLocation();
+  const { redirectTo } = queryString.parse(location.search, "?");
 
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(login());
-    history.push("/");
+    history.push(redirectTo == null ? "/" : redirectTo);
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+        {redirectTo && (
+          <div className={classes.notice}>
+            <Typography variant="h5" color="secondary">
+              You have to login to view this page
+            </Typography>
+          </div>
+        )}
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -123,7 +129,7 @@ export default function Login() {
             <Grid item>
               <Link
                 component="button"
-                onClick={e => handleHref(e, "/register")}
+                onClick={() => history.push("/register")}
                 variant="body2"
               >
                 {"Don't have an account? Sign Up"}

@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
   active: {
     backgroundColor: "#002984",
-    lineHeight: "50px"
+    lineHeight: "50px",
   },
 }));
 
@@ -91,7 +91,9 @@ export default function Navbar() {
                 color="inherit"
                 onClick={() =>
                   history.push(
-                    isLoggedIn ? "/ViewFosterRequestForMyPet" : "/login"
+                    isLoggedIn
+                      ? "/ViewFosterRequestForMyPet"
+                      : "/login?redirectTo=/ViewFosterRequestForMyPet"
                   )
                 }
                 className={
@@ -105,7 +107,11 @@ export default function Navbar() {
               <Button
                 color="inherit"
                 onClick={() =>
-                  history.push(isLoggedIn ? "/ViewFosterRequest" : "/login")
+                  history.push(
+                    isLoggedIn
+                      ? "/ViewFosterRequest"
+                      : "/login?redirectTo=/ViewFosterRequest"
+                  )
                 }
                 className={
                   location.pathname === "/ViewFosterRequest"
@@ -118,7 +124,11 @@ export default function Navbar() {
               <Button
                 color="inherit"
                 onClick={() =>
-                  history.push(isLoggedIn ? "/fosterHistory" : "/login")
+                  history.push(
+                    isLoggedIn
+                      ? "/fosterHistory"
+                      : "/login?redirectTo=/fosterHistory"
+                  )
                 }
                 className={
                   location.pathname === "/fosterHistory" ? classes.active : null
