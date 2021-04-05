@@ -11,7 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Button, Link, Container, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
-import ImageAvatar from "../FosterHistory/ImageAvatar";
+import ImageAvatar from "../components/ImageAvatar";
 
 const drawerWidth = 300;
 
