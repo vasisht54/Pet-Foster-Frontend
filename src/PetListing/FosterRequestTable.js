@@ -8,9 +8,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Link, Container, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
+import ImageAvatar from "../FosterHistory/ImageAvatar";
 
 const drawerWidth = 300;
 
@@ -65,137 +66,120 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const columns = [
-  { id: "name", label: "Fosterer's Name", minWidth: 170 },
-  { id: "rating", label: "Rating", minWidth: 100 },
+// const columns = [
+//   { id: "name", label: "Fosterer's Name", minWidth: 170 },
+//   { id: "rating", label: "Rating", minWidth: 100 },
+//   {
+//     id: "message",
+//     label: "Message from the Fosterer",
+//     minWidth: 170,
+//     format: value => value.toLocaleString("en-US"),
+//   },
+//   {
+//     id: "action",
+//     label: "Actions",
+//     minWidth: 170,
+//   },
+// ];
+
+const rows = [
   {
-    id: "message",
-    label: "Message from the Fosterer",
-    minWidth: 170,
-    format: value => value.toLocaleString("en-US"),
+    id: 1,
+    name: "Jackson",
+    image: "../static/images/avatar.png",
+    rating: "4.9/5.0",
+    message: "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
   },
   {
-    id: "action",
-    label: "Actions",
-    minWidth: 170,
+    id: 2,
+    name: "John",
+    image: "/static/images/avatar2.jpg",
+    rating: "4.2/5.0",
+    message: "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
   },
-];
+]
 
-function createData(name, rating, message, action) {
-  return { name, rating, message, action };
-}
 
+const FormRow = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item xs={4}>
+        {props.label && (
+          <Typography variant="subtitle1">{props.label}:</Typography>
+        )}
+      </Grid>
+      <Grid item>
+        <Typography variant="subtitle1">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
 export const FosterRequestTable = () => {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const history = useHistory();
 
-  const handleChangePage = newPage => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = event => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const rows = [
-    createData(
-      "Jackson",
-      "4.9/5.0",
-      "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
-      <Button
-        onClick={() => history.push("/fostererProfile")}
-        s
-        variant="contained"
-        color="primary"
-      >
-        View Profile
-      </Button>
-    ),
-    createData(
-      "John",
-      "4.2/5.0",
-      "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
-      <Button
-        onClick={() => history.push("/fostererProfile")}
-        variant="contained"
-        color="primary"
-      >
-        View Profile
-      </Button>
-    ),
-  ];
-
   return (
-    <Grid container className={classes.margin} justify="flex-start" spacing={5}>
-      <Grid container item xs={4}>
+   
+    <Container>
+      <Grid container>
+
+        <Grid item xs={2} />
+        <Grid item xs={9} container direction="column">
         <div>
-          <Button
-            // onClick={() => history.goBack()}
-            onClick={() => history.push("/ViewFosterRequestForMyPet")}
-            className={classes.backButton}
-            startIcon={<ArrowBackIosIcon />}
-          >
-            Back
-          </Button>
-        </div>
-      </Grid>
-      <Paper className={classes.root}>
-        <TableContainer className={classes.container}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {columns.map(column => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.rating}
+            <Button
+              // onClick={() => history.goBack()}
+              onClick={() => history.push("/ViewFosterRequestForMyPet")}
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              Back
+            </Button>
+          </div>
+          {rows.map(row => (
+            <React.Fragment key={row.id}>
+              <Grid container item>
+                <Paper className={classes.paper}>
+                  <Grid container>
+                    <Grid
+                      // onClick={() => history.push("/ViewFosterRequestForMyPet")}
+                      style={{ cursor: "pointer" }}
+                      container
+                      item
+                      xs={1}
+                      direction="column"
                     >
-                      {columns.map(column => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Grid>
+                      <ImageAvatar image={row.image} name={row.name} />
+                    </Grid>
+                    <Grid item xs={1} />
+                    <Grid container item xs={7}>
+                      <FormRow label="Fosterer's Name" value={row.name} />
+                      <FormRow label="Rating" value={row.rating} />
+                      <FormRow label="Message from fosterer" value={row.message} />
+                    </Grid>
+                    <Grid
+                      container
+                      item
+                      xs={3}
+                      direction="column"
+                      justify="center"
+                    >
+                      <Button
+                        onClick={() => history.push("/fostererProfile")}
+                        color="primary"
+                        variant="contained"
+                        size="small"
+                      >
+                        View profile
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Paper>
+                           </Grid>
+            </React.Fragment>
+          ))}
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 export default FosterRequestTable;
