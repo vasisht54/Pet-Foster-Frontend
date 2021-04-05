@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,9 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -164,7 +164,7 @@ export default function Register() {
           <Link
             component="button"
             color="primary"
-            onClick={e => handleHref(e, "/login")}
+            onClick={() => history.push("/login")}
             variant="h6"
           >
             Click here to login
