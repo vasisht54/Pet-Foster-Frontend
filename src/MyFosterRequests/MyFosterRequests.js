@@ -69,7 +69,7 @@ const MyRequests = [
   {
     id: 1,
     image: "static/images/cards/dog.jpeg",
-    name: "Goofy",
+    name: "Bruno",
     age: "2 years",
     type: "Dog",
     duration: "May 21, 2021 to May 29, 2020",
@@ -78,7 +78,7 @@ const MyRequests = [
   {
     id: 2,
     image: "static/images/details/dog2.jpeg",
-    name: "Scooby",
+    name: "Goofy",
     age: "1 year",
     type: "Dog",
     duration: "Aug 21, 2021 to Sept 1, 2020",
