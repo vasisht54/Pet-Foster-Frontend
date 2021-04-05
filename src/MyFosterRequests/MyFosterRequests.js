@@ -52,6 +52,16 @@ const FormRow = props => {
   );
 };
 
+const HeadingFormat = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item>
+          <Typography variant="h4">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
@@ -111,9 +121,10 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-          <Typography variant="h4" style={{ padding: "0 20px" }}>
-            My requests to foster
-          </Typography>
+          <HeadingFormat value="My requests to foster"></HeadingFormat>
+          {/* <Typography variant="h5" style={{ align:"center", padding: "0 20px" }}>
+            
+          </Typography> */}
           {pets.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>

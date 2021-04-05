@@ -36,7 +36,15 @@ const FormRow = props => {
     </Grid>
   );
 };
-
+const HeadingFormat = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item>
+          <Typography variant="h4">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
 const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
@@ -87,9 +95,10 @@ const FosterHistory = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-          <Typography variant="h4" style={{ padding: "0 20px" }}>
-            My foster history
-          </Typography>
+          <HeadingFormat value="My foster history"></HeadingFormat>
+          {/* <Typography variant="h4" style={{ padding: "0 20px" }}>
+          My foster history
+          </Typography> */}
           {fosterHistory.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>

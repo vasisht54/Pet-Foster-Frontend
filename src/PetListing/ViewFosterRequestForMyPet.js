@@ -6,10 +6,14 @@ import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
+import { ArrowLeft } from "@material-ui/icons";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles({
+  heading: {
+    
+  },
   root: {
     flexGrow: 1,
     padding: "10px 100px 10px 90px",
@@ -56,7 +60,7 @@ const useStyles = makeStyles({
   },
   itemButton: {
     marginTop: "6px",
-  },
+  }
 });
 
 const pets = [
@@ -80,6 +84,16 @@ const pets = [
   },
 ];
 
+const HeadingFormat = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item>
+          <Typography variant="h4">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -90,10 +104,11 @@ export const ViewFosterRequestForMyPet = () => {
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
-          <div className={classes.Card} style={{ left: 200 }}>
-            <Typography gutterBottom variant="h4" style={{padding: "0px 20px"}}>
+          <div className={classes.heading}>
+            <HeadingFormat value="View requests for my pets"></HeadingFormat>
+            {/* <Typography gutterBottom component="h5" variant="h5" >
               View requests for my pets
-            </Typography>
+            </Typography> */}
           </div>
           {pets.map(pet => (
             <React.Fragment key={pet.id}>
