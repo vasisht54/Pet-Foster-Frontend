@@ -15,6 +15,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import { Filters } from "./PetSearchFilters";
 import PetSearchDetails from "./petSearchDetails";
+import Header from '../components/Header';
+
 
 const drawerWidth = 300;
 
@@ -121,16 +123,6 @@ const petsList = [
     duration: "July 15, 2021 to July 28, 2021",
   },
 ];
-
-const HeadingFormat = props => {
-  return (
-    <Grid container item xs={12}>
-      <Grid item>
-          <Typography variant="h4">{props.value}</Typography>
-      </Grid>
-    </Grid>
-  );
-};
 
 function PetSearch() {
   const classes = useStyles();
@@ -258,10 +250,7 @@ function PetSearch() {
           </nav>
           <main className={classes.content}>
             <div className={classes.heading}>
-              <HeadingFormat value="Foster a pet"></HeadingFormat>
-              {/* <Typography gutterBottom variant="h5" component="h5">
-                Foster a Pet
-              </Typography> */}
+              <Header value="Foster a pet"></Header>
             </div>
             <Grid container spacing={1}>
               <Grid container item xs={12} spacing={3}>

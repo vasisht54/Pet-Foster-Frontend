@@ -13,11 +13,12 @@ import {
 } from "@material-ui/core";
 import ImageAvatar from "./ImageAvatar";
 import { useHistory } from "react-router";
+import Header from '../components/Header';
 
 const useStyles = makeStyles(theme => ({
   paper: {
     width: "90%",
-    margin: "10px",
+    margin: "10px 0 ",
     padding: "20px",
   },
 }));
@@ -36,15 +37,7 @@ const FormRow = props => {
     </Grid>
   );
 };
-const HeadingFormat = props => {
-  return (
-    <Grid container item xs={12}>
-      <Grid item>
-        <Typography variant="h4">{props.value}</Typography>
-      </Grid>
-    </Grid>
-  );
-};
+
 const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
@@ -95,10 +88,7 @@ const FosterHistory = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-          <HeadingFormat value="My foster history"></HeadingFormat>
-          {/* <Typography variant="h4" style={{ padding: "0 20px" }}>
-          My foster history
-          </Typography> */}
+          <Header value="My foster history"></Header>
           {fosterHistory.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>

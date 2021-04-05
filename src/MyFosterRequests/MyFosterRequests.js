@@ -15,11 +15,12 @@ import {
 } from "@material-ui/core";
 import ImageAvatar from "../FosterHistory/ImageAvatar";
 import { useHistory } from "react-router";
+import Header from '../components/Header';
 
 const useStyles = makeStyles({
   paper: {
     width: "90%",
-    margin: "10px",
+    margin: "10px 0 ",
     padding: "20px",
   },
   withdrawBtn: {
@@ -47,16 +48,6 @@ const FormRow = props => {
       </Grid>
       <Grid item>
         <Typography variant="subtitle1">{props.value}</Typography>
-      </Grid>
-    </Grid>
-  );
-};
-
-const HeadingFormat = props => {
-  return (
-    <Grid container item xs={12}>
-      <Grid item>
-        <Typography variant="h4">{props.value}</Typography>
       </Grid>
     </Grid>
   );
@@ -121,10 +112,7 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-          <HeadingFormat value="My requests to foster"></HeadingFormat>
-          {/* <Typography variant="h5" style={{ align:"center", padding: "0 20px" }}>
-            
-          </Typography> */}
+          <Header value="My requests to foster"></Header>
           {pets.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>

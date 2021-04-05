@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import Header from '../components/Header';
 import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     width: drawerWidth,
   },
   paper: {
-    margin: "10px",
+    margin: "10px 0 ",
     padding: "20px",
     width: "90%",
   },
@@ -81,16 +81,6 @@ const pets = [
   },
 ];
 
-const HeadingFormat = props => {
-  return (
-    <Grid container item xs={12}>
-      <Grid item>
-        <Typography variant="h4">{props.value}</Typography>
-      </Grid>
-    </Grid>
-  );
-};
-
 export const ViewFosterRequestForMyPet = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -102,10 +92,7 @@ export const ViewFosterRequestForMyPet = () => {
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
           <div className={classes.heading}>
-            <HeadingFormat value="View requests for my pets"></HeadingFormat>
-            {/* <Typography gutterBottom component="h5" variant="h5" >
-              View requests for my pets
-            </Typography> */}
+            <Header value="View requests for my pets"></Header>
           </div>
           {pets.map(pet => (
             <React.Fragment key={pet.id}>
