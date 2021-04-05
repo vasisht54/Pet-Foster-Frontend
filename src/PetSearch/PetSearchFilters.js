@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 
 import { makeStyles } from "@material-ui/core/styles";
-import { animals, ages, colors, gender } from "../constants";
+import { animals, ages, gender } from "../constants";
 
 const drawerWidth = 300;
 
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: "center",
+    margin: "5px 0",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -50,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3),
     },
   },
+  search: {
+    width: "100%",
+  }
 }));
 
 export const Filters = () => {
@@ -59,12 +63,12 @@ export const Filters = () => {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <Typography className={classes.title}>Filters</Typography>
+      <Typography variant="subtitle1" className={classes.title}>Filters</Typography>
       <Divider />
       <List>
         <ListItem button>
           <InputBase
-            className={classes.input}
+            className={classes.search}
             placeholder="Search by pet name"
             inputProps={{ 'aria-label': 'search by pet name' }}
           />
@@ -110,7 +114,7 @@ export const Filters = () => {
           </FormControl>
         </ListItem>
         {/*--------------------------------------------------------- */}
-        <ListItem button>
+        {/* <ListItem button>
           <ListItemText primary="Color" />
           <FormControl className={classes.formControl}>
             <Select
@@ -127,7 +131,7 @@ export const Filters = () => {
               ))}
             </Select>
           </FormControl>
-        </ListItem>
+        </ListItem> */}
         {/*--------------------------------------------------------- */}
         <ListItem button>
           <ListItemText primary="Gender" />

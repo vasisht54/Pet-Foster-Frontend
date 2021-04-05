@@ -38,13 +38,14 @@ const useStyles = makeStyles(theme => ({
   homeBtn: {
     position: "absolute",
     width: "150px",
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#3f51b5 !important",
     padding: "0",
     marginTop: "14px",
     lineHeight: "normal",
   },
   active: {
     backgroundColor: "#002984",
+    lineHeight: "50px"
   },
 }));
 

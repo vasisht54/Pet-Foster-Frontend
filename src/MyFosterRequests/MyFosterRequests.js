@@ -3,6 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
+import Tooltip from '@material-ui/core/Tooltip';
 import {
   Button,
   Container,
@@ -28,6 +29,13 @@ const useStyles = makeStyles({
     margin: "10px 0",
   },
 });
+
+const WithdrawTooltip = withStyles((theme) => ({
+  tooltip: {
+    boxShadow: theme.shadows[1],
+    fontSize: 15,
+  },
+}))(Tooltip);
 
 const FormRow = props => {
   return (
@@ -145,16 +153,21 @@ const MyFosterRequests = () => {
                       >
                         View owner details
                       </Button>
-                      {item.status === "Decision Pending" && (
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          className={classes.withdrawBtn}
-                          onClick={() => handleWithdraw(item.id)}
-                          size="small"
-                        >
-                          Withdraw Foster Request
-                        </Button>
+                      {item.status !== "Reject" && (
+                        <WithdrawTooltip title="You cannot withdraw once request is approved. Please contact the owner.">
+                          <span>
+                          <Button
+                            disabled={item.status === "Approved"}
+                            variant="contained"
+                            color="secondary"
+                            className={classes.withdrawBtn}
+                            onClick={() => handleWithdraw(item.id)}
+                            size="small"
+                          >
+                            Withdraw Foster Request
+                          </Button>
+                          </span>
+                        </WithdrawTooltip>
                       )}
                     </Grid>
                   </Grid>

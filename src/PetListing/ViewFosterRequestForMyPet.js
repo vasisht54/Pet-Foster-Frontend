@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   paper: {
     margin: "10px",
     padding: "20px",
-    width: "60%",
+    width: "90%",
   },
   center: {
     textAlign: "center",
@@ -87,11 +87,11 @@ export const ViewFosterRequestForMyPet = () => {
   return (
     <Container>
       <Grid container>
-        <Grid item xs={3} />
+        <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
           <div className={classes.Card} style={{ left: 200 }}>
-            <Typography gutterBottom variant="h4">
+            <Typography gutterBottom variant="h4" style={{padding: "0px 20px"}}>
               View requests for my pets
             </Typography>
           </div>
