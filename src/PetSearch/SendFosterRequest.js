@@ -66,6 +66,16 @@ const useStyles = makeStyles((theme) => ({
     },
   }))(MuiDialogActions);
   
+  const HeadingFormat = props => {
+    return (
+      <Grid container item xs={12}>
+        <Grid item>
+            <Typography variant="h4">{props.value}</Typography>
+        </Grid>
+      </Grid>
+    );
+  };
+
 function SendFosterRequest() {
   const classes = useStyles();
   const history = useHistory();
@@ -87,7 +97,6 @@ function SendFosterRequest() {
 
           <Paper className={classes.paper} elevation={3}>
            <div className={classes.Card}>
-            
               <Typography gutterBottom variant="h4">
                 Foster Request
               </Typography>

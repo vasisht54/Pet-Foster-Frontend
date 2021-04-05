@@ -122,6 +122,16 @@ const petsList = [
   },
 ];
 
+const HeadingFormat = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item>
+          <Typography variant="h4">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 function PetSearch() {
   const classes = useStyles();
   const theme = useTheme();
@@ -247,10 +257,11 @@ function PetSearch() {
             </Hidden>
           </nav>
           <main className={classes.content}>
-            <div className={classes.Card}>
-              <Typography gutterBottom variant="h4">
+            <div className={classes.heading}>
+              <HeadingFormat value="Foster a pet"></HeadingFormat>
+              {/* <Typography gutterBottom variant="h5" component="h5">
                 Foster a Pet
-              </Typography>
+              </Typography> */}
             </div>
             <Grid container spacing={1}>
               <Grid container item xs={12} spacing={3}>

@@ -11,6 +11,7 @@ import YourInfo from "./YourInfo";
 import PetInfo from "./PetInfo";
 import Confirm from "./ConfirmListing";
 import { SuccessNotification } from "../components/Notification";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -45,6 +46,16 @@ function getStepContent(step) {
   }
 }
 
+const HeadingFormat = props => {
+  return (
+    <Grid container item xs={12}>
+      <Grid item>
+          <Typography variant="h4">{props.value}</Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 const CreatePetListing = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -73,9 +84,10 @@ const CreatePetListing = () => {
         message="Your pet listing has been created."
         open={openNotification}
       />
-      <Typography variant="h4" style={{ padding: "0 20px" }}>
+      <HeadingFormat value="List your pet for foster care"></HeadingFormat>
+      {/* <Typography variant="h4" style={{ padding: "0 20px" }}>
         List your pet for foster care
-      </Typography>
+      </Typography> */}
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
