@@ -1,14 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import { Button, Link, Container, Grid, Typography } from "@material-ui/core";
+import { Button, Container, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
@@ -64,23 +57,8 @@ const useStyles = makeStyles(theme => ({
   margin5: {
     marginTop: "20px",
   },
+  item: { margin: "20px" },
 }));
-
-// const columns = [
-//   { id: "name", label: "Fosterer's Name", minWidth: 170 },
-//   { id: "rating", label: "Rating", minWidth: 100 },
-//   {
-//     id: "message",
-//     label: "Message from the Fosterer",
-//     minWidth: 170,
-//     format: value => value.toLocaleString("en-US"),
-//   },
-//   {
-//     id: "action",
-//     label: "Actions",
-//     minWidth: 170,
-//   },
-// ];
 
 const rows = [
   {
@@ -88,17 +66,18 @@ const rows = [
     name: "Jackson",
     image: "../static/images/avatar.png",
     rating: "4.9/5.0",
-    message: "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
+    message:
+      "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
   },
   {
     id: 2,
     name: "John",
     image: "/static/images/avatar2.jpg",
     rating: "4.2/5.0",
-    message: "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
+    message:
+      "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
   },
-]
-
+];
 
 const FormRow = props => {
   return (
@@ -119,15 +98,12 @@ export const FosterRequestTable = () => {
   const history = useHistory();
 
   return (
-   
     <Container>
       <Grid container>
-
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
-        <div>
+          <div>
             <Button
-              // onClick={() => history.goBack()}
               onClick={() => history.push("/ViewFosterRequestForMyPet")}
               className={classes.backButton}
               startIcon={<ArrowBackIosIcon />}
@@ -137,11 +113,10 @@ export const FosterRequestTable = () => {
           </div>
           {rows.map(row => (
             <React.Fragment key={row.id}>
-              <Grid container item>
+              <Grid container className={classes.item}>
                 <Paper className={classes.paper}>
                   <Grid container>
                     <Grid
-                      // onClick={() => history.push("/ViewFosterRequestForMyPet")}
                       style={{ cursor: "pointer" }}
                       container
                       item
@@ -154,7 +129,10 @@ export const FosterRequestTable = () => {
                     <Grid container item xs={7}>
                       <FormRow label="Fosterer's Name" value={row.name} />
                       <FormRow label="Rating" value={row.rating} />
-                      <FormRow label="Message from fosterer" value={row.message} />
+                      <FormRow
+                        label="Message from Fosterer"
+                        value={row.message}
+                      />
                     </Grid>
                     <Grid
                       container
@@ -174,7 +152,7 @@ export const FosterRequestTable = () => {
                     </Grid>
                   </Grid>
                 </Paper>
-                           </Grid>
+              </Grid>
             </React.Fragment>
           ))}
         </Grid>
