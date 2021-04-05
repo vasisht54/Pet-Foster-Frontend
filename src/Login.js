@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   notice: { marginBottom: "40px" },
 }));
 
-export default function Login({ nextRoute }) {
+export default function Login() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();

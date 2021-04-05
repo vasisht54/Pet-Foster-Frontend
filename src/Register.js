@@ -53,11 +53,6 @@ export default function Register() {
   const history = useHistory();
   const [hasRegistered, setHasRegistered] = useState(false);
 
-  const handleHref = (event, route) => {
-    event.preventDefault();
-    history.push(route);
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
     setHasRegistered(true);
@@ -147,7 +142,7 @@ export default function Register() {
               <Grid item>
                 <Link
                   component="button"
-                  onClick={e => handleHref(e, "/login")}
+                  onClick={() => history.push("/login")}
                   variant="body2"
                 >
                   Already have an account? Sign in
