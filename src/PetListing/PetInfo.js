@@ -145,7 +145,7 @@ const PetInfo = props => {
   const classes = useStyles();
   const fileUploader = useRef(null);
   const [tileData] = useState([
-    { img: "/static/images/details/dog.jpeg" },
+    { img: "/static/images/details/kitty-1.jpg" },
     {},
     {},
     {},
@@ -219,14 +219,14 @@ const PetInfo = props => {
                       style={{ flexDirection: "row" }}
                     >
                       <FormControlLabel
-                        value="yes"
+                        value="Female"
                         control={<Radio size="small" />}
-                        label="Yes"
+                        label="Female"
                       />
                       <FormControlLabel
-                        value="no"
+                        value="Male"
                         control={<Radio size="small" />}
-                        label="No"
+                        label="Male"
                       />
                     </RadioGroup>
                   </FormControl>
