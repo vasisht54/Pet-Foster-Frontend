@@ -11,6 +11,7 @@ import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 import FosterRequestTable from "./PetListing/FosterRequestTable";
 import FostererProfile from "./PetListing/FostererProfile";
 import MyFosterRequests from "./MyFosterRequests/MyFosterRequests";
+import CatListing from "./PetListing/CatListing";
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route path="/fostererProfile">
               <FostererProfile />
+            </Route>
+            <Route path="/CatListing">
+              <CatListing />
             </Route>
           </Switch>
         </div>

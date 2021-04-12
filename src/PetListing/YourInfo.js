@@ -84,7 +84,7 @@ const YourInfo = () => {
           </Grid>
           <Grid container item xs={6}>
             <Grid item xs={3}>
-              <Typography variant="subtitle1">Pet's Location</Typography>
+              <Typography variant="subtitle1">Location</Typography>
             </Grid>
             <Grid item xs={8}>
               <TextField

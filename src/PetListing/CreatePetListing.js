@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import YourInfo from "./YourInfo";
 import PetInfo from "./PetInfo";
 import Confirm from "./ConfirmListing";
+import CatListing from "./CatListing";
 import { SuccessNotification } from "../components/Notification";
 import Header from '../components/Header';
 
@@ -57,7 +58,8 @@ const CreatePetListing = () => {
     if (activeStep === 2) {
       setOpenNotification(true);
       setTimeout(() => {
-        history.push("/PetSearchDetails?false");
+        // history.push("/PetSearchDetails?false");
+        history.push("/CatListing");
       }, 2500);
       return;
     }
