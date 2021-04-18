@@ -16,7 +16,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Filters } from "./PetSearchFilters";
 import PetSearchDetails from "./petSearchDetails";
 import Header from '../components/Header';
-
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const drawerWidth = 300;
 
@@ -249,6 +249,15 @@ function PetSearch() {
             </Hidden>
           </nav>
           <main className={classes.content}>
+          <Button
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button>
             <div className={classes.heading}>
               <Header value="Foster a pet"></Header>
             </div>

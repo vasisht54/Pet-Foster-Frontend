@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const drawerWidth = 300;
 
@@ -92,6 +93,15 @@ export const ViewFosterRequestForMyPet = () => {
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
           <div className={classes.heading}>
+          <Button
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button>
             <Header value="View requests for my pets"></Header>
           </div>
           {pets.map(pet => (
