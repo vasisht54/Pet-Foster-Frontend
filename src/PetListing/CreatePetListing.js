@@ -13,6 +13,7 @@ import Confirm from "./ConfirmListing";
 import CatListing from "./CatListing";
 import { SuccessNotification } from "../components/Notification";
 import Header from '../components/Header';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -76,6 +77,15 @@ const CreatePetListing = () => {
         message="Your pet listing has been created."
         open={openNotification}
       />
+      <Button
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button>
       <Header value="List your pet for foster care"></Header>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>

@@ -16,6 +16,7 @@ import {
 import ImageAvatar from "../components/ImageAvatar";
 import { useHistory } from "react-router";
 import Header from '../components/Header';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const useStyles = makeStyles({
   paper: {
@@ -111,8 +112,19 @@ const MyFosterRequests = () => {
     <Container>
       <Grid container>
         <Grid item xs={2} />
-        <Grid item xs={9} container direction="column">
-          <Header value="My requests to foster"></Header>
+        <Grid item xs={10} container direction="column">
+          <div><Button
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button></div>
+          
+            <Header value="My requests to foster"></Header>
+         
           {pets.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>

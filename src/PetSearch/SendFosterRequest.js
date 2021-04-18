@@ -153,7 +153,7 @@ function SendFosterRequest() {
                       autoFocus
                       onClick={() => {
                         handleClose();
-                        history.push("/search");
+                        history.push("/");
                       }}
                       color="primary"
                     >
