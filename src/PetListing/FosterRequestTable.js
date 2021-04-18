@@ -5,6 +5,7 @@ import { Button, Container, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
+import Header from '../components/Header';
 
 const drawerWidth = 300;
 
@@ -110,6 +111,7 @@ export const FosterRequestTable = () => {
             >
               Back
             </Button>
+            <Header value="Foster Requests"></Header>
           </div>
           {rows.map(row => (
             <React.Fragment key={row.id}>

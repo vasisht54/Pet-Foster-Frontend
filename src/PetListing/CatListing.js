@@ -11,7 +11,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import PetSearchDetails from '../PetSearch/petSearchDetails';
-
+import Header from '../components/Header';
 
 const drawerWidth = 300;
 
@@ -130,7 +130,8 @@ export const CatListing = () => {
             <PetSearchDetails />
         </div>     */}
       <div>      
-      <form className={classes.form} noValidate>      
+      <form className={classes.form} noValidate>    
+      <Header value="Confirmed Pet listing"></Header>  
       <div className={classes.flex}>
         <Typography variant="h5">Coco and Ash</Typography>
         {!pathname.includes("/create") &&
