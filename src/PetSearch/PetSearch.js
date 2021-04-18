@@ -251,7 +251,7 @@ function PetSearch() {
           <main className={classes.content}>
           <Button
                   onClick={() => {
-                    history.goBack();
+                    history.push("/");
                   }}
                   className={classes.backButton}
                   startIcon={<ArrowBackIosIcon />}

@@ -79,7 +79,7 @@ const CreatePetListing = () => {
       />
       <Button
                   onClick={() => {
-                    history.goBack();
+                    history.push("/");
                   }}
                   className={classes.backButton}
                   startIcon={<ArrowBackIosIcon />}

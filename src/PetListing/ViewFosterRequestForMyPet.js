@@ -92,15 +92,6 @@ export const ViewFosterRequestForMyPet = () => {
         <Grid item xs={2} />
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
-          {/* <Button
-                  onClick={() => {
-                    history.goBack();
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button> */}
           <div className={classes.heading}>
           <Button
                   onClick={() => {
