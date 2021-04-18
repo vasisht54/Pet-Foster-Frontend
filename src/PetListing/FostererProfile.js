@@ -14,6 +14,7 @@ import React from "react";
 import ImageAvatar from "../components/ImageAvatar";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
+import Header from '../components/Header';
 
 const FormRow = props => {
   return (
@@ -69,12 +70,14 @@ const FostererProfile = () => {
           <Grid item xs={3}></Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>
-              <Button
+            <Button
                 onClick={() => history.push("/fosterRequestTable")}
                 startIcon={<ArrowBackIosIcon />}
               >
                 Back
               </Button>
+            <Header  value="Fosterer's Profile"></Header>
+              
               <Grid container item xs={12}>
                 <ImageAvatar image="/static/images/avatar.png" name="John" />
                 <FormRow label="Name" value="Jackson O'Doherty" />
