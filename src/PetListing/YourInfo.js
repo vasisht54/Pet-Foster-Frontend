@@ -164,7 +164,7 @@ const YourInfo = () => {
           </Grid>
           <Grid container item xs={6} className={classes.sectionMargin}>
             <Grid item xs={3}>
-              <Typography variant="subtitle1">Duration</Typography>
+              <Typography variant="subtitle1">Duration of foster care</Typography>
             </Grid>
             <Grid item xs={8} className={classes.date}>
               <TextField
