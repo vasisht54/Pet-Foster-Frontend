@@ -1,18 +1,14 @@
-export const animals = ["Any", "Dog", "Cat", "Fish"];
+export const animals = ["Dog", "Cat", "Fish", "Rabbit", "Pony"];
 
 export const ages = [
-  "0-2 months",
-  "2-6 months",
-  "6-11 months",
-  "less than 1 year",
-  "1-2 years",
-  "2-5 years",
-  "5-10 years",
-  "more than 10 years",
+  {label:"0-6 months", result:[3,4]},
+  {label:"6-12 months", result:[2]},
+  {label:"1-2 years", result:[1,8]},
+  {label:"3-5 years", result:[5,7]},
+  {label:"more than 5", result:[6]},
 ];
 
 export const colors = [
-  "Any",
   "Black",
   "White",
   "Brown",
@@ -23,7 +19,7 @@ export const colors = [
   "Blue",
 ];
 
-export const gender = ["Any", "Female", "Male"];
+export const gender = ["Female", "Male"];
 
 export const states = [
   "AL",

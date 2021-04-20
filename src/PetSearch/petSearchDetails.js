@@ -138,6 +138,19 @@ export const PetDetails = () => {
   return (
     <>
       <div className={classes.flex}>
+      {!pathname.includes("/create") && (
+              <div>
+                <Button
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                  className={classes.backButton}
+                  startIcon={<ArrowBackIosIcon />}
+                >
+                  Back
+                </Button>
+              </div>
+            )}
         <Typography variant="h5">Bruno</Typography>
         {!pathname.includes("/create") &&
           !queryParam.includes("/PetSearchDetails?false") && (
@@ -162,19 +175,6 @@ export const PetDetails = () => {
               ))}
             </GridList>
           </div>
-          {!pathname.includes("/create") && (
-              <div>
-                <Button
-                  onClick={() => {
-                    history.goBack();
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button>
-              </div>
-            )}
         </Grid>
         <Grid container item xs={8}>
           <Grid container item xs={6}>

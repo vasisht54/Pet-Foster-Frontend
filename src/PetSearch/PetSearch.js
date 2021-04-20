@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -11,16 +11,18 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { Filters } from "./PetSearchFilters";
 import PetSearchDetails from "./petSearchDetails";
-import Header from '../components/Header';
+import Header from "../components/Header";
+import { petsList } from "../data/petSearchData";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexGrow: 1,
@@ -55,94 +57,25 @@ const useStyles = makeStyles(theme => ({
   cardInfo: {
     paddingLeft: "5px",
   },
+  heading: {
+    textAlign: 'center',
+  }
 }));
-
-const petsList = [
-  {
-    id: 1,
-    name: "Bruno",
-    image: "/static/images/details/dog.jpeg",
-    type: "Dog",
-    age: "2 years",
-    duration: "May 02, 2021 to May 12, 2021",
-  },
-  {
-    id: 2,
-    name: "Goofy",
-    image: "/static/images/details/goofy.jpg",
-    type: "Dog",
-    age: "7 months",
-    duration: "Jun 15, 2021 to Jul 1, 2021",
-  },
-  {
-    id: 3,
-    name: "Bella",
-    image: "/static/images/details/cat.jpeg",
-    type: "Cat",
-    age: "2 months",
-    duration: "Jun 21, 2021 to Jul 1, 2021",
-  },
-  {
-    id: 4,
-    name: "Goldie",
-    image: "/static/images/details/fish.jpeg",
-    type: "Fish",
-    age: "1 month",
-    duration: "Apr 21, 2021 to Oct 1, 2021",
-  },
-  {
-    id: 5,
-    name: "Bun, Coco and Snow",
-    image: "/static/images/details/bunny.jpeg",
-    type: "Rabbit",
-    age: "5 years",
-    duration: "Sep 02, 2021 to Nov 12, 2021",
-  },
-  {
-    id: 6,
-    name: "Luna",
-    image: "/static/images/details/pony.jpeg",
-    type: "Pony",
-    age: "7 years",
-    duration: "Jun 15, 2021 to Jul 1, 2021",
-  },
-  {
-    id: 7,
-    name: "Aster",
-    image: "/static/images/details/aster.jpeg",
-    type: "Dog",
-    age: "3 years",
-    duration: "Aug 02, 2021 to Aug 12, 2021",
-  },
-  {
-    id: 8,
-    name: "Pommy",
-    image: "/static/images/details/pomeranian.jpeg",
-    type: "Dog",
-    age: "2 years",
-    duration: "Jul 15, 2021 to Jul 28, 2021",
-  },
-];
 
 function PetSearch() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [petDetails, setPetDetails] = React.useState(null);
   const history = useHistory();
+  const [filteredPets, setFilteredPets] = useState(petsList);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const handleHref = route => {
+  const handleHref = (route) => {
     history.push(route);
   };
 
   function FormRow() {
     return (
       <React.Fragment>
-        {petsList.map(pet => (
+        {filteredPets.map((pet) => (
           <Grid key={pet.id} item xs={3}>
             <Card className={classes.cardRoot}>
               <CardActionArea onClick={() => handleHref("/petSearchDetails")}>
@@ -220,7 +153,7 @@ function PetSearch() {
         <>
           <CssBaseline />
           <nav className={classes.drawer} aria-label="mailbox folders">
-            <Hidden smUp implementation="css">
+            {/* <Hidden smUp implementation="css">
               <Drawer
                 variant="temporary"
                 anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -233,9 +166,9 @@ function PetSearch() {
                   keepMounted: true,
                 }}
               >
-                <Filters />
+                <Filters petsList={petsList} setFilteredPets={setFilteredPets}/>
               </Drawer>
-            </Hidden>
+            </Hidden> */}
             <Hidden xsDown implementation="css">
               <Drawer
                 classes={{
@@ -244,16 +177,15 @@ function PetSearch() {
                 variant="permanent"
                 open
               >
-                <Filters />
+                <Filters petsList={petsList} setFilteredPets={setFilteredPets}/>
               </Drawer>
             </Hidden>
           </nav>
           <main className={classes.content}>
-          <Button
+            <Button
                   onClick={() => {
                     history.push("/");
                   }}
-                  className={classes.backButton}
                   startIcon={<ArrowBackIosIcon />}
                 >
                   Back
