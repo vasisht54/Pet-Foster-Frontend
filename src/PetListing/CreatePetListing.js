@@ -12,7 +12,7 @@ import PetInfo from "./PetInfo";
 import { SuccessNotification } from "../components/Notification";
 import Header from "../components/Header";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import CatListing from "./CatListing";
+import { CatListing } from "./CatListing";
 import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,7 @@ function getSteps() {
 
 const CreatePetListing = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(0);
   const [openNotification, setOpenNotification] = React.useState(false);
   const steps = getSteps();
   const history = useHistory();

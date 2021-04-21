@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import { Button, Grid } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+
 const drawerWidth = 300;
 const useStyles = makeStyles({
   root: {
@@ -63,24 +65,28 @@ const ConfirmListing = () => {
   // const pathname = window.location.pathname;
 
   return (
-    <div style={{ padding: "0 20px" }}>
-      {/* {!pathname.includes("/create") && ( */}
-      <div>
-        <Button
-          onClick={() => {
-            history.goBack();
-          }}
-          className={classes.backButton}
-          startIcon={<ArrowBackIosIcon />}
-        >
-          Back
-        </Button>
-      </div>
-      {/* )} */}
-      <Grid container justify="center">
-        <Header value="Confirmed Pet listing"></Header>
-      </Grid>
-      <CatListing />
+    <div className={classes.root}>
+      <Paper className={classes.paper} elevation={3}>
+        <div style={{ padding: "0 20px" }}>
+          {/* {!pathname.includes("/create") && ( */}
+          <div>
+            <Button
+              onClick={() => {
+                history.goBack();
+              }}
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              Back
+            </Button>
+          </div>
+          {/* )} */}
+          <Grid container justify="center">
+            <Header value="Confirmed Pet listing"></Header>
+          </Grid>
+          <CatListing />
+        </div>
+      </Paper>
     </div>
   );
 };

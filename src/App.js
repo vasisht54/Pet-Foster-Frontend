@@ -10,7 +10,6 @@ import PetSearchDetails from "./PetSearch/petSearchDetails";
 import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 import FosterRequestTable from "./PetListing/FosterRequestTable";
 import MyFosterRequests from "./MyFosterRequests/MyFosterRequests";
-import CatListing from "./PetListing/CatListing";
 import ConfirmListing from "./PetListing/ConfirmListing";
 
 function App() {
@@ -49,9 +48,6 @@ function App() {
             </Route>
             <Route path="/FosterRequestTable">
               <FosterRequestTable />
-            </Route>
-            <Route path="/CatListing">
-              <CatListing />
             </Route>
             <Route path="/ConfirmListing">
               <ConfirmListing />

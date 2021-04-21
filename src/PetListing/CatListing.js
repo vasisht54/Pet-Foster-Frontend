@@ -76,7 +76,7 @@ const tileData = [
   },
 ];
 
-const FormRow = props => {
+const FormRow = (props) => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={3}>
@@ -91,7 +91,7 @@ const FormRow = props => {
   );
 };
 
-const KeyFacts = props => {
+const KeyFacts = (props) => {
   return (
     <Grid className={props.class} container item xs={12}>
       <Grid item xs={7}>
@@ -112,6 +112,17 @@ const KeyFacts = props => {
   );
 };
 
+// export const CatListingInPaper = () => {
+//   const classes = useStyles();
+//   return (
+//     <div className={classes.root}>
+//       <Paper className={classes.paper} elevation={3}>
+//         <CatListing />
+//       </Paper>
+//     </div>
+//   );
+// };
+
 export const CatListing = () => {
   const classes = useStyles();
 
@@ -123,6 +134,7 @@ export const CatListing = () => {
       {/* <div style={{padding: "0 20px"}}>
             <PetSearchDetails />
         </div>     */}
+
       <div>
         <form className={classes.form} noValidate>
           <div className={classes.flex}>
@@ -189,4 +201,3 @@ export const CatListing = () => {
 
 CatListing.propTypes = {};
 
-export default CatListing;
