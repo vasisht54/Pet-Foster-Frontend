@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Header from '../components/Header';
+import Header from "../components/Header";
 import Grid from "@material-ui/core/Grid";
 import { Container, Link, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
@@ -93,16 +93,18 @@ export const ViewFosterRequestForMyPet = () => {
         <Grid item xs={9} container direction="column">
           <div className={classes.Card}></div>
           <div className={classes.heading}>
-          <Button
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button>
-            <Header value="View requests for my pets"></Header>
+            <Button
+              onClick={() => {
+                history.push("/");
+              }}
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              Back
+            </Button>
+            <Grid container justify="center">
+              <Header value="View requests for my pets"></Header>
+            </Grid>
           </div>
           {pets.map(pet => (
             <React.Fragment key={pet.id}>
@@ -134,7 +136,7 @@ export const ViewFosterRequestForMyPet = () => {
                           {pet.name}
                         </Link>
                       </Grid>
-                      <Grid item xs={5} style={{textAlign: "right"}}>
+                      <Grid item xs={5} style={{ textAlign: "right" }}>
                         <Button
                           onClick={() => history.push("/FosterRequestTable")}
                           color="primary"

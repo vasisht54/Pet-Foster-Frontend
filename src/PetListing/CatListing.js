@@ -1,5 +1,4 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -114,83 +113,80 @@ const KeyFacts = props => {
 };
 
 export const CatListing = () => {
-    const classes = useStyles();
-    const history = useHistory();
-  
-    const pathname = window.location.pathname;
-    const queryParam = window.location.pathname + window.location.search;
+  const classes = useStyles();
 
-    return (
-      <>
-        {/* <div style={{padding: "0 20px"}}>
+  const pathname = window.location.pathname;
+  const queryParam = window.location.pathname + window.location.search;
+
+  return (
+    <>
+      {/* <div style={{padding: "0 20px"}}>
             <PetSearchDetails />
         </div>     */}
-      <div>      
-      <form className={classes.form} noValidate> 
-         
-      <div className={classes.flex}>
-        <Typography variant="h5">Coco</Typography>
-        {!pathname.includes("/create") &&
-          !queryParam.includes("/CatListing?false") && (
-            <Typography className={classes.datePosted} variant="body1">
-              <span className={classes.label}>Posted on: Apr 22, 2021</span>
-            </Typography>
-          )}
-      </div>
-      <Grid
-        container
-        className={classes.margin}
-        justify="flex-start"
-        spacing={5}
-      >
-        <Grid container item xs={4}>
-          <div className={classes.photoRoot}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              {tileData.map((tile, index) => (
-                <GridListTile key={tile.img} className={classes.imageTile}>
-                  <img src={tile.img} alt={tile.title} />
-                </GridListTile>
-              ))}
-            </GridList>
+      <div>
+        <form className={classes.form} noValidate>
+          <div className={classes.flex}>
+            <Typography variant="h5">Coco</Typography>
+            {!pathname.includes("/create") &&
+              !queryParam.includes("/CatListing?false") && (
+                <Typography className={classes.datePosted} variant="body1">
+                  <span className={classes.label}>Posted on: Apr 22, 2021</span>
+                </Typography>
+              )}
           </div>
-          {/* here */}
-        </Grid>
-        <Grid container item xs={8}>
-          <Grid container item xs={6}>
-            <FormRow label="Category" value="Cat" />
-            <FormRow label="Breed" value="Persian" />
-            <FormRow label="Gender" value="Female" />
-            <FormRow label="Age" value="2 months" />
-            <FormRow
-              class={classes.margin5}
-              label="Duration"
-              value="Apr 23, 2021 to Apr 28, 2021"
-            />
-            <FormRow label="Location" value="360 Huntington Ave" />
-            <FormRow value="Boston, MA 02115" />
+          <Grid
+            container
+            className={classes.margin}
+            justify="flex-start"
+            spacing={5}
+          >
+            <Grid container item xs={4}>
+              <div className={classes.photoRoot}>
+                <GridList cellHeight={180} className={classes.gridList}>
+                  {tileData.map((tile, index) => (
+                    <GridListTile key={tile.img} className={classes.imageTile}>
+                      <img src={tile.img} alt={tile.title} />
+                    </GridListTile>
+                  ))}
+                </GridList>
+              </div>
+              {/* here */}
+            </Grid>
+            <Grid container item xs={8}>
+              <Grid container item xs={6}>
+                <FormRow label="Category" value="Cat" />
+                <FormRow label="Breed" value="Persian" />
+                <FormRow label="Gender" value="Female" />
+                <FormRow label="Age" value="2 months" />
+                <FormRow
+                  class={classes.margin5}
+                  label="Duration"
+                  value="Apr 23, 2021 to Apr 28, 2021"
+                />
+                <FormRow label="Location" value="360 Huntington Ave" />
+                <FormRow value="Boston, MA 02115" />
+              </Grid>
+              <Grid container item xs={6}>
+                <KeyFacts label="House broken" value={false} />
+                <KeyFacts label="Potty trained" value={true} />
+                <KeyFacts label="Good with cats" value={true} />
+                <KeyFacts label="Good with dogs" value={false} />
+                <KeyFacts label="Needs experienced trainer" value={false} />
+                <KeyFacts label="Good with kids" value={false} />
+              </Grid>
+              <FormRow
+                class={classes.margin5}
+                label="Owner's notes"
+                value="Coco needs a lot of attention. Her favorite toy is a woolen ball."
+              />
+            </Grid>
           </Grid>
-          <Grid container item xs={6}>
-            <KeyFacts label="House broken" value={false} />
-            <KeyFacts label="Potty trained" value={true} />
-            <KeyFacts label="Good with cats" value={true} />
-            <KeyFacts label="Good with dogs" value={false} />
-            <KeyFacts label="Needs experienced trainer" value={false} />
-            <KeyFacts label="Good with kids" value={false} />
-          </Grid>
-          <FormRow
-            class={classes.margin5}
-            label="Owner's notes"
-            value="Coco needs a lot of attention. Her favorite toy is a woolen ball."
-          />
-        </Grid>
-      </Grid>
         </form>
-        </div>
-        </>
-    );
-
-}
+      </div>
+    </>
+  );
+};
 
 CatListing.propTypes = {};
- 
+
 export default CatListing;

@@ -14,7 +14,7 @@ import React from "react";
 import ImageAvatar from "../components/ImageAvatar";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
-import Header from '../components/Header';
+import Header from "../components/Header";
 
 const FormRow = props => {
   return (
@@ -45,11 +45,13 @@ const useStyles = makeStyles(theme => ({
 const FostererProfile = () => {
   const [openAccept, setOpenAccept] = React.useState(false);
   const [openReject, setOpenReject] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
   const history = useHistory();
   const classes = useStyles();
 
   const handleOpenAccept = () => {
     setOpenAccept(true);
+    setDisabled(true);
   };
 
   const handleOpenReject = () => {
@@ -58,9 +60,16 @@ const FostererProfile = () => {
 
   const handleCloseAccept = () => {
     setOpenAccept(false);
+    setTimeout(() => {
+      history.push("/");
+    }, 300);
+  };
+  const handleCloseRejectCancel = () => {
+    setOpenReject(false);
   };
   const handleCloseReject = () => {
     setOpenReject(false);
+    setDisabled(true);
   };
 
   return (
@@ -70,16 +79,18 @@ const FostererProfile = () => {
           <Grid item xs={3}></Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>
-            <Button
+              <Button
                 onClick={() => history.push("/fosterRequestTable")}
                 startIcon={<ArrowBackIosIcon />}
               >
                 Back
               </Button>
-            <Header  value="Fosterer's Profile"></Header>
-              
+              <Grid container justify="center">
+                <Header value="Jackson's Profile"></Header>
+              </Grid>
+
               <Grid container item xs={12}>
-                <ImageAvatar image="/static/images/avatar.png" name="John" />
+                <ImageAvatar image="/static/images/avatar.png" name="Jackson" />
                 <FormRow label="Name" value="Jackson O'Doherty" />
                 <FormRow label="Phone Number" value="617-123-1234" />
                 <FormRow label="Email" value="jackson@michael.com" />
@@ -96,6 +107,7 @@ const FostererProfile = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleOpenAccept}
+                    disabled={disabled}
                   >
                     Accept
                   </Button>
@@ -125,6 +137,7 @@ const FostererProfile = () => {
                     variant="contained"
                     color="secondary"
                     onClick={handleOpenReject}
+                    disabled={disabled}
                   >
                     Reject
                   </Button>
@@ -141,7 +154,7 @@ const FostererProfile = () => {
                     <DialogActions>
                       <Button
                         autoFocus
-                        onClick={handleCloseReject}
+                        onClick={handleCloseRejectCancel}
                         color="primary"
                       >
                         Cancel
