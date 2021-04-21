@@ -243,7 +243,7 @@ const PetInfo = props => {
               alignItems="center"
               className={classes.sectionMargin}
             >
-              <KeyFacts label="House broken" />
+              <KeyFacts label="Housebroken" />
               <KeyFacts label="Potty trained" />
               <KeyFacts label="Good with kids" />
               <KeyFacts label="Good with cats" />

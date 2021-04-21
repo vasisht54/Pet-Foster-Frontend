@@ -9,10 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import YourInfo from "./YourInfo";
 import PetInfo from "./PetInfo";
-import Confirm from "./ConfirmListing";
 import { SuccessNotification } from "../components/Notification";
 import Header from "../components/Header";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import CatListing from "./CatListing";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -41,7 +42,8 @@ function getStepContent(step) {
     case 1:
       return <PetInfo />;
     case 2:
-      return <Confirm />;
+      return <CatListing />;
+    // return <Confirm />;
     default:
       return "Unknown step";
   }
@@ -58,7 +60,8 @@ const CreatePetListing = () => {
     if (activeStep === 2) {
       setOpenNotification(true);
       setTimeout(() => {
-        history.push("/CatListing");
+        // history.push("/PetSearchDetails?false");
+        history.push("/ConfirmListing");
       }, 2500);
       return;
     }
@@ -84,7 +87,9 @@ const CreatePetListing = () => {
       >
         Back
       </Button>
-      <Header value="List your pet for foster care"></Header>
+      <Grid container justify="center">
+        <Header value="List your pet for foster care"></Header>
+      </Grid>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {

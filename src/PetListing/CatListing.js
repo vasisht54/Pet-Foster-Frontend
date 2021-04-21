@@ -1,7 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Typography from "@material-ui/core/Typography";
@@ -9,8 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import Header from "../components/Header";
 
 const drawerWidth = 300;
 
@@ -70,10 +66,10 @@ const tileData = [
     img: "/static/images/details/kitty-1.jpg",
   },
   {
-    img: "/static/images/details/kitty-2.jpg",
+    img: "/static/images/details/kitty-2.jfif",
   },
   {
-    img: "/static/images/details/kitty-3.jpg",
+    img: "/static/images/details/kitty-4.jfif",
   },
   {
     img: "/static/images/details/kitty-4.jpg",
@@ -118,7 +114,6 @@ const KeyFacts = props => {
 
 export const CatListing = () => {
   const classes = useStyles();
-  const history = useHistory();
 
   const pathname = window.location.pathname;
   const queryParam = window.location.pathname + window.location.search;
@@ -130,9 +125,8 @@ export const CatListing = () => {
         </div>     */}
       <div>
         <form className={classes.form} noValidate>
-          <Header value="Confirmed Pet listing"></Header>
           <div className={classes.flex}>
-            <Typography variant="h5">Coco and Ash</Typography>
+            <Typography variant="h5">Coco</Typography>
             {!pathname.includes("/create") &&
               !queryParam.includes("/CatListing?false") && (
                 <Typography className={classes.datePosted} variant="body1">
@@ -156,25 +150,13 @@ export const CatListing = () => {
                   ))}
                 </GridList>
               </div>
-              {!pathname.includes("/create") && (
-                <div>
-                  <Button
-                    onClick={() => {
-                      history.goBack();
-                    }}
-                    className={classes.backButton}
-                    startIcon={<ArrowBackIosIcon />}
-                  >
-                    Back
-                  </Button>
-                </div>
-              )}
+              {/* here */}
             </Grid>
             <Grid container item xs={8}>
               <Grid container item xs={6}>
                 <FormRow label="Category" value="Cat" />
                 <FormRow label="Breed" value="Persian" />
-                <FormRow label="Gender" value="Male" />
+                <FormRow label="Gender" value="Female" />
                 <FormRow label="Age" value="2 months" />
                 <FormRow
                   class={classes.margin5}
@@ -195,7 +177,7 @@ export const CatListing = () => {
               <FormRow
                 class={classes.margin5}
                 label="Owner's notes"
-                value="Coco and Ash needs a lot of attention. Their favorite toy is a woolen ball."
+                value="Coco needs a lot of attention. Her favorite toy is a woolen ball."
               />
             </Grid>
           </Grid>

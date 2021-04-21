@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
@@ -11,9 +11,9 @@ import ListItem from "@material-ui/core/ListItem";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from "@material-ui/icons/Search";
+import IconButton from "@material-ui/core/IconButton";
+import InputBase from "@material-ui/core/InputBase";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { animals, ages, gender } from "../constants";
@@ -53,41 +53,151 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     width: "100%",
-  }
+  },
 }));
 
-export const Filters = () => {
+const initialFilter = {
+  search: "",
+  type: [],
+  age: [],
+  gender: [],
+  toDate: "",
+  fromDate: "",
+};
+
+const reducer = (state, action) => {
+  let newState;
+  switch (action.type) {
+    case "setSearch":
+      newState = {
+        ...state,
+        search: action.data,
+      };
+      break;
+    case "setType":
+      newState = {
+        ...state,
+        type: action.data,
+      };
+      break;
+    case "setAge":
+      newState = {
+        ...state,
+        age: action.data,
+      };
+      break;
+    case "setGender":
+      newState = {
+        ...state,
+        gender: action.data,
+      };
+      break;
+    case "setToDate":
+      newState = {
+        ...state,
+        toDate: action.data,
+      };
+      break;
+    case "setFromDate":
+      newState = {
+        ...state,
+        fromDate: action.data,
+      };
+      break;
+    case "resetFilters":
+      return initialFilter;
+    default:
+      throw new Error();
+  }
+  return newState;
+};
+
+export const Filters = ({ petsList, setFilteredPets }) => {
   const classes = useStyles();
+
+  const [filters, setFilters] = useReducer(reducer, initialFilter);
+
+  const handleFiltering = () => {
+    const filtered = petsList.filter((pet) => {
+      const searchString = getSearchFilter(pet);
+      const typeFilter = getTypeFilter(pet);
+      const genderFilter = getGenderFilter(pet);
+      const ageFilter = getAgeFilter(pet);
+      return typeFilter && genderFilter && searchString && ageFilter;
+    });
+    setFilteredPets(filtered);
+  };
+
+  const handleReset = () => {
+    setFilters({ type: "resetFilters"})
+    setFilteredPets(petsList);
+  }
+
+  const getAgeFilter = (pet) => {
+    if (!filters.age.length) return true;
+    const ids = filters.age.reduce((acc, p) => acc.concat(p.result), []);
+    return ids.includes(pet.id);
+  };
+
+  const getSearchFilter = (pet) => {
+    if (!filters.search) return true;
+    return filters.search.toLowerCase().indexOf(pet.name.toLowerCase()) > -1;
+  };
+
+  const getTypeFilter = (pet) => {
+    if (!filters.type.length) return true;
+    return filters.type.includes(pet.type);
+  };
+
+  const getGenderFilter = (pet) => {
+    if (!filters.gender.length) return true;
+    return filters.gender.includes(pet.gender);
+  };
 
   return (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
-      <Typography variant="subtitle1" className={classes.title}>Filters</Typography>
-      <Divider />
       <List>
         <ListItem button>
           <InputBase
             className={classes.search}
             placeholder="Search by pet name"
-            inputProps={{ 'aria-label': 'search by pet name' }}
+            inputProps={{ "aria-label": "search by pet name" }}
+            value={filters.search}
+            onChange={(e) =>
+              setFilters({ type: "setSearch", data: e.target.value })
+            }
           />
-          <IconButton type="submit" className={classes.iconButton} aria-label="search">
-        <SearchIcon />
-      </IconButton>
+          <IconButton
+            type="submit"
+            className={classes.iconButton}
+            aria-label="search"
+            onClick={handleFiltering}
+          >
+            <SearchIcon />
+          </IconButton>
         </ListItem>
+        <Divider />
+        <Typography variant="subtitle1" className={classes.title}>
+          Filters
+        </Typography>
+        <Divider />
+        {/*--------------------------------------------------------- */}
         <ListItem button>
           <ListItemText primary="Type" />
           <FormControl className={classes.formControl}>
             <Select
               multiple
-              value={[]}
               input={<Input />}
               renderValue={(selected) => selected.join(", ")}
+              value={filters.type}
+              onChange={(e) =>
+                setFilters({ type: "setType", data: e.target.value })
+              }
             >
               {animals.map((name) => (
                 <MenuItem key={name} value={name}>
-                  <Checkbox />
+                  <Checkbox checked={filters.type.indexOf(name) > -1} />
                   <ListItemText primary={name} />
                 </MenuItem>
               ))}
@@ -100,51 +210,44 @@ export const Filters = () => {
           <FormControl className={classes.formControl}>
             <Select
               multiple
-              value={[]}
+              value={filters.age}
+              onChange={(e) =>
+                setFilters({ type: "setAge", data: e.target.value })
+              }
               input={<Input />}
-              renderValue={(selected) => selected.join(", ")}
+              renderValue={(selected) =>
+                selected.map((v) => v.label).join(", ")
+              }
             >
-              {ages.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox />
-                  <ListItemText primary={name} />
+              {ages.map((obj) => (
+                <MenuItem key={obj.label} value={obj}>
+                  <Checkbox
+                    checked={
+                      filters.age.map((v) => v.label).indexOf(obj.label) > -1
+                    }
+                  />
+                  <ListItemText primary={obj.label} />
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </ListItem>
         {/*--------------------------------------------------------- */}
-        {/* <ListItem button>
-          <ListItemText primary="Color" />
-          <FormControl className={classes.formControl}>
-            <Select
-              multiple
-              value={[]}
-              input={<Input />}
-              renderValue={(selected) => selected.join(", ")}
-            >
-              {colors.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </ListItem> */}
-        {/*--------------------------------------------------------- */}
         <ListItem button>
           <ListItemText primary="Gender" />
           <FormControl className={classes.formControl}>
             <Select
               multiple
-              value={[]}
+              value={filters.gender}
+              onChange={(e) =>
+                setFilters({ type: "setGender", data: e.target.value })
+              }
               input={<Input />}
               renderValue={(selected) => selected.join(", ")}
             >
               {gender.map((name) => (
                 <MenuItem key={name} value={name}>
-                  <Checkbox />
+                  <Checkbox checked={filters.gender.indexOf(name) > -1} />
                   <ListItemText primary={name} />
                 </MenuItem>
               ))}
@@ -160,6 +263,10 @@ export const Filters = () => {
           InputLabelProps={{
             shrink: true,
           }}
+          value={filters.fromDate}
+          onChange={(e) =>
+            setFilters({ type: "setFromDate", data: e.target.value })
+          }
         />
         <TextField
           id="date"
@@ -169,14 +276,18 @@ export const Filters = () => {
           InputLabelProps={{
             shrink: true,
           }}
+          value={filters.toDate}
+          onChange={(e) =>
+            setFilters({ type: "setToDate", data: e.target.value })
+          }
         />
         {/*--------------------------------------------------------- */}
       </List>
       <div className={classes.filterBtn}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleFiltering}>
           Apply
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="secondary" onClick={handleReset}>
           Reset
         </Button>
       </div>
