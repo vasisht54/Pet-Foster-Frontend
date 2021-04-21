@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   homeIcon: {
     fontSize: "90px",
     marginLeft: "31px",
-    cursor: 'pointer',
+    cursor: "pointer",
   },
   homeBtn: {
     position: "absolute",
@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   active: {
     backgroundColor: "#002984",
+    borderRadius: "1.5em",
     lineHeight: "50px",
   },
 }));
@@ -77,7 +78,10 @@ export default function Navbar() {
       <AppBar position="static">
         <Toolbar style={{ justifyContent: "space-between" }}>
           <div className={classes.home}>
-            <HomeIcon className={classes.homeIcon} onClick={() => history.push("/")} />
+            <HomeIcon
+              className={classes.homeIcon}
+              onClick={() => history.push("/")}
+            />
             <Button
               onClick={() => history.push("/")}
               color="inherit"

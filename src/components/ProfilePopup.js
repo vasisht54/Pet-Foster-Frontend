@@ -10,12 +10,12 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import React, { useState } from "react";
-import ImageAvatar from "../components/ImageAvatar";
-import Header from "../components/Header";
+import ImageAvatar from "./ImageAvatar";
+import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { remove } from "../redux/FostererSlice";
 
-const FostererProfilePopup = ({ profile, setOpenDialog }) => {
+const ProfilePopup = ({ profile, handleClose }) => {
   const useStyles = makeStyles(theme => ({
     root: {
       padding: "20px 0px 20px 40px",
@@ -53,7 +53,7 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
     setOpenAccept(false);
 
     setTimeout(() => {
-      setOpenDialog(false);
+      handleClose(false);
     }, 300);
   };
 
@@ -63,34 +63,38 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
     dispatch(remove(id));
 
     setTimeout(() => {
-      setOpenDialog(false);
+      handleClose(false);
     }, 300);
   };
 
   return (
     <Grid container direction="column" className={classes.root}>
+      {console.log(profile)}
       <Grid container justify="space-between">
         <Grid item justify="center">
-          <Header value={`${profile.name}'s Profile`}></Header>
+          <Header value={`${profile.name.split(" ")[0]}'s Profile`}></Header>
         </Grid>
         <Grid item>
           <IconButton
             aria-label="close"
             className={classes.closeButton}
-            onClick={() => setOpenDialog(false)}
+            onClick={() => handleClose(false)}
           >
             <CloseIcon />
           </IconButton>
         </Grid>
       </Grid>
 
-      <Grid container item xs={12}>
-        <ImageAvatar image={profile.image} name={profile.name} />
+      <Grid style={{ marginTop: "20px" }} container item xs={12}>
+        {profile.image && (
+          <ImageAvatar image={profile.image} name={profile.name} />
+        )}
         <FormRow label="Name" value={profile.name} />
         <FormRow label="Phone Number" value={profile.phoneNum} />
         <FormRow label="Email" value={profile.email} />
-        <FormRow label="Rating" value={profile.rating} />
-        <FormRow label="Bio" value={profile.bio} />
+        {profile.rating && <FormRow label="Rating" value={profile.rating} />}
+        {profile.bio && <FormRow label="Bio" value={profile.bio} />}
+        {profile.address && <FormRow label="Address" value={profile.address} />}
       </Grid>
       <Grid container justify="center">
         <Grid item className={classes.actionButtons} container>
@@ -168,4 +172,4 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
   );
 };
 
-export default FostererProfilePopup;
+export default ProfilePopup;

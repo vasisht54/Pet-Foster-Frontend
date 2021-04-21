@@ -17,6 +17,7 @@ import ImageAvatar from "../components/ImageAvatar";
 import { useHistory } from "react-router";
 import Header from "../components/Header";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ProfilePopup from "../components/ProfilePopup";
 
 const useStyles = makeStyles({
   paper: {
@@ -94,6 +95,30 @@ const MyRequests = [
     type: "Cat",
     duration: "June 21, 2021 to July 1, 2020",
     status: "Reject",
+  },
+];
+
+const owners = [
+  {
+    id: 1,
+    name: "Jackson O'Doherty",
+    phoneNum: "123-456-7890",
+    email: "jackson@odoherty.com",
+    address: "1102 Fillmore St, SF CA",
+  },
+  {
+    id: 2,
+    name: "John Krasinski",
+    phoneNum: "123-456-7890",
+    email: "John@krasinski.com",
+    address: "1191 Boylston St, Boston MA",
+  },
+  {
+    id: 3,
+    name: "Matthew Perry",
+    phoneNum: "123-456-7890",
+    email: "chandler@bing.com",
+    address: "75 St. Alphonsus St, Boston MA",
   },
 ];
 
@@ -238,28 +263,11 @@ const MyFosterRequests = () => {
                   open={openOwnerDetails}
                 >
                   <DialogContent dividers>
-                    <Typography gutterBottom>Owner Information</Typography>
-                    <Grid container item xs={10}>
-                      <Typography gutterBottom>Owner Details:</Typography>
-                      <FormRow label="Name" value="Alex" />
-                      <FormRow
-                        label="Location"
-                        value="3 Filmore St. SF, 41202"
-                      />
-                      <FormRow label="Phone number" value="213-456-7890" />
-                      <FormRow label="Email" value="alex@g.com" />
-                      <Typography gutterBottom> Happy Fostering! </Typography>
-                    </Grid>
+                    <ProfilePopup
+                      profile={owners[item.id - 1]}
+                      handleClose={() => setOpenOwnerDetails(false)}
+                    />
                   </DialogContent>
-                  <DialogActions>
-                    <Button
-                      autoFocus
-                      onClick={() => setOpenOwnerDetails(false)}
-                      color="primary"
-                    >
-                      Okay
-                    </Button>
-                  </DialogActions>
                 </Dialog>
               </Grid>
             </React.Fragment>
