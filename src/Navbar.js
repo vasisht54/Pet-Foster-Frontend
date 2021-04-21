@@ -97,23 +97,6 @@ export default function Navbar() {
                 onClick={() =>
                   history.push(
                     isLoggedIn
-                      ? "/ViewFosterRequestForMyPet"
-                      : "/login?redirectTo=/ViewFosterRequestForMyPet"
-                  )
-                }
-                className={
-                  location.pathname === "/ViewFosterRequestForMyPet"
-                    ? classes.active
-                    : null
-                }
-              >
-                Received Requests
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() =>
-                  history.push(
-                    isLoggedIn
                       ? "/ViewFosterRequest"
                       : "/login?redirectTo=/ViewFosterRequest"
                   )
@@ -124,7 +107,24 @@ export default function Navbar() {
                     : null
                 }
               >
-                Sent Requests
+                My Requests to foster
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() =>
+                  history.push(
+                    isLoggedIn
+                      ? "/ViewFosterRequestForMyPet"
+                      : "/login?redirectTo=/ViewFosterRequestForMyPet"
+                  )
+                }
+                className={
+                  location.pathname === "/ViewFosterRequestForMyPet"
+                    ? classes.active
+                    : null
+                }
+              >
+                Requests for my pets
               </Button>
             </div>
           </>
