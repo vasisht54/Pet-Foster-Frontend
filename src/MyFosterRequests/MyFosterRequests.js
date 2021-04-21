@@ -15,7 +15,7 @@ import {
 } from "@material-ui/core";
 import ImageAvatar from "../components/ImageAvatar";
 import { useHistory } from "react-router";
-import Header from '../components/Header';
+import Header from "../components/Header";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const useStyles = makeStyles({
@@ -100,12 +100,24 @@ const MyRequests = [
 const MyFosterRequests = () => {
   const classes = useStyles();
   const [openOwnerDetails, setOpenOwnerDetails] = useState(false);
+  const [openReject, setOpenReject] = React.useState(false);
+  const [withdrawId, setWithdrawId] = React.useState(null);
   const [pets, setPets] = useState(MyRequests);
   const history = useHistory();
 
-  const handleWithdraw = id => {
+  const handleDelete = id => {
     const newPets = pets.filter(pet => pet.id !== id);
     setPets(newPets);
+  };
+
+  const handleCloseReject = () => {
+    handleDelete(withdrawId);
+    setOpenReject(false);
+  };
+
+  const handleWithdraw = id => {
+    setWithdrawId(id);
+    setOpenReject(true);
   };
 
   return (
@@ -113,18 +125,20 @@ const MyFosterRequests = () => {
       <Grid container>
         <Grid item xs={2} />
         <Grid item xs={10} container direction="column">
-          <div><Button
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button></div>
-          
+          <div>
+            <Button
+              onClick={() => {
+                history.push("/");
+              }}
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              Back
+            </Button>
+          </div>
+          <Grid container justify="center">
             <Header value="My requests to foster"></Header>
-         
+          </Grid>
           {pets.map(item => (
             <React.Fragment key={item.id}>
               <Grid container item>
@@ -165,9 +179,13 @@ const MyFosterRequests = () => {
                         View owner details
                       </Button>
                       {item.status !== "Reject" && (
-                        <WithdrawTooltip disableHoverListener={item.status !== "Approved"} title="You cannot withdraw once request is approved. Please contact the owner.">
+                        <WithdrawTooltip
+                          disableHoverListener={item.status !== "Approved"}
+                          title="You cannot withdraw once request is approved. Please contact the owner."
+                        >
                           <span>
                             <Button
+                              style={{ width: "100%" }}
                               disabled={item.status === "Approved"}
                               variant="contained"
                               color="secondary"
@@ -180,6 +198,33 @@ const MyFosterRequests = () => {
                           </span>
                         </WithdrawTooltip>
                       )}
+                      <Dialog
+                        onClose={handleCloseReject}
+                        aria-labelledby="customized-dialog-title"
+                        open={openReject}
+                      >
+                        <DialogContent dividers>
+                          <Grid container item md={12}>
+                            Are you sure you want to withdraw this request?
+                          </Grid>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button
+                            onClick={() => setOpenReject(false)}
+                            autoFocus
+                            color="primary"
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            autoFocus
+                            onClick={handleCloseReject}
+                            color="secondary"
+                          >
+                            Withdraw
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
                     </Grid>
                   </Grid>
                   <Divider className={classes.divider} />
