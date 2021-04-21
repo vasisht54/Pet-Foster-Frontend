@@ -9,7 +9,6 @@ import SendFosterRequest from "./PetSearch/SendFosterRequest";
 import PetSearchDetails from "./PetSearch/petSearchDetails";
 import ViewFosterRequestForMyPet from "./PetListing/ViewFosterRequestForMyPet";
 import FosterRequestTable from "./PetListing/FosterRequestTable";
-import FostererProfile from "./PetListing/FostererProfile";
 import MyFosterRequests from "./MyFosterRequests/MyFosterRequests";
 import CatListing from "./PetListing/CatListing";
 import ConfirmListing from "./PetListing/ConfirmListing";
@@ -51,9 +50,6 @@ function App() {
             <Route path="/FosterRequestTable">
               <FosterRequestTable />
             </Route>
-            {/* <Route path="/fostererProfile">
-              <FostererProfile />
-            </Route> */}
             <Route path="/CatListing">
               <CatListing />
             </Route>

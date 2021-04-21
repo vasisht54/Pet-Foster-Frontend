@@ -12,6 +12,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import React, { useState } from "react";
 import ImageAvatar from "../components/ImageAvatar";
 import Header from "../components/Header";
+import { useDispatch } from "react-redux";
+import { remove } from "../redux/FostererSlice";
 
 const FostererProfilePopup = ({ profile, setOpenDialog }) => {
   const useStyles = makeStyles(theme => ({
@@ -43,15 +45,26 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
   const [openAccept, setOpenAccept] = useState(false);
   const [openReject, setOpenReject] = useState(false);
   const [disabled, setDisabled] = React.useState(false);
+  const dispatch = useDispatch();
 
-  const handleAccept = () => {
+  const handleAccept = id => {
     setDisabled(true);
-    setOpenAccept(true);
+    dispatch(remove(id));
+    setOpenAccept(false);
+
+    setTimeout(() => {
+      setOpenDialog(false);
+    }, 300);
   };
 
-  const handleReject = () => {
+  const handleReject = id => {
     setDisabled(true);
     setOpenReject(false);
+    dispatch(remove(id));
+
+    setTimeout(() => {
+      setOpenDialog(false);
+    }, 300);
   };
 
   return (
@@ -80,17 +93,13 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
         <FormRow label="Bio" value={profile.bio} />
       </Grid>
       <Grid container justify="center">
-        <Grid
-          item
-          className={classes.actionButtons}
-          container
-          justify="space-evenly"
-        >
-          <Grid item>
+        <Grid item className={classes.actionButtons} container>
+          <Grid item xs={3} />
+          <Grid item xs={3}>
             <Button
               variant="contained"
               color="primary"
-              onClick={handleAccept}
+              onClick={() => setOpenAccept(true)}
               disabled={disabled}
             >
               Accept
@@ -108,7 +117,7 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
               <DialogActions>
                 <Button
                   autoFocus
-                  onClick={() => setOpenAccept(false)}
+                  onClick={() => handleAccept(profile.id)}
                   color="primary"
                 >
                   Okay
@@ -116,7 +125,7 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
               </DialogActions>
             </Dialog>
           </Grid>
-          <Grid item>
+          <Grid item xs={3}>
             <Button
               variant="contained"
               color="secondary"
@@ -143,7 +152,11 @@ const FostererProfilePopup = ({ profile, setOpenDialog }) => {
                 >
                   Cancel
                 </Button>
-                <Button autoFocus onClick={handleReject} color="secondary">
+                <Button
+                  autoFocus
+                  onClick={() => handleReject(profile.id)}
+                  color="secondary"
+                >
                   Reject
                 </Button>
               </DialogActions>

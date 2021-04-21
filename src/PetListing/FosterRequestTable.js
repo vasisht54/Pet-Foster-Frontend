@@ -13,6 +13,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
 import Header from "../components/Header";
+import { useSelector } from "react-redux";
 import FostererProfilePopup from "./FostererProfilePopup";
 
 const drawerWidth = 300;
@@ -32,6 +33,8 @@ const useStyles = makeStyles(theme => ({
     width: "96%",
     display: "inline-block",
     padding: "20px",
+    paddingBottom: "0px",
+    paddingLeft: "0px",
     height: "100%",
   },
   center: {
@@ -69,30 +72,41 @@ const useStyles = makeStyles(theme => ({
   item: { margin: "20px" },
 }));
 
-const fosterers = [
-  {
-    id: 1,
-    name: "Jackson",
-    image: "../static/images/avatar.png",
-    rating: "4.9/5.0",
-    phoneNum: "123-456-7890",
-    email: "jackson@odoherty.com",
-    bio: "I live for pet animals!",
-    message:
-      "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
-  },
-  {
-    id: 2,
-    name: "John",
-    image: "/static/images/avatar2.jpg",
-    rating: "4.2/5.0",
-    phoneNum: "123-456-7890",
-    email: "John@krasinski.com",
-    bio: "Grew up with 3 dogs and a cat. Love pets!",
-    message:
-      "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
-  },
-];
+// const fosterers = [
+//   {
+//     id: 1,
+//     name: "Jackson O'Doherty",
+//     image: "/static/images/avatar.png",
+//     rating: "4.9/5.0",
+//     phoneNum: "123-456-7890",
+//     email: "jackson@odoherty.com",
+//     bio: "I live for pet animals!",
+//     message:
+//       "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
+//   },
+//   {
+//     id: 2,
+//     name: "John Krasinski",
+//     image: "/static/images/avatar2.jpg",
+//     rating: "4.2/5.0",
+//     phoneNum: "123-456-7890",
+//     email: "John@krasinski.com",
+//     bio: "Grew up with 3 dogs and a cat. Love pets!",
+//     message:
+//       "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
+//   },
+//   {
+//     id: 3,
+//     name: "Matthew Perry",
+//     image: "/static/images/avatar3.jpg",
+//     rating: "4.7/5.0",
+//     phoneNum: "123-456-7890",
+//     email: "chandler@bing.com",
+//     bio: "Great with pets!",
+//     message:
+//       "I love dogs and I have one myself. Willing to take care of yours - please reach out.",
+//   },
+// ];
 
 const FormRow = props => {
   return (
@@ -113,6 +127,7 @@ export const FosterRequestTable = () => {
   const history = useHistory();
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
+  const fosterers = useSelector(state => state.fosterers.value);
 
   const handleViewProfile = profile => {
     setOpenDialog(true);
@@ -145,12 +160,13 @@ export const FosterRequestTable = () => {
                       style={{ cursor: "pointer" }}
                       container
                       item
-                      xs={1}
-                      direction="column"
+                      xs={2}
+                      alignItems="flex-start"
+                      justify="center"
                     >
                       <ImageAvatar image={profile.image} name={profile.name} />
                     </Grid>
-                    <Grid item xs={1} />
+                    {/* <Grid item xs={1} /> */}
                     <Grid container item xs={7}>
                       <FormRow label="Fosterer's Name" value={profile.name} />
                       <FormRow label="Rating" value={profile.rating} />
