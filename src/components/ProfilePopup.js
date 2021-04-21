@@ -96,78 +96,80 @@ const ProfilePopup = ({ profile, handleClose }) => {
         {profile.bio && <FormRow label="Bio" value={profile.bio} />}
         {profile.address && <FormRow label="Address" value={profile.address} />}
       </Grid>
-      <Grid container justify="center">
-        <Grid item className={classes.actionButtons} container>
-          <Grid item xs={3} />
-          <Grid item xs={3}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setOpenAccept(true)}
-              disabled={disabled}
-            >
-              Accept
-            </Button>
-            <Dialog
-              onClose={() => setOpenAccept(false)}
-              aria-labelledby="customized-dialog-title"
-              open={openAccept}
-            >
-              <DialogContent dividers>
-                <Grid container item md={12}>
-                  You have accepted a Fosterer's request!
-                </Grid>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  autoFocus
-                  onClick={() => handleAccept(profile.id)}
-                  color="primary"
-                >
-                  Okay
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </Grid>
-          <Grid item xs={3}>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => setOpenReject(true)}
-              disabled={disabled}
-            >
-              Reject
-            </Button>
-            <Dialog
-              onClose={() => setOpenReject(false)}
-              aria-labelledby="customized-dialog-title"
-              open={openReject}
-            >
-              <DialogContent dividers>
-                <Grid container item md={12}>
-                  Are you sure you want to reject this request?
-                </Grid>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  autoFocus
-                  onClick={() => setOpenReject(false)}
-                  color="primary"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  autoFocus
-                  onClick={() => handleReject(profile.id)}
-                  color="secondary"
-                >
-                  Reject
-                </Button>
-              </DialogActions>
-            </Dialog>
+      {profile.rating && (
+        <Grid container justify="center">
+          <Grid item className={classes.actionButtons} container>
+            <Grid item xs={3} />
+            <Grid item xs={3}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setOpenAccept(true)}
+                disabled={disabled}
+              >
+                Accept
+              </Button>
+              <Dialog
+                onClose={() => setOpenAccept(false)}
+                aria-labelledby="customized-dialog-title"
+                open={openAccept}
+              >
+                <DialogContent dividers>
+                  <Grid container item md={12}>
+                    You have accepted a Fosterer's request!
+                  </Grid>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    autoFocus
+                    onClick={() => handleAccept(profile.id)}
+                    color="primary"
+                  >
+                    Okay
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </Grid>
+            <Grid item xs={3}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => setOpenReject(true)}
+                disabled={disabled}
+              >
+                Reject
+              </Button>
+              <Dialog
+                onClose={() => setOpenReject(false)}
+                aria-labelledby="customized-dialog-title"
+                open={openReject}
+              >
+                <DialogContent dividers>
+                  <Grid container item md={12}>
+                    Are you sure you want to reject this request?
+                  </Grid>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    autoFocus
+                    onClick={() => setOpenReject(false)}
+                    color="primary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    autoFocus
+                    onClick={() => handleReject(profile.id)}
+                    color="secondary"
+                  >
+                    Reject
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      )}
     </Grid>
   );
 };
