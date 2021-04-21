@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import { Button, Container, Grid, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Dialog,
+  DialogContent,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
 import Header from "../components/Header";
+import { useSelector } from "react-redux";
+import FostererProfilePopup from "./FostererProfilePopup";
 
 const drawerWidth = 300;
 
@@ -24,6 +33,8 @@ const useStyles = makeStyles(theme => ({
     width: "96%",
     display: "inline-block",
     padding: "20px",
+    paddingBottom: "0px",
+    paddingLeft: "0px",
     height: "100%",
   },
   center: {
@@ -61,25 +72,6 @@ const useStyles = makeStyles(theme => ({
   item: { margin: "20px" },
 }));
 
-const rows = [
-  {
-    id: 1,
-    name: "Jackson",
-    image: "../static/images/avatar.png",
-    rating: "4.9/5.0",
-    message:
-      "I love dogs and I have one myself - a Retriever. He's good with other dogs, hence I'm willing to foster your pet as well.",
-  },
-  {
-    id: 2,
-    name: "John",
-    image: "/static/images/avatar2.jpg",
-    rating: "4.2/5.0",
-    message:
-      "I grew up with 3 dogs, 2 cats and a horse. I'm very good with pets.",
-  },
-];
-
 const FormRow = props => {
   return (
     <Grid container item xs={12}>
@@ -97,6 +89,14 @@ const FormRow = props => {
 export const FosterRequestTable = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  const fosterers = useSelector(state => state.fosterers.value);
+
+  const handleViewProfile = profile => {
+    setOpenDialog(true);
+    setSelectedProfile(profile);
+  };
 
   return (
     <Container>
@@ -115,8 +115,8 @@ export const FosterRequestTable = () => {
               <Header value="Foster Requests"></Header>
             </Grid>
           </div>
-          {rows.map(row => (
-            <React.Fragment key={row.id}>
+          {fosterers.map(profile => (
+            <React.Fragment key={profile.id}>
               <Grid container className={classes.item}>
                 <Paper className={classes.paper}>
                   <Grid container>
@@ -124,18 +124,19 @@ export const FosterRequestTable = () => {
                       style={{ cursor: "pointer" }}
                       container
                       item
-                      xs={1}
-                      direction="column"
+                      xs={2}
+                      alignItems="flex-start"
+                      justify="center"
                     >
-                      <ImageAvatar image={row.image} name={row.name} />
+                      <ImageAvatar image={profile.image} name={profile.name} />
                     </Grid>
-                    <Grid item xs={1} />
+                    {/* <Grid item xs={1} /> */}
                     <Grid container item xs={7}>
-                      <FormRow label="Fosterer's Name" value={row.name} />
-                      <FormRow label="Rating" value={row.rating} />
+                      <FormRow label="Fosterer's Name" value={profile.name} />
+                      <FormRow label="Rating" value={profile.rating} />
                       <FormRow
                         label="Message from Fosterer"
-                        value={row.message}
+                        value={profile.message}
                       />
                     </Grid>
                     <Grid
@@ -146,13 +147,25 @@ export const FosterRequestTable = () => {
                       justify="center"
                     >
                       <Button
-                        onClick={() => history.push("/fostererProfile")}
+                        onClick={() => handleViewProfile(profile)}
                         color="primary"
                         variant="contained"
                         size="small"
                       >
                         View profile
                       </Button>
+                      <Dialog
+                        onClose={() => setOpenDialog(false)}
+                        aria-labelledby="customized-dialog-title"
+                        open={openDialog}
+                      >
+                        <DialogContent dividers>
+                          <FostererProfilePopup
+                            profile={selectedProfile}
+                            setOpenDialog={setOpenDialog}
+                          />
+                        </DialogContent>
+                      </Dialog>
                     </Grid>
                   </Grid>
                 </Paper>
