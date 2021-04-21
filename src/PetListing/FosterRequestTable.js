@@ -14,7 +14,7 @@ import { useHistory } from "react-router";
 import ImageAvatar from "../components/ImageAvatar";
 import Header from "../components/Header";
 import { useSelector } from "react-redux";
-import FostererProfilePopup from "./FostererProfilePopup";
+import FostererProfilePopup from "../components/ProfilePopup";
 
 const drawerWidth = 300;
 
@@ -162,7 +162,7 @@ export const FosterRequestTable = () => {
                         <DialogContent dividers>
                           <FostererProfilePopup
                             profile={selectedProfile}
-                            setOpenDialog={setOpenDialog}
+                            handleClose={setOpenDialog}
                           />
                         </DialogContent>
                       </Dialog>
