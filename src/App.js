@@ -51,9 +51,9 @@ function App() {
             <Route path="/FosterRequestTable">
               <FosterRequestTable />
             </Route>
-            <Route path="/fostererProfile">
+            {/* <Route path="/fostererProfile">
               <FostererProfile />
-            </Route>
+            </Route> */}
             <Route path="/CatListing">
               <CatListing />
             </Route>
