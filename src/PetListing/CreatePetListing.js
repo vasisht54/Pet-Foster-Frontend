@@ -15,7 +15,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import CatListing from "./CatListing";
 import { Grid } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "10px 100px",
     padding: "20px",
@@ -35,26 +35,27 @@ function getSteps() {
   return ["Your Info", "Your Pet's Info", "Confirm"];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <YourInfo />;
-    case 1:
-      return <PetInfo />;
-    case 2:
-      return <CatListing />;
-    // return <Confirm />;
-    default:
-      return "Unknown step";
-  }
-}
-
 const CreatePetListing = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(1);
   const [openNotification, setOpenNotification] = React.useState(false);
   const steps = getSteps();
   const history = useHistory();
+  const [disableSubmit, setDisableSubmit] = React.useState(false);
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <YourInfo setDisableSubmit={setDisableSubmit} />;
+      case 1:
+        return <PetInfo setDisableSubmit={setDisableSubmit} />;
+      case 2:
+        return <CatListing />;
+      // return <Confirm />;
+      default:
+        return "Unknown step";
+    }
+  }
 
   const handleNext = () => {
     if (activeStep === 2) {
@@ -65,11 +66,11 @@ const CreatePetListing = () => {
       }, 2500);
       return;
     }
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   return (
@@ -103,27 +104,27 @@ const CreatePetListing = () => {
           })}
         </Stepper>
         <div>
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div className={classes.buttonGroupRightAlign}>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
+          <Typography className={classes.instructions}>
+            {getStepContent(activeStep)}
+          </Typography>
+          <div className={classes.buttonGroupRightAlign}>
+            <Button
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              className={classes.button}
+            >
+              Back
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={handleNext}
+              className={classes.button}
+              disabled={disableSubmit}
+            >
+              {activeStep === steps.length - 1 ? "Finish" : "Next"}
+            </Button>
           </div>
         </div>
       </div>

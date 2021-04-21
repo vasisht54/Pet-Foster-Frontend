@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 80,
+    maxWidth: "70%",
   },
   title: {
     textAlign: "center",
@@ -129,9 +130,9 @@ export const Filters = ({ petsList, setFilteredPets }) => {
   };
 
   const handleReset = () => {
-    setFilters({ type: "resetFilters"})
+    setFilters({ type: "resetFilters" });
     setFilteredPets(petsList);
-  }
+  };
 
   const getAgeFilter = (pet) => {
     if (!filters.age.length) return true;

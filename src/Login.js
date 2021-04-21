@@ -33,7 +33,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -61,7 +61,7 @@ export default function Login() {
   const location = useLocation();
   const { redirectTo } = queryString.parse(location.search, "?");
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(login());
     history.push(redirectTo == null ? "/" : redirectTo);

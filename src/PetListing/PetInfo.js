@@ -19,7 +19,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 import { animals } from "../constants";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -113,35 +113,82 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const KeyFacts = props => (
-  <>
-    <Grid item xs={4}>
-      <Typography variant="subtitle1">{props.label}</Typography>
-    </Grid>
-    <Grid item xs={7}>
-      <FormControl component="fieldset">
-        <RadioGroup
-          aria-label="gender"
-          name="gender1"
-          style={{ flexDirection: "row" }}
-        >
-          <FormControlLabel
-            value="yes"
-            control={<Radio size="small" />}
-            label="Yes"
-          />
-          <FormControlLabel
-            value="no"
-            control={<Radio size="small" />}
-            label="No"
-          />
-        </RadioGroup>
-      </FormControl>
-    </Grid>
-  </>
-);
+const initialFormState = {
+  name: null,
+  type: null,
+  age: null,
+  ageUnit: "months",
+  gender: null,
+  pottyTrained: null,
+  cats: null,
+  dogs: null,
+  kids: null,
+  notes: null,
+};
 
-const PetInfo = props => {
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "name":
+      return {
+        ...state,
+        name: action.data,
+      };
+    case "type":
+      return {
+        ...state,
+        type: action.data,
+      };
+    case "breed":
+      return {
+        ...state,
+        breed: action.data,
+      };
+    case "age":
+      return {
+        ...state,
+        age: action.data,
+      };
+    case "ageUnit":
+      return {
+        ...state,
+        age: action.data,
+      };
+    case "gender":
+      return {
+        ...state,
+        gender: action.data,
+      };
+    case "pottyTrained":
+      return {
+        ...state,
+        pottyTrained: action.data,
+      };
+    case "kids":
+      return {
+        ...state,
+        kids: action.data,
+      };
+    case "cats":
+      return {
+        ...state,
+        cats: action.data,
+      };
+    case "dogs":
+      return {
+        ...state,
+        dogs: action.data,
+      };
+    case "notes":
+      return {
+        ...state,
+        notes: action.data,
+      };
+    default:
+      throw new Error();
+  }
+};
+
+const PetInfo = (props) => {
   const classes = useStyles();
   const fileUploader = useRef(null);
   const [tileData] = useState([
@@ -150,6 +197,60 @@ const PetInfo = props => {
     {},
     {},
   ]);
+  const [formState, setFormState] = React.useReducer(reducer, initialFormState);
+
+  React.useEffect(() => {
+    props.setDisableSubmit(
+      !formState.name ||
+        !formState.name ||
+        !formState.type ||
+        !formState.age ||
+        !formState.ageUnit ||
+        formState.gender === null ||
+        !formState.pottyTrained === null ||
+        !formState.kids === null ||
+        !formState.cats === null ||
+        !formState.dogs === null ||
+        !formState.notes
+    );
+    console.log("formState", formState);
+  }, [formState, props]);
+
+  const KeyFacts = (props) => (
+    <>
+      <Grid item xs={4}>
+        <Typography variant="subtitle1">{props.label}</Typography>
+      </Grid>
+      <Grid item xs={7}>
+        <FormControl component="fieldset" required error={props.error}>
+          <RadioGroup
+            name={props.type}
+            style={{ flexDirection: "row" }}
+            value={formState[props.type]}
+            onChange={(e) => {
+              console.log("e.target.value", e.target.value);
+              setFormState({
+                type: props.type,
+                data: e.target.value,
+              });
+            }}
+          >
+            <FormControlLabel
+              value="Yes"
+              control={<Radio size="small" />}
+              label="Yes"
+            />
+            <FormControlLabel
+              value="No"
+              control={<Radio size="small" />}
+              label="No"
+            />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
+    </>
+  );
+
   return (
     <div>
       <form className={classes.form} noValidate>
@@ -162,6 +263,10 @@ const PetInfo = props => {
               <TextField
                 variant="outlined"
                 required
+                error={formState.name === ""}
+                onChange={(e) =>
+                  setFormState({ type: "name", data: e.target.value })
+                }
                 margin="dense"
                 fullWidth
                 id="name"
@@ -180,11 +285,14 @@ const PetInfo = props => {
                 <Select
                   labelId=""
                   id="demo-simple-select-outlined"
-                  value={""}
                   label="Animal Type"
+                  error={formState.type === ""}
+                  onChange={(e) =>
+                    setFormState({ type: "type", data: e.target.value })
+                  }
                 >
-                  {animals.map(animal => (
-                    <MenuItem>{animal}</MenuItem>
+                  {animals.map((animal) => (
+                    <MenuItem value={animal}>{animal}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -197,22 +305,74 @@ const PetInfo = props => {
                 name="breed"
                 size="small"
               />
-              <TextField
-                variant="outlined"
-                required
-                margin="dense"
-                fullWidth
-                id="age"
-                label="Age"
-                name="age"
-                size="small"
-              />
+              <Grid container item spacing={3}>
+                <Grid item xs={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    error={formState.age === ""}
+                    onChange={(e) =>
+                      setFormState({ type: "age", data: e.target.value })
+                    }
+                    margin="dense"
+                    fullWidth
+                    type="number"
+                    id="age"
+                    label="Age"
+                    name="age"
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl
+                    variant="outlined"
+                    size="small"
+                    margin="dense"
+                    required
+                    fullWidth
+                  >
+                    {/* <InputLabel>Animal type</InputLabel> */}
+                    <div>
+                      <Select
+                        variant="outlined"
+                        size="small"
+                        margin="dense"
+                        required
+                        fullWidth
+                        labelId=""
+                        id="demo-simple-select-outlined"
+                        error={formState.ageUnit === ""}
+                        defaultValue={"months"}
+                        onChange={(e) =>
+                          setFormState({
+                            type: "ageUnit",
+                            data: e.target.value,
+                          })
+                        }
+                      >
+                        <MenuItem value={"months"}>months</MenuItem>
+                        <MenuItem value={"years"}>years</MenuItem>
+                      </Select>
+                    </div>
+                  </FormControl>
+                </Grid>
+              </Grid>
               <Grid container item>
                 <Grid item xs={4}>
                   <Typography variant="subtitle1">Gender</Typography>
                 </Grid>
                 <Grid item xs={7}>
-                  <FormControl component="fieldset">
+                  <FormControl
+                    component="fieldset"
+                    required
+                    error={formState.gender === null}
+                    onChange={(e) =>
+                      setFormState({
+                        type: "gender",
+                        data: e.target.value,
+                      })
+                    }
+                  >
                     <RadioGroup
                       aria-label="gender"
                       name="gender1"
@@ -243,11 +403,45 @@ const PetInfo = props => {
               alignItems="center"
               className={classes.sectionMargin}
             >
-              <KeyFacts label="Housebroken" />
-              <KeyFacts label="Potty trained" />
-              <KeyFacts label="Good with kids" />
-              <KeyFacts label="Good with cats" />
-              <KeyFacts label="Good with dogs" />
+              {/* <KeyFacts label="Housebroken" /> */}
+              <KeyFacts
+                label="Potty trained"
+                error={formState.pottyTrained === null}
+                type="pottyTrained"
+              />
+              <KeyFacts
+                label="Good with kids"
+                type="kids"
+                error={formState.kids === null}
+                onChange={(e) =>
+                  setFormState({
+                    type: "kids",
+                    data: e.target.value,
+                  })
+                }
+              />
+              <KeyFacts
+                label="Good with cats"
+                type="cats"
+                error={formState.cats === ""}
+                onChange={(e) =>
+                  setFormState({
+                    type: "cats",
+                    data: e.target.value,
+                  })
+                }
+              />
+              <KeyFacts
+                label="Good with dogs"
+                type="dogs"
+                error={formState.cats === ""}
+                onChange={(e) =>
+                  setFormState({
+                    type: "dogs",
+                    data: e.target.value,
+                  })
+                }
+              />
             </Grid>
             <Grid item xs={3} className={classes.sectionMargin}>
               <Typography variant="subtitle1">Owner's notes</Typography>
@@ -265,6 +459,14 @@ const PetInfo = props => {
                 fullWidth
                 rows={4}
                 variant="outlined"
+                required
+                error={formState.notes === ""}
+                onChange={(e) =>
+                  setFormState({
+                    type: "notes",
+                    data: e.target.value,
+                  })
+                }
               />
             </Grid>
           </Grid>
@@ -342,13 +544,14 @@ const PetInfo = props => {
   );
 };
 
-const PetInfoContainer = () => {
+const PetInfoContainer = ({ setDisableSubmit }) => {
   const [petCount, setPetCount] = useState(1);
 
   return (
     <>
       {[...Array(petCount)].map((v, i) => (
         <PetInfo
+          setDisableSubmit={setDisableSubmit}
           key={i}
           petCount={petCount}
           setPetCount={setPetCount}
