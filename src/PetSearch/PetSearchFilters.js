@@ -109,7 +109,6 @@ const reducer = (state, action) => {
     default:
       throw new Error();
   }
-  console.log("newState", newState);
   return newState;
 };
 
@@ -128,6 +127,11 @@ export const Filters = ({ petsList, setFilteredPets }) => {
     });
     setFilteredPets(filtered);
   };
+
+  const handleReset = () => {
+    setFilters({ type: "resetFilters"})
+    setFilteredPets(petsList);
+  }
 
   const getAgeFilter = (pet) => {
     if (!filters.age.length) return true;
@@ -283,7 +287,7 @@ export const Filters = ({ petsList, setFilteredPets }) => {
         <Button variant="contained" color="primary" onClick={handleFiltering}>
           Apply
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="secondary" onClick={handleReset}>
           Reset
         </Button>
       </div>
