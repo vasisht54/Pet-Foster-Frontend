@@ -10,9 +10,8 @@ import Paper from "@material-ui/core/Paper";
 import YourInfo from "./YourInfo";
 import PetInfo from "./PetInfo";
 import Confirm from "./ConfirmListing";
-import CatListing from "./CatListing";
 import { SuccessNotification } from "../components/Notification";
-import Header from '../components/Header';
+import Header from "../components/Header";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const useStyles = makeStyles(theme => ({
@@ -59,7 +58,6 @@ const CreatePetListing = () => {
     if (activeStep === 2) {
       setOpenNotification(true);
       setTimeout(() => {
-        // history.push("/PetSearchDetails?false");
         history.push("/CatListing");
       }, 2500);
       return;
@@ -78,14 +76,14 @@ const CreatePetListing = () => {
         open={openNotification}
       />
       <Button
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button>
+        onClick={() => {
+          history.push("/");
+        }}
+        className={classes.backButton}
+        startIcon={<ArrowBackIosIcon />}
+      >
+        Back
+      </Button>
       <Header value="List your pet for foster care"></Header>
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
