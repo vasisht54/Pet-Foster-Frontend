@@ -11,6 +11,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 300;
 
@@ -131,6 +132,7 @@ const PetSearchDetails = () => {
 export const PetDetails = () => {
   const classes = useStyles();
   const history = useHistory();
+  const isLoggedIn = useSelector(state => state.isLoggedIn.value);
 
   const pathname = window.location.pathname;
   const queryParam = window.location.pathname + window.location.search;
@@ -138,19 +140,19 @@ export const PetDetails = () => {
   return (
     <>
       <div className={classes.flex}>
-      {!pathname.includes("/create") && (
-              <div>
-                <Button
-                  onClick={() => {
-                    history.goBack();
-                  }}
-                  className={classes.backButton}
-                  startIcon={<ArrowBackIosIcon />}
-                >
-                  Back
-                </Button>
-              </div>
-            )}
+        {!pathname.includes("/create") && (
+          <div>
+            <Button
+              onClick={() => {
+                history.goBack();
+              }}
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              Back
+            </Button>
+          </div>
+        )}
         <Typography variant="h5">Bruno</Typography>
         {!pathname.includes("/create") &&
           !queryParam.includes("/PetSearchDetails?false") && (
@@ -213,7 +215,11 @@ export const PetDetails = () => {
               color="primary"
               className={classes.sendButton}
               onClick={() => {
-                history.push("/sendFosterRequest");
+                history.push(
+                  isLoggedIn
+                    ? "/sendFosterRequest"
+                    : "/login?redirectTo=/sendFosterRequest"
+                );
               }}
               size="medium"
             >
