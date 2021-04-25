@@ -129,6 +129,7 @@ const MyFosterRequests = () => {
   const [withdrawId, setWithdrawId] = React.useState(null);
   const [pets, setPets] = useState(MyRequests);
   const history = useHistory();
+  const [selectedOwner, setselectedOwner] = useState(null);
 
   const handleDelete = id => {
     const newPets = pets.filter(pet => pet.id !== id);
@@ -143,6 +144,11 @@ const MyFosterRequests = () => {
   const handleWithdraw = id => {
     setWithdrawId(id);
     setOpenReject(true);
+  };
+
+  const handleViewOwner = owner => {
+    setselectedOwner(owner);
+    setOpenOwnerDetails(true);
   };
 
   return (
@@ -196,7 +202,7 @@ const MyFosterRequests = () => {
                       justify="center"
                     >
                       <Button
-                        onClick={() => setOpenOwnerDetails(true)}
+                        onClick={() => handleViewOwner(owners[item.id - 1])}
                         color="primary"
                         variant="contained"
                         size="small"
@@ -264,7 +270,7 @@ const MyFosterRequests = () => {
                 >
                   <DialogContent dividers>
                     <ProfilePopup
-                      profile={owners[item.id - 1]}
+                      profile={selectedOwner}
                       handleClose={() => setOpenOwnerDetails(false)}
                     />
                   </DialogContent>
